@@ -90,10 +90,12 @@ class MainActivity : AppCompatActivity() {
     fun calculate() {
 
         val inputA: EditText = findViewById(R.id.inputA)
-        a = inputA.text.toString().toDouble()
+        if(inputA.text.toString() != "")
+            a = inputA.text.toString().toDouble()
 
         val inputB: EditText = findViewById(R.id.inputB)
-        b= inputB.text.toString().toDouble()
+        if(inputB.text.toString() != "")
+            b= inputB.text.toString().toDouble()
 
         val textViewResult: TextView = findViewById(R.id.textViewResult)
         if(typeOfOperation == TypeOfOperation.NONE) {
