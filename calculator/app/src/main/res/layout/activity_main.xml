@@ -7,10 +7,9 @@
     tools:context=".MainActivity">
 
     <Button
-        android:id="@+id/button5"
+        android:id="@+id/btDiv"
         android:layout_width="98dp"
         android:layout_height="56dp"
-        android:onClick="div"
         android:text="/"
         app:layout_constraintBottom_toBottomOf="@+id/btSub"
         app:layout_constraintEnd_toEndOf="parent"
@@ -19,7 +18,7 @@
 
     <EditText
         android:id="@+id/inputA"
-        android:layout_width="182dp"
+        android:layout_width="250dp"
         android:layout_height="56dp"
         android:layout_marginStart="16dp"
         android:layout_marginTop="40dp"
@@ -33,7 +32,7 @@
 
     <EditText
         android:id="@+id/inputB"
-        android:layout_width="182dp"
+        android:layout_width="250dp"
         android:layout_height="56dp"
         android:layout_marginStart="16dp"
         android:ems="10"
@@ -50,7 +49,6 @@
         android:id="@+id/btAdd"
         android:layout_width="98dp"
         android:layout_height="56dp"
-        android:onClick="add"
         android:text="+"
         app:layout_constraintBottom_toBottomOf="@+id/btSub"
         app:layout_constraintEnd_toStartOf="@+id/btSub"
@@ -63,7 +61,6 @@
         android:layout_width="98dp"
         android:layout_height="56dp"
         android:layout_marginTop="36dp"
-        android:onClick="sub"
         android:text="-"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
@@ -75,7 +72,6 @@
         android:layout_width="98dp"
         android:layout_height="56dp"
         android:layout_marginStart="16dp"
-        android:onClick="mult"
         android:text="x"
         app:layout_constraintBottom_toBottomOf="@+id/btMod"
         app:layout_constraintEnd_toStartOf="@+id/btMod"
@@ -88,21 +84,19 @@
         android:id="@+id/btMod"
         android:layout_width="98dp"
         android:layout_height="56dp"
-        android:onClick="mod"
         android:text="%"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/btSub"
-        app:layout_constraintVertical_bias="0.03" />
+        app:layout_constraintVertical_bias="0.077" />
 
     <Button
         android:id="@+id/btClear"
         android:layout_width="98dp"
         android:layout_height="56dp"
         android:layout_marginEnd="16dp"
-        android:onClick="clear"
         android:text="CLEAR"
         app:layout_constraintBottom_toBottomOf="@+id/btMod"
         app:layout_constraintEnd_toEndOf="parent"
@@ -122,59 +116,32 @@
         app:layout_constraintHorizontal_bias="0.562"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/btMod"
-        app:layout_constraintVertical_bias="0.067" />
+        app:layout_constraintVertical_bias="0.131" />
 
     <TextView
         android:id="@+id/textViewResult"
         android:layout_width="372dp"
         android:layout_height="67dp"
-        android:text="Submit a and b (by default 0), select type of operation and click = to see the result!"
+        android:text="@string/resultTxtViewTutorial"
         android:textAppearance="@style/TextAppearance.AppCompat.Medium"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@+id/btCalculate"
-        app:layout_constraintHorizontal_bias="0.285"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/btCalculate"
         app:layout_constraintTop_toBottomOf="@+id/btCalculate"
-        app:layout_constraintVertical_bias="0.091" />
-
-    <Button
-        android:id="@+id/btSubmitA"
-        android:layout_width="113dp"
-        android:layout_height="49dp"
-        android:text="Submit a"
-        android:textAppearance="@style/TextAppearance.AppCompat.Small"
-        android:onClick="submitA"
-        app:layout_constraintBottom_toBottomOf="@+id/inputA"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.108"
-        app:layout_constraintStart_toEndOf="@+id/inputA"
-        app:layout_constraintTop_toTopOf="@+id/inputA"
-        app:layout_constraintVertical_bias="0.0" />
-
-    <Button
-        android:id="@+id/btSubmitB"
-        android:layout_width="113dp"
-        android:layout_height="49dp"
-        android:layout_marginStart="8dp"
-        android:text="Submit b"
-        android:textAppearance="@style/TextAppearance.AppCompat.Small"
-        android:onClick="submitB"
-        app:layout_constraintBottom_toBottomOf="@+id/inputB"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.032"
-        app:layout_constraintStart_toEndOf="@+id/inputB"
-        app:layout_constraintTop_toBottomOf="@+id/btSubmitA"
-        app:layout_constraintVertical_bias="0.774" />
+        app:layout_constraintVertical_bias="0.194" />
 
     <TextView
         android:id="@+id/txtViewTypeOfOperation"
-        android:layout_width="62dp"
-        android:layout_height="121dp"
-        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+        android:layout_width="61dp"
+        android:layout_height="128dp"
+        android:layout_marginStart="44dp"
+        android:layout_marginEnd="40dp"
         android:gravity="center"
-        app:layout_constraintBottom_toBottomOf="@+id/btSubmitB"
+        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+        app:layout_constraintBottom_toBottomOf="@+id/inputB"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/btSubmitA"
-        app:layout_constraintTop_toTopOf="@+id/btSubmitA" />
+        app:layout_constraintStart_toEndOf="@+id/inputB"
+        app:layout_constraintTop_toTopOf="@+id/inputA" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
