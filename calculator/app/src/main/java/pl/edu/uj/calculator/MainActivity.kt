@@ -74,7 +74,8 @@ class MainActivity : AppCompatActivity() {
             inputB.text.clear()
 
             val txtViewResult: TextView = findViewById(R.id.textViewResult)
-            txtViewResult.text = ""
+            val stringTutorial: String = getString(R.string.resultTxtViewTutorial)
+            txtViewResult.text = stringTutorial
 
         }
 
