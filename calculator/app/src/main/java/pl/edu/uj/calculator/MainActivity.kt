@@ -102,7 +102,7 @@ class MainActivity : AppCompatActivity() {
             textViewResult.setText("Choose type of operation! (+, - etc.)")
             return
         }
-        if(b == 0.0 && typeOfOperation == TypeOfOperation.DIV) {
+        if(b == 0.0 && (typeOfOperation == TypeOfOperation.DIV || typeOfOperation == TypeOfOperation.MODULO)) {
             textViewResult.setText("You can't divide by zero!!")
             return
         }
