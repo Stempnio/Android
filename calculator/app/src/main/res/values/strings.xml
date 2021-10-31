@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">calculator</string>
+    <string name="enter_value_of_a">enter value of \'a\'</string>
+    <string name="enter_value_of_b">enter value of \'b\'</string>
+</resources>
