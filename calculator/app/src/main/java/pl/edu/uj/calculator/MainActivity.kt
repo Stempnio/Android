@@ -5,7 +5,6 @@ import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
-import org.w3c.dom.Text
 
 
 class MainActivity : AppCompatActivity() {
@@ -98,7 +97,7 @@ class MainActivity : AppCompatActivity() {
 
         val textViewResult: TextView = findViewById(R.id.textViewResult)
         if(typeOfOperation == TypeOfOperation.NONE) {
-            textViewResult.setText("Choose type of operation! (+, - etc.")
+            textViewResult.setText("Choose type of operation! (+, - etc.)")
             return
         }
         if(b == 0.0 && typeOfOperation == TypeOfOperation.DIV) {

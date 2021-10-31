@@ -3,4 +3,11 @@
     <string name="enter_value_of_a">enter value of \'a\'</string>
     <string name="enter_value_of_b">enter value of \'b\'</string>
     <string name="resultTxtViewTutorial">Type a and b (by default 0), select type of operation and click = to see the result!</string>
+    <string name="division">/</string>
+    <string name="add">+</string>
+    <string name="sub">-</string>
+    <string name="multiply">x</string>
+    <string name="modulo">%</string>
+    <string name="clear">CLEAR</string>
+    <string name="calculate">=</string>
 </resources>
