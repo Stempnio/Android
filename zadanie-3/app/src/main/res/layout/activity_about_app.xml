@@ -6,6 +6,17 @@
     android:layout_height="match_parent"
     tools:context=".AboutAppActivity">
 
+    <ImageView
+        android:id="@+id/imageViewIcon1"
+        android:layout_width="128dp"
+        android:layout_height="94dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.025"
+        app:srcCompat="@android:drawable/ic_menu_myplaces" />
+
     <TextView
         android:id="@+id/textView"
         android:layout_width="294dp"
@@ -15,9 +26,10 @@
         android:text="@string/lorem_ipsum_dolor_sit_amet_consectetur_adipiscing_elit_quisque_a_dui_sit_amet_lectus_lacinia_euismod_vitae_in_sapien_in_sit_amet_neque_dignissim_vehicula_felis_in_rutrum_leo_suspendisse_non_risus_sit_amet_risus_vehicula_tempus_vestibulum_ante_ipsum_primis_in_faucibus_orci_luctus_et_ultrices_posuere_cubilia_curae_aenean_efficitur_erat_in_leo_finibus_dignissim_cras_viverra_rhoncus_est_ut_molestie_lorem_pellentesque_sollicitudin_posuere_diam_non_mattis"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.396" />
+        app:layout_constraintTop_toBottomOf="@+id/imageViewIcon1"
+        app:layout_constraintVertical_bias="0.203" />
 
     <Button
         android:id="@+id/buttonGoBack2"
