@@ -4,34 +4,16 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 
 class ProductsActivity : AppCompatActivity() {
+
+    private val adapter = ProductListAdapter()
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_products)
-
-
-
-        val buttonCartP1: Button = findViewById(R.id.buttonCartP1)
-        buttonCartP1.setOnClickListener {
-            val intent = Intent(this, CartActivity::class.java)
-            Cart.addProduct("product 1", 1000.0)
-            startActivity(intent)
-        }
-
-        val buttonCartP2: Button = findViewById(R.id.buttonCartP2)
-        buttonCartP2.setOnClickListener {
-            val intent = Intent(this, CartActivity::class.java)
-            Cart.addProduct("product 2", 1110.0)
-            startActivity(intent)
-        }
-
-        val buttonCartP3: Button = findViewById(R.id.buttonCartP3)
-        buttonCartP3.setOnClickListener {
-            val intent = Intent(this, CartActivity::class.java)
-            Cart.addProduct("product 3", 55.0)
-            startActivity(intent)
-        }
 
         val buttonGoToCart: Button = findViewById(R.id.buttonGoToCart)
         buttonGoToCart.setOnClickListener {
@@ -49,5 +31,13 @@ class ProductsActivity : AppCompatActivity() {
         buttonLogOut.setOnClickListener {
             finish()
         }
+    }
+
+    override fun onResume() {
+        super.onResume()
+
+        val recyclerView: RecyclerView = findViewById(R.id.RecycleViewProductList)
+        recyclerView.layoutManager = LinearLayoutManager(this)
+        recyclerView.adapter = adapter
     }
 }

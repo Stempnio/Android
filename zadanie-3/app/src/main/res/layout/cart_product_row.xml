@@ -8,7 +8,7 @@
     android:background="#C3BFBF">
 
     <TextView
-        android:id="@+id/textViewProductName"
+        android:id="@+id/textViewProductNameCart"
         android:layout_width="136dp"
         android:layout_height="40dp"
         android:layout_marginStart="16dp"
@@ -20,7 +20,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/textViewProductPrice"
+        android:id="@+id/textViewProductPriceCart"
         android:layout_width="136dp"
         android:layout_height="30dp"
         android:layout_marginTop="12dp"
@@ -28,10 +28,10 @@
         android:textAlignment="textEnd"
         android:textSize="16sp"
         android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="@+id/textViewProductName"
+        app:layout_constraintEnd_toEndOf="@+id/textViewProductNameCart"
         app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/textViewProductName"
-        app:layout_constraintTop_toBottomOf="@+id/textViewProductName" />
+        app:layout_constraintStart_toStartOf="@+id/textViewProductNameCart"
+        app:layout_constraintTop_toBottomOf="@+id/textViewProductNameCart" />
 
     <Button
         android:id="@+id/buttonRmFromCart"
@@ -41,8 +41,8 @@
         android:backgroundTint="#CC3A0C"
         android:text="@string/remove_from_cart"
         android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="@+id/textViewProductPrice"
+        app:layout_constraintBottom_toBottomOf="@+id/textViewProductPriceCart"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/textViewProductName"
+        app:layout_constraintTop_toTopOf="@+id/textViewProductNameCart"
         app:layout_constraintVertical_bias="0.129" />
 </androidx.constraintlayout.widget.ConstraintLayout>

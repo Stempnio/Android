@@ -1,6 +1,5 @@
 package pl.edu.uj.zadanie_3
 
-import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -11,8 +10,8 @@ import androidx.recyclerview.widget.RecyclerView
 class ProductCartAdapter : RecyclerView.Adapter<ProductCartAdapter.ProductViewHolder>() {
 
     class ProductViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        val textViewProductName : TextView = itemView.findViewById(R.id.textViewProductName)
-        val textViewProductPrice : TextView = itemView.findViewById(R.id.textViewProductPrice)
+        val textViewProductName : TextView = itemView.findViewById(R.id.textViewProductNameCart)
+        val textViewProductPrice : TextView = itemView.findViewById(R.id.textViewProductPriceCart)
         val buttonRmFromCart : Button = itemView.findViewById(R.id.buttonRmFromCart)
 
     }
