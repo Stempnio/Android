@@ -4,8 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="#807F7F"
-    android:padding="5dp">
+    android:layout_marginBottom="5dp"
+    android:background="#C3BFBF">
 
     <TextView
         android:id="@+id/textViewProductName"
@@ -13,7 +13,7 @@
         android:layout_height="40dp"
         android:layout_marginStart="16dp"
         android:layout_marginTop="24dp"
-        android:background="#98EF9C"
+        android:background="#2196F3"
         android:gravity="center"
         android:textAllCaps="false"
         app:layout_constraintStart_toStartOf="parent"
@@ -21,14 +21,16 @@
 
     <TextView
         android:id="@+id/textViewProductPrice"
-        android:layout_width="92dp"
-        android:layout_height="31dp"
-        android:layout_marginTop="20dp"
+        android:layout_width="136dp"
+        android:layout_height="30dp"
+        android:layout_marginTop="12dp"
         android:gravity="center"
         android:text=""
+        android:textAlignment="textEnd"
+        android:textSize="16sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="@+id/textViewProductName"
-        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/textViewProductName"
         app:layout_constraintTop_toBottomOf="@+id/textViewProductName" />
 
@@ -36,11 +38,12 @@
         android:id="@+id/buttonRmFromCart"
         android:layout_width="113dp"
         android:layout_height="51dp"
-        android:layout_marginEnd="36dp"
+        android:layout_marginEnd="40dp"
         android:backgroundTint="#CC3A0C"
         android:text="@string/remove_from_cart"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="@+id/textViewProductPrice"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/textViewProductName" />
+        app:layout_constraintTop_toTopOf="@+id/textViewProductName"
+        app:layout_constraintVertical_bias="0.129" />
 </androidx.constraintlayout.widget.ConstraintLayout>
