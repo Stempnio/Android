@@ -10,6 +10,8 @@ class ProductsActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_products)
 
+
+
         val buttonCartP1: Button = findViewById(R.id.buttonCartP1)
         buttonCartP1.setOnClickListener {
             val intent = Intent(this, CartActivity::class.java)
@@ -28,6 +30,12 @@ class ProductsActivity : AppCompatActivity() {
         buttonCartP3.setOnClickListener {
             val intent = Intent(this, CartActivity::class.java)
             Cart.addProduct("product 3", 55.0)
+            startActivity(intent)
+        }
+
+        val buttonGoToCart: Button = findViewById(R.id.buttonGoToCart)
+        buttonGoToCart.setOnClickListener {
+            val intent = Intent(this, CartActivity::class.java)
             startActivity(intent)
         }
 

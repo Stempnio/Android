@@ -23,4 +23,6 @@
     <string name="about_app">About app</string>
     <string name="lorem_ipsum_dolor_sit_amet_consectetur_adipiscing_elit_quisque_a_dui_sit_amet_lectus_lacinia_euismod_vitae_in_sapien_in_sit_amet_neque_dignissim_vehicula_felis_in_rutrum_leo_suspendisse_non_risus_sit_amet_risus_vehicula_tempus_vestibulum_ante_ipsum_primis_in_faucibus_orci_luctus_et_ultrices_posuere_cubilia_curae_aenean_efficitur_erat_in_leo_finibus_dignissim_cras_viverra_rhoncus_est_ut_molestie_lorem_pellentesque_sollicitudin_posuere_diam_non_mattis">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque a dui sit amet lectus lacinia euismod vitae in sapien. In sit amet neque dignissim, vehicula felis in, rutrum leo. Suspendisse non risus sit amet risus vehicula tempus. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Aenean efficitur erat in leo finibus dignissim. Cras viverra rhoncus est, ut molestie lorem. Pellentesque sollicitudin posuere diam non mattis.</string>
     <string name="log_out">Log out</string>
+    <string name="remove_from_cart">REMOVE</string>
+    <string name="go_to_cart">Go to cart</string>
 </resources>
