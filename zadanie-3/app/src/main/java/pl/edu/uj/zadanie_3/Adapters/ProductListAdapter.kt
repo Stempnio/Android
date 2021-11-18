@@ -1,4 +1,4 @@
-package pl.edu.uj.zadanie_3
+package pl.edu.uj.zadanie_3.Adapters
 
 import android.content.Intent
 import android.view.LayoutInflater
@@ -7,6 +7,11 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import pl.edu.uj.zadanie_3.Activities.CartActivity
+import pl.edu.uj.zadanie_3.Cart
+import pl.edu.uj.zadanie_3.Product
+import pl.edu.uj.zadanie_3.Products
+import pl.edu.uj.zadanie_3.R
 
 class ProductListAdapter : RecyclerView.Adapter<ProductListAdapter.ProductViewHolder>(){
     class ProductViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
@@ -36,7 +41,10 @@ class ProductListAdapter : RecyclerView.Adapter<ProductListAdapter.ProductViewHo
             val pPrice = holder.textViewProductPrice.text.toString()
             Cart.productsInCart.add(Product(pName, pPrice.toDouble()))
 
+            notifyItemInserted(position)
+
             val intent = Intent(holder.buttonAddToCart.context, CartActivity::class.java)
+
             holder.buttonAddToCart.context.startActivity(intent)
 
         }

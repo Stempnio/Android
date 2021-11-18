@@ -1,10 +1,11 @@
-package pl.edu.uj.zadanie_3
+package pl.edu.uj.zadanie_3.Activities
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
+import pl.edu.uj.zadanie_3.R
 
 class LogInActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {

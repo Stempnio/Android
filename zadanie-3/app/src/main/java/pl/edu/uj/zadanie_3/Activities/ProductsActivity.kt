@@ -1,4 +1,4 @@
-package pl.edu.uj.zadanie_3
+package pl.edu.uj.zadanie_3.Activities
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
@@ -6,6 +6,8 @@ import android.os.Bundle
 import android.widget.Button
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import pl.edu.uj.zadanie_3.Adapters.ProductListAdapter
+import pl.edu.uj.zadanie_3.R
 
 class ProductsActivity : AppCompatActivity() {
 

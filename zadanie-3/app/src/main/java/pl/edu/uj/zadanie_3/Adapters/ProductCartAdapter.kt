@@ -1,4 +1,4 @@
-package pl.edu.uj.zadanie_3
+package pl.edu.uj.zadanie_3.Adapters
 
 import android.view.LayoutInflater
 import android.view.View
@@ -6,6 +6,9 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import pl.edu.uj.zadanie_3.Cart
+import pl.edu.uj.zadanie_3.Product
+import pl.edu.uj.zadanie_3.R
 
 class ProductCartAdapter : RecyclerView.Adapter<ProductCartAdapter.ProductViewHolder>() {
 
@@ -35,7 +38,11 @@ class ProductCartAdapter : RecyclerView.Adapter<ProductCartAdapter.ProductViewHo
             val pName = holder.textViewProductName.text.toString()
             val pPrice = holder.textViewProductPrice.text.toString()
             Cart.productsInCart.remove(Product(pName, pPrice.toDouble()))
-            notifyItemRemoved(position)
+
+            //not working for changing total price text view
+            //notifyItemRemoved(position)
+
+            notifyDataSetChanged()
         }
     }
 }

@@ -1,9 +1,9 @@
-package pl.edu.uj.zadanie_3
+package pl.edu.uj.zadanie_3.Activities
 
-import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
+import pl.edu.uj.zadanie_3.R
 
 class RegisterActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {

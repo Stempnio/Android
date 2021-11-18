@@ -10,22 +10,25 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Zadanie3">
         <activity
-            android:name=".ProductsActivity"
+            android:name=".Activities.BuyActivity"
             android:exported="false" />
         <activity
-            android:name=".CartActivity"
+            android:name=".Activities.ProductsActivity"
             android:exported="false" />
         <activity
-            android:name=".AboutAppActivity"
+            android:name=".Activities.CartActivity"
             android:exported="false" />
         <activity
-            android:name=".RegisterActivity"
+            android:name=".Activities.AboutAppActivity"
             android:exported="false" />
         <activity
-            android:name=".LogInActivity"
+            android:name=".Activities.RegisterActivity"
             android:exported="false" />
         <activity
-            android:name=".MainActivity"
+            android:name=".Activities.LogInActivity"
+            android:exported="false" />
+        <activity
+            android:name=".Activities.MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
