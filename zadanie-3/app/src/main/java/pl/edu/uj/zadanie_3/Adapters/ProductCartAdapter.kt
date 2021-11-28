@@ -39,9 +39,9 @@ class ProductCartAdapter : RecyclerView.Adapter<ProductCartAdapter.ProductViewHo
             val pPrice = holder.textViewProductPrice.text.toString()
             Cart.productsInCart.remove(Product(pName, pPrice.toDouble()))
 
-            //not working for changing total price text view
-            //notifyItemRemoved(position)
+            notifyItemRemoved(position)
 
+            //// needed for displaying text view total price in real time
             notifyDataSetChanged()
         }
     }

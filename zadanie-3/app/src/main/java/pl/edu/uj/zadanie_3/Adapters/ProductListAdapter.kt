@@ -43,6 +43,9 @@ class ProductListAdapter : RecyclerView.Adapter<ProductListAdapter.ProductViewHo
 
             notifyItemInserted(position)
 
+            // needed for displaying text view total price in real time
+            notifyDataSetChanged()
+
             val intent = Intent(holder.buttonAddToCart.context, CartActivity::class.java)
 
             holder.buttonAddToCart.context.startActivity(intent)

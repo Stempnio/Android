@@ -55,3 +55,9 @@ object Cart {
 
 
 }
+
+object DataBaseCommands {
+    const val SQL_CREATE_TABLE = ""
+
+    const val SQL_DELETE_TABLE = ""
+}
