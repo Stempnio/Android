@@ -1,4 +1,4 @@
-package uj.edu.pl
+package pl.edu.uj
 
 import io.ktor.routing.*
 import io.ktor.http.*
@@ -9,7 +9,7 @@ import io.ktor.response.*
 import io.ktor.request.*
 import kotlin.test.*
 import io.ktor.server.testing.*
-import uj.edu.pl.routes.configureRouting
+import pl.edu.uj.routes.configureRouting
 
 
 class ApplicationTest {

@@ -1,4 +1,4 @@
-package uj.edu.pl.routes
+package pl.edu.uj.routes
 
 import io.ktor.application.*
 import io.ktor.routing.*
