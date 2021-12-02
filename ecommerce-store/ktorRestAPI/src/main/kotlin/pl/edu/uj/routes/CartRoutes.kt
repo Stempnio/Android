@@ -45,6 +45,14 @@ fun Route.cartRouting() {
             }
         }
 
+        // delete customer cart
+        delete("/{customer_id}") {
+            val customerId = call.parameters["customer_id"]
+            if(customerId != null) {
+                call.respond(deleteCustomerCart(customerId.toInt()))
+            }
+        }
+
 
     }
 }

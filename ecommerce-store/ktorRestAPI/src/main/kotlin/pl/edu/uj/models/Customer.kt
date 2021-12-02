@@ -1,7 +1,6 @@
 package pl.edu.uj.models
 
 import org.jetbrains.exposed.sql.*
-import org.jetbrains.exposed.sql.SqlExpressionBuilder.eq
 import org.jetbrains.exposed.sql.transactions.transaction
 
 data class Customer(val id : Int, val firstName : String, val lastName : String, val email : String)
@@ -22,8 +21,6 @@ fun ResultRow.toCustomer() = Customer (
     lastName = this[CustomerTable.lastName],
     email = this[CustomerTable.email]
 )
-
-// TODO functions
 
 fun addCustomer(customer : Customer) {
     transaction {
@@ -48,7 +45,7 @@ fun deleteAllCustomers() {
     }
 }
 
-fun getAllCustomers() {
+fun getAllCustomers() : List<Customer> {
     return transaction {
         CustomerTable.selectAll().map { it.toCustomer() }
     }

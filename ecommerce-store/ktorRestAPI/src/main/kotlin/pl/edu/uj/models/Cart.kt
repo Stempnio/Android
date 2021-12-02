@@ -19,15 +19,21 @@ fun ResultRow.toCart() = Cart(
     quantity = this[CartTable.quantity]
 )
 
-fun getAllCarts() {
-    transaction {
-        CartTable.selectAll()
+fun getAllCarts() : List<Cart> {
+    return transaction {
+        CartTable.selectAll().map { it.toCart() }
     }
 }
 
-fun getCustomerCart(customerId : Int) {
-    transaction {
+fun getCustomerCart(customerId : Int) : List<Cart> {
+    return transaction {
         CartTable.select { CartTable.customerId eq customerId }.map { it.toCart() }
+    }
+}
+
+fun deleteCustomerCart(customerId: Int) {
+    transaction {
+        CartTable.deleteWhere { CartTable.customerId eq customerId }
     }
 }
 

@@ -42,7 +42,7 @@ fun deleteAllProducts() {
     }
 }
 
-fun getAllProducts() {
+fun getAllProducts() : List<Product> {
     return transaction {
         ProductTable.selectAll().map { it.toProduct() }
     }
