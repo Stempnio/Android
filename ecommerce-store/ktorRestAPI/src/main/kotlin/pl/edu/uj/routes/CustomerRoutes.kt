@@ -1,55 +1,47 @@
 package pl.edu.uj.routes
 
 import io.ktor.application.*
-import io.ktor.http.*
+import io.ktor.request.*
 import io.ktor.response.*
 import io.ktor.routing.*
-import pl.edu.uj.models.customerStorage
+import pl.edu.uj.models.*
 
 fun Route.customerRouting() {
+
     route("/customer") {
-        // gets all customers
+
+        // get all customers
         get {
-//            if (customerStorage.isNotEmpty()) {
-//                call.respond(customerStorage)
-//            } else {
-//                call.respondText("No customers found", status = HttpStatusCode.NotFound)
-//            }
+            call.respond(getAllCustomers())
         }
 
-        // gets cumstomer by id
+
+        // gets customer by given id
         get("{id}") {
-//            val id = call.parameters["id"] ?: return@get call.respondText(
-//                "Missing or malformed id",
-//                status = HttpStatusCode.BadRequest
-//            )
-//            val customer =
-//                customerStorage.find { it.id == id } ?: return@get call.respondText(
-//                    "No customer with id $id",
-//                    status = HttpStatusCode.NotFound
-//                )
-//
-//            call.respond(customer)
+            val id = call.parameters["id"]
+            if(id != null) {
+                val customer = getCustomer(id.toInt())
+                call.respond(customer)
+            }
         }
 
-        // ads new customer
+        // adds customer
         post {
+            val customer = call.receive<Customer>()
+            call.respond(addCustomer(customer))
+        }
 
+        // deletes all customers
+        delete {
+            call.respond(deleteAllCustomers())
         }
 
         // deletes customer by given id
         delete("{id}") {
-
+            val id = call.parameters["id"]
+            if(id != null)
+                call.respond(deleteCustomer(id.toInt()))
         }
 
-//        put {
-//
-//        }
     }
 }
-
-//fun Application.registerCustomerRoutes() {
-//    routing {
-//        customerRouting()
-//    }
-//}

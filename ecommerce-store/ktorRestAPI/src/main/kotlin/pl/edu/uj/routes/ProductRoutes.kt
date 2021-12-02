@@ -1,13 +1,9 @@
 package pl.edu.uj.routes
 
-import com.google.gson.Gson
 import io.ktor.application.*
-import io.ktor.http.*
 import io.ktor.request.*
 import io.ktor.response.*
 import io.ktor.routing.*
-import org.jetbrains.exposed.sql.SqlExpressionBuilder.eq
-import org.jetbrains.exposed.sql.select
 import pl.edu.uj.models.*
 
 fun Route.productRouting() {
@@ -26,16 +22,6 @@ fun Route.productRouting() {
             }
         }
 
-
-//        // TODO delete this
-//        get("json/{id}") {
-//            val id = call.parameters["id"]
-//            if(id != null) {
-//                val prod = getProduct(id.toInt())
-//                call.respondText { Gson().toJson(prod) }
-//            }
-//        }
-
         // adds product
         post {
             val product = call.receive<Product>()
@@ -53,9 +39,5 @@ fun Route.productRouting() {
             if(id != null)
                 call.respond(deleteProduct(id.toInt()))
         }
-
-//        put {
-//
-//        }
     }
 }

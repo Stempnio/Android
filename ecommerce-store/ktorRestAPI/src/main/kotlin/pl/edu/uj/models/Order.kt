@@ -20,18 +20,4 @@ fun ResultRow.toOrder() = Order(
     customerId = this[OrderTable.customerId],
     date = this[OrderTable.date]
 )
-
-// TODO quantity??
-data class OrderDetails(val orderId : Int, val productId : Int)
-
-object OrderDetailsTable : Table() {
-    val orderId = integer("orderId").references(OrderTable.id)
-    val productId = integer("productIt")
-}
-
-fun ResultRow.toOrderDetails() = OrderDetails(
-    orderId = this[OrderDetailsTable.orderId],
-    productId = this[OrderDetailsTable.productId]
-)
-
 // TODO functions
