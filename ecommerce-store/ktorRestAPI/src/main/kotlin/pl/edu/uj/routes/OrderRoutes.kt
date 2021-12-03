@@ -3,10 +3,7 @@ package pl.edu.uj.routes
 import io.ktor.application.*
 import io.ktor.response.*
 import io.ktor.routing.*
-import pl.edu.uj.models.getAllOrders
-import pl.edu.uj.models.getCustomerOrders
-import pl.edu.uj.models.getOrder
-import pl.edu.uj.models.placeOrder
+import pl.edu.uj.models.*
 
 fun Route.orderRouting() {
     route("/order") {
@@ -36,10 +33,12 @@ fun Route.orderRouting() {
                 call.respond(placeOrder(id.toInt()))
         }
 
-//        // deletes an order by given id
-//        delete("{id}") {
-//
-//        }
+        // deletes an order by given id
+        delete("{id}") {
+            val id = call.parameters["id"]
+            if(id != null)
+                call.respond(deleteOrder(id.toInt()))
+        }
 
     }
 }

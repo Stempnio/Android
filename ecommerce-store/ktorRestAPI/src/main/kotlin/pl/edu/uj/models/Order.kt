@@ -63,3 +63,11 @@ fun placeOrder(customerId: Int) {
     }
 
 }
+
+
+fun deleteOrder(orderId : Int) {
+    transaction {
+        OrderTable.deleteWhere { OrderTable.id eq orderId }
+        deleteOrderDetails(orderId)
+    }
+}

@@ -1,8 +1,6 @@
 package pl.edu.uj.models
 
-import org.jetbrains.exposed.sql.ResultRow
-import org.jetbrains.exposed.sql.Table
-import org.jetbrains.exposed.sql.insert
+import org.jetbrains.exposed.sql.*
 import org.jetbrains.exposed.sql.transactions.transaction
 
 data class OrderDetails(val orderId : Int, val productId : Int, val quantity : Int)
@@ -28,3 +26,33 @@ fun insertOrderDetailsRow(orderId: Int, productId: Int, quantity: Int) {
         }
     }
 }
+
+fun getOrderDetails(orderId : Int) : List<OrderDetails> {
+    return transaction {
+        OrderDetailsTable.select { OrderDetailsTable.orderId eq orderId } . map {
+            it.toOrderDetails()
+        }
+    }
+}
+
+fun getAllOrderDetails() : List<OrderDetails> {
+    return transaction {
+        OrderDetailsTable.selectAll().map { it.toOrderDetails() }
+    }
+}
+
+fun deleteOrderDetails(orderId : Int) {
+    transaction {
+        OrderDetailsTable.deleteWhere {
+            OrderDetailsTable.orderId eq orderId
+        }
+    }
+}
+
+//fun deleteProductFromOrderDetails(orderId: Int, productId: Int) {
+//    transaction {
+//        OrderDetailsTable.deleteWhere {
+//            OrderDetailsTable.orderId eq orderId and (OrderDetailsTable.productId eq productId)
+//        }
+//    }
+//}
