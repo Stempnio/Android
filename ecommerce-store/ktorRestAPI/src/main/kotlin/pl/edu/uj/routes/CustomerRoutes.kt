@@ -20,7 +20,7 @@ fun Route.customerRouting() {
         get("{id}") {
             val id = call.parameters["id"]
             if(id != null) {
-                val customer = getCustomer(id.toInt())
+                val customer = getCustomer(id)
                 call.respond(customer)
             }
         }
@@ -40,7 +40,7 @@ fun Route.customerRouting() {
         delete("{id}") {
             val id = call.parameters["id"]
             if(id != null)
-                call.respond(deleteCustomer(id.toInt()))
+                call.respond(deleteCustomer(id))
         }
 
     }

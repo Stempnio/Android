@@ -3,10 +3,10 @@ package pl.edu.uj.models
 import org.jetbrains.exposed.sql.*
 import org.jetbrains.exposed.sql.transactions.transaction
 
-data class Customer(val id : Int, val firstName : String, val lastName : String, val email : String)
+data class Customer(val id : String, val firstName : String, val lastName : String, val email : String)
 
 object CustomerTable : Table() {
-    val id = integer("id").autoIncrement()
+    val id = varchar("id", 20)
     override val primaryKey = PrimaryKey(id)
 
     val firstName = varchar("firstName", 50)
@@ -33,7 +33,7 @@ fun addCustomer(customer : Customer) {
     }
 }
 
-fun deleteCustomer(id: Int) {
+fun deleteCustomer(id: String) {
     transaction {
         CustomerTable.deleteWhere { CustomerTable.id eq id }
     }
@@ -51,7 +51,7 @@ fun getAllCustomers() : List<Customer> {
     }
 }
 
-fun getCustomer(id : Int) : Customer {
+fun getCustomer(id : String) : Customer {
     return transaction {
         CustomerTable.select { CustomerTable.id eq id }.map { it.toCustomer() }
     }[0]

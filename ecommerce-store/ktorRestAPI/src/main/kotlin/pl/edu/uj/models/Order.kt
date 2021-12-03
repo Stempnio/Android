@@ -5,13 +5,13 @@ import org.jetbrains.exposed.sql.javatime.datetime
 import org.jetbrains.exposed.sql.transactions.transaction
 import java.time.LocalDateTime
 
-data class Order(val id: Int, val customerId: Int, val date: LocalDateTime)
+data class Order(val id: Int, val customerId: String, val date: LocalDateTime)
 
 object OrderTable : Table() {
     val id = integer("id").autoIncrement()
     override val primaryKey = PrimaryKey(id)
 
-    val customerId = integer("consumerId").references(CustomerTable.id)
+    val customerId = varchar("consumerId", 20).references(CustomerTable.id)
     val date = datetime("date")
 }
 
@@ -27,7 +27,7 @@ fun getAllOrders() {
     }
 }
 
-fun getCustomerOrders(customerId: Int) {
+fun getCustomerOrders(customerId: String) {
     transaction {
         OrderTable.select { OrderTable.customerId eq customerId }
     }
@@ -39,7 +39,7 @@ fun getOrder(id : Int) {
     }
 }
 
-fun placeOrder(customerId: Int) {
+fun placeOrder(customerId: String) {
     transaction {
         val customerCart = getCustomerCart(customerId)
         val orderId : Int

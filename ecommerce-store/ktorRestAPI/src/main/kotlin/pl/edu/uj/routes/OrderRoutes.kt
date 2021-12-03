@@ -16,7 +16,7 @@ fun Route.orderRouting() {
         get("/{customer_id}") {
             val id = call.parameters["id"]
             if(id != null)
-                call.respond(getCustomerOrders(id.toInt()))
+                call.respond(getCustomerOrders(id))
         }
 
         // gets order by given id
@@ -30,7 +30,7 @@ fun Route.orderRouting() {
         post("/{customer_id}") {
             val id = call.parameters["customer_id"]
             if(id != null)
-                call.respond(placeOrder(id.toInt()))
+                call.respond(placeOrder(id))
         }
 
         // deletes an order by given id

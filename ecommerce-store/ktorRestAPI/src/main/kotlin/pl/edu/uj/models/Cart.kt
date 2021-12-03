@@ -3,10 +3,10 @@ package pl.edu.uj.models
 import org.jetbrains.exposed.sql.*
 import org.jetbrains.exposed.sql.transactions.transaction
 
-data class Cart(val customerId : Int, val productId : Int, var quantity : Int)
+data class Cart(val customerId : String, val productId : Int, var quantity : Int)
 
 object CartTable : Table() {
-    val customerId = integer("customerId").references(CustomerTable.id)
+    val customerId = varchar("customerId", 30).references(CustomerTable.id)
     val productId = integer("productId").references(ProductTable.id)
     override val primaryKey = PrimaryKey(customerId, productId)
 
@@ -25,25 +25,25 @@ fun getAllCarts() : List<Cart> {
     }
 }
 
-fun getCustomerCart(customerId : Int) : List<Cart> {
+fun getCustomerCart(customerId : String) : List<Cart> {
     return transaction {
         CartTable.select { CartTable.customerId eq customerId }.map { it.toCart() }
     }
 }
 
-fun deleteCustomerCart(customerId: Int) {
+fun deleteCustomerCart(customerId: String) {
     transaction {
         CartTable.deleteWhere { CartTable.customerId eq customerId }
     }
 }
 
-fun deleteFromCart(customerId: Int, productId: Int) {
+fun deleteFromCart(customerId: String, productId: Int) {
     transaction {
         CartTable.deleteWhere { CartTable.customerId eq customerId and (CartTable.productId eq productId) }
     }
 }
 
-fun addToCart(customerId: Int, productId: Int) {
+fun addToCart(customerId: String, productId: Int) {
     transaction {
         val count = CartTable.select { CartTable.customerId eq  customerId and (CartTable.productId eq productId) }.count()
 

@@ -17,7 +17,7 @@ fun Route.cartRouting() {
         get("/{customer_id}") {
             val customerId = call.parameters["customer_id"]
             if(customerId != null) {
-                call.respond(getCustomerCart(customerId.toInt()))
+                call.respond(getCustomerCart(customerId))
             }
         }
 
@@ -27,7 +27,7 @@ fun Route.cartRouting() {
             val customerId = call.parameters["customer_id"]
             val productId = call.parameters["product_id"]
             if(customerId != null && productId != null) {
-                call.respond(addToCart(customerId.toInt(), productId.toInt()))
+                call.respond(addToCart(customerId, productId.toInt()))
             }
         }
 
@@ -41,7 +41,7 @@ fun Route.cartRouting() {
             val customerId = call.parameters["customer_id"]
             val productId = call.parameters["product_id"]
             if(customerId != null && productId != null) {
-                call.respond(deleteFromCart(customerId.toInt(), productId.toInt()))
+                call.respond(deleteFromCart(customerId, productId.toInt()))
             }
         }
 
@@ -49,7 +49,7 @@ fun Route.cartRouting() {
         delete("/{customer_id}") {
             val customerId = call.parameters["customer_id"]
             if(customerId != null) {
-                call.respond(deleteCustomerCart(customerId.toInt()))
+                call.respond(deleteCustomerCart(customerId))
             }
         }
 
