@@ -33,9 +33,9 @@ fun getCustomerOrders(customerId: Int) {
     }
 }
 
-fun getOrder(id : Int, customerId: Int) {
+fun getOrder(id : Int) {
     transaction {
-        OrderTable.select { OrderTable.id eq id and (OrderTable.customerId eq customerId)}
+        OrderTable.select { OrderTable.id eq id }
     }
 }
 
