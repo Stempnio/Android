@@ -3,7 +3,7 @@ package pl.edu.uj.models
 import org.jetbrains.exposed.sql.*
 import org.jetbrains.exposed.sql.transactions.transaction
 
-data class Product(val id : Int, val name : String, val price : Int)
+data class Product(val name : String, val price : Int, val id : Int = -1)
 
 object ProductTable : Table() {
     val id = integer("id").autoIncrement()
@@ -23,7 +23,7 @@ fun ResultRow.toProduct() = Product (
 fun addProduct(product: Product) {
     transaction {
         ProductTable.insert {
-            it[id] = product.id
+            //it[id] = product.id
             it[name] = product.name
             it[price] = product.price
         }

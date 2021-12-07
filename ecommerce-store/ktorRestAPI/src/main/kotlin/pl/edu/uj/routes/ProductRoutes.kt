@@ -1,5 +1,6 @@
 package pl.edu.uj.routes
 
+import com.google.gson.Gson
 import io.ktor.application.*
 import io.ktor.request.*
 import io.ktor.response.*
@@ -12,6 +13,11 @@ fun Route.productRouting() {
         get {
             call.respond(getAllProducts())
         }
+
+//        // gets all products
+//        get {
+//            call.respond(Gson().toJson(getAllProducts()))
+//        }
 
         // gets product by given id
         get("{id}") {

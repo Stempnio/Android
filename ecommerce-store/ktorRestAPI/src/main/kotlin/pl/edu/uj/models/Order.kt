@@ -5,7 +5,7 @@ import org.jetbrains.exposed.sql.javatime.datetime
 import org.jetbrains.exposed.sql.transactions.transaction
 import java.time.LocalDateTime
 
-data class Order(val id: Int, val customerId: String, val date: LocalDateTime)
+data class Order(val customerId: String, val date: LocalDateTime, val id: Int = -1)
 
 object OrderTable : Table() {
     val id = integer("id").autoIncrement()
