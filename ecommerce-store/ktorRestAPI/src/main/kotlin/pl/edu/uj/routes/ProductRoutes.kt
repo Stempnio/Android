@@ -20,12 +20,18 @@ fun Route.productRouting() {
 //        }
 
         // gets product by given id
-        get("{id}") {
+        get("/{id}") {
             val id = call.parameters["id"]
             if(id != null) {
                 val prod = getProduct(id.toInt())
                 call.respond(prod)
             }
+        }
+
+        // update product
+        put {
+            val product = call.receive<Product>()
+            call.respond(updateProduct(product))
         }
 
         // adds product
@@ -40,7 +46,7 @@ fun Route.productRouting() {
         }
 
         // deletes product
-        delete("{id}") {
+        delete("/{id}") {
             val id = call.parameters["id"]
             if(id != null)
                 call.respond(deleteProduct(id.toInt()))

@@ -17,12 +17,18 @@ fun Route.customerRouting() {
 
 
         // gets customer by given id
-        get("{id}") {
+        get("/{id}") {
             val id = call.parameters["id"]
             if(id != null) {
                 val customer = getCustomer(id)
                 call.respond(customer)
             }
+        }
+
+        // update customer
+        put {
+            val customer = call.receive<Customer>()
+            call.respond(updateCustomer(customer))
         }
 
         // adds customer
@@ -37,7 +43,7 @@ fun Route.customerRouting() {
         }
 
         // deletes customer by given id
-        delete("{id}") {
+        delete("/{id}") {
             val id = call.parameters["id"]
             if(id != null)
                 call.respond(deleteCustomer(id))
