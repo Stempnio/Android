@@ -51,8 +51,19 @@ fun getAllCustomers() : List<Customer> {
     }
 }
 
-fun getCustomer(id : String) : Customer {
+fun getCustomer(id : String) : List<Customer> {
     return transaction {
         CustomerTable.select { CustomerTable.id eq id }.map { it.toCustomer() }
-    }[0]
+    }
+}
+
+fun updateCustomer(customer : Customer) {
+    transaction {
+        CustomerTable.update({ CustomerTable.id eq customer.id }) {
+            it[id] = customer.id
+            it[firstName] = customer.firstName
+            it[lastName] = customer.lastName
+            it[email] = customer.email
+        }
+    }
 }
