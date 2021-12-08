@@ -1,9 +1,7 @@
 package pl.edu.uj
 
-import com.google.gson.Gson
-import io.netty.handler.codec.http.HttpMethod.POST
-import org.jetbrains.exposed.sql.*
-import org.jetbrains.exposed.sql.SqlExpressionBuilder.eq
+import org.jetbrains.exposed.sql.Database
+import org.jetbrains.exposed.sql.SchemaUtils
 import org.jetbrains.exposed.sql.transactions.TransactionManager
 import org.jetbrains.exposed.sql.transactions.transaction
 import pl.edu.uj.models.*
@@ -14,6 +12,7 @@ fun dropExistingDB() {
     SchemaUtils.drop(CartTable)
     SchemaUtils.drop(OrderTable)
     SchemaUtils.drop(CustomerTable)
+    SchemaUtils.drop(OrderDetailsTable)
 }
 
 fun createDB() {
@@ -29,11 +28,9 @@ fun createDB() {
         SchemaUtils.create(CartTable)
         SchemaUtils.create(OrderTable)
         SchemaUtils.create(CustomerTable)
+        SchemaUtils.create(OrderDetailsTable)
 
         createSampleDB()
-        //addProduct(Product(5, "name", 100))
-
-//        println(Gson().toJson(ProductTable.selectAll().map { it.toProduct() }))
 
     }
 
@@ -42,10 +39,10 @@ fun createDB() {
 fun createSampleDB() {
     val customer1 = Customer("cust1", "jan", "kowalski", "jankowalski@gmail.com")
     val customer2 = Customer("cust2", "pawel", "nowak", "pawelnowak@gmail.com")
-    val product1 = Product("p1", 100)
-    val product2 = Product( "p2", 100)
-    val product3 = Product( "p3", 100)
-    val product4 = Product( "p4", 100)
+    val product1 = Product("p1", 100, "product 1")
+    val product2 = Product( "p2", 100, "product 2")
+    val product3 = Product( "p3", 100, "product 3")
+    val product4 = Product( "p4", 100, "product 4")
 
     addProduct(product1)
     addProduct(product2)
@@ -54,4 +51,15 @@ fun createSampleDB() {
 
     addCustomer(customer1)
     addCustomer(customer2)
+
+    addToCart("cust1", 1)
+    addToCart("cust1", 3)
+    addToCart("cust1", 3)
+
+    addToCart("cust2", 1)
+    addToCart("cust2", 2)
+    addToCart("cust2", 3)
+    addToCart("cust2", 1)
+
+    placeOrder("cust1")
 }
