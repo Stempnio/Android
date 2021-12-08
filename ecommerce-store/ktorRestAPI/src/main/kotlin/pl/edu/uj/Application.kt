@@ -5,11 +5,6 @@ import io.ktor.features.*
 import io.ktor.gson.*
 import io.ktor.server.engine.*
 import io.ktor.server.netty.*
-import org.jetbrains.exposed.sql.SqlExpressionBuilder.eq
-import org.jetbrains.exposed.sql.select
-import org.jetbrains.exposed.sql.selectAll
-import org.jetbrains.exposed.sql.transactions.transaction
-import pl.edu.uj.models.*
 import pl.edu.uj.routes.configureRouting
 
 fun main() {
