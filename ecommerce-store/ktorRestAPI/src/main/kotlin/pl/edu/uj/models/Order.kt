@@ -21,21 +21,21 @@ fun ResultRow.toOrder() = Order(
     date = this[OrderTable.date]
 )
 
-fun getAllOrders() {
+fun getAllOrders() : List<Order> {
     return transaction {
         OrderTable.selectAll().map { it.toOrder() }
     }
 }
 
-fun getCustomerOrders(customerId: String) {
-    transaction {
-        OrderTable.select { OrderTable.customerId eq customerId }
+fun getCustomerOrders(customerId: String) : List<Order> {
+    return transaction {
+        OrderTable.select { OrderTable.customerId eq customerId }.map { it.toOrder() }
     }
 }
 
-fun getOrder(id : Int) {
-    transaction {
-        OrderTable.select { OrderTable.id eq id }
+fun getOrder(id : Int) : List<Order> {
+    return transaction {
+        OrderTable.select { OrderTable.id eq id }.map { it.toOrder() }
     }
 }
 
