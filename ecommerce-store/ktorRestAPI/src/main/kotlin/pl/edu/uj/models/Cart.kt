@@ -58,7 +58,7 @@ fun addToCart(customerId: String, productId: Int) {
             CartTable.insert {
                 it[CartTable.customerId] = customerId
                 it[CartTable.productId] = productId
-                it[quantity] = 0
+                it[quantity] = 1
 
             }
         }
