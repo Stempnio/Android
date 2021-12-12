@@ -3,6 +3,7 @@ package pl.edu.uj.ecommerce
 import io.realm.Realm
 import io.realm.RealmObject
 import io.realm.annotations.PrimaryKey
+import io.realm.kotlin.where
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -17,7 +18,7 @@ open class ProductRealm : RealmObject() {
 }
 
 // TODO rename to Product
-class ProductRetrofit {
+class Product {
    // @SerializedName("name")
     var name : String = ""
     //@SerializedName("price")
@@ -28,13 +29,39 @@ class ProductRetrofit {
     var id : Int = 0
 }
 
+fun mapProduct(productRealm: ProductRealm) : Product {
+    return Product().apply {
+        this.name = productRealm.name
+        this.price = productRealm.price
+        this.description = productRealm.description
+        this.id = productRealm.id
+    }
+
+}
+
+object Products {
+    var products = mutableListOf<ProductRealm>()
+
+    init {
+        getProductsFromDB()
+    }
+
+    fun getProductsFromDB() {
+//        products = Realm.getDefaultInstance().where<ProductRealm>().findAllAsync()
+        products = Realm.getDefaultInstance().where<ProductRealm>().findAll()
+    }
+
+}
+
+
+
 fun getProductsIntoDB() {
     val service = RetrofitService.create()
     val call = service.getProductsCall()
-    call.enqueue(object : Callback<List<ProductRetrofit>> {
+    call.enqueue(object : Callback<List<Product>> {
         override fun onResponse(
-            call: Call<List<ProductRetrofit>>,
-            response: Response<List<ProductRetrofit>>
+            call: Call<List<Product>>,
+            response: Response<List<Product>>
         ) {
             if (response.code() == 200) {
                 val productResponse = response.body()!!
@@ -55,59 +82,13 @@ fun getProductsIntoDB() {
             }
         }
 
-        override fun onFailure(call: Call<List<ProductRetrofit>>, t: Throwable) {
+        override fun onFailure(call: Call<List<Product>>, t: Throwable) {
             //TODO onFailture get products
         }
 
     })
 }
 
-//fun logProducts() {
-//    //TODO delete
-//    val tmpProd = mutableListOf<ProductRealm>()
-//    Realm.getDefaultInstance().executeTransactionAsync {
-//            realmTransaction -> tmpProd.addAll(
-//        realmTransaction.where(ProductRealm::class.java)
-//            .findAll()
-//    )
-//        Log.d("LOAD_DATA", tmpProd.toString())
-//    }
-//}
 
 
 
-
-data class Product(val productName : String, val productPrice : Double)
-
-object Products {
-    var products = ArrayList<Product>()
-
-    init {
-        sampleList()
-    }
-
-    fun sampleList() {
-        products.add(Product("product 1", 19900.9))
-        products.add(Product("product 2", 1234.0))
-        products.add(Product("product 3", 10.99))
-        products.add(Product("product 4", 200.0))
-        products.add(Product("product 5", 192.99))
-        products.add(Product("product 6", 20.0))
-        products.add(Product("product 7", 100000.0))
-    }
-
-}
-
-object Cart {
-    var productsInCart = ArrayList<Product>()
-
-    fun totalPrice() : Double {
-        var price : Double = 0.0
-        for(p : Product in productsInCart) {
-            price += p.productPrice
-        }
-
-        return price
-    }
-
-}
