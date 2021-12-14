@@ -10,31 +10,37 @@ import android.widget.TextView
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import pl.edu.uj.ecommerce.Adapters.ProductTmpAdapter
+import pl.edu.uj.ecommerce.Product
 import pl.edu.uj.ecommerce.Products
+import pl.edu.uj.ecommerce.Products.getProductsFromDbIntoList
 import pl.edu.uj.ecommerce.R
+import pl.edu.uj.ecommerce.databinding.FragmentProductsBinding
 
 class ProductsFragment : Fragment() {
 
-    lateinit var button: Button
-    lateinit var textView: TextView
+    //TODO viewbinding
+    private var _binding: FragmentProductsBinding? = null
+    private val binding get() = _binding!!
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
-        val view = inflater.inflate(R.layout.fragment_products, container, false)
+    ): View {
+        _binding = FragmentProductsBinding.inflate(layoutInflater, container, false)
 
-        // Set the adapter
-        if (view is RecyclerView) {
-            with(view) {
-                layoutManager = LinearLayoutManager(context)
+        val recyclerViewProductList = binding.RecycleViewFragmentProductListF
+        recyclerViewProductList.layoutManager = LinearLayoutManager(context)
 
-//                // TODO delete??
-//                Products.getProductsFromDB()
+        //TODO view model
+        val products = getProductsFromDbIntoList()
+        recyclerViewProductList.adapter = ProductTmpAdapter(products)
 
-                adapter = ProductTmpAdapter()
-            }
-        }
-        return view
+
+        return binding.root
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
     }
 }

@@ -7,11 +7,12 @@ import android.widget.Button
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import io.realm.Realm
+import pl.edu.uj.ecommerce.Product
 import pl.edu.uj.ecommerce.ProductRealm
 import pl.edu.uj.ecommerce.Products
 import pl.edu.uj.ecommerce.R
 
-class ProductTmpAdapter : RecyclerView.Adapter<ProductTmpAdapter.ViewHolder>() {
+class ProductTmpAdapter(private val products : List<Product>) : RecyclerView.Adapter<ProductTmpAdapter.ViewHolder>() {
 
     class ViewHolder(itemView : View) : RecyclerView.ViewHolder(itemView) {
         val textViewProductName : TextView = itemView.findViewById(R.id.textViewProductName)
@@ -30,35 +31,35 @@ class ProductTmpAdapter : RecyclerView.Adapter<ProductTmpAdapter.ViewHolder>() {
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        if(position == 0)
-            return
-
-        val product = Realm.getDefaultInstance().where(ProductRealm::class.java)
-            .equalTo("id", position).findFirst()
-
-        if (product != null) {
-            holder.textViewProductName.text = product.name
-            holder.textViewProductPrice.text = product.price.toString()
-        } else {
-            holder.textViewProductName.text = "null"
-            holder.textViewProductPrice.text = "null"
-        }
-
 //        holder.textViewProductName.text = Products.products[position].name
 //        holder.textViewProductPrice.text = Products.products[position].price.toString()
+
+        holder.textViewProductName.text = products[position].name
+        holder.textViewProductPrice.text = products[position].price.toString()
+
+
+//        if(position == 0)
+//            return
+//
+//        val product = Realm.getDefaultInstance().where(ProductRealm::class.java)
+//            .equalTo("id", position).findFirst()
+//
+//        if (product != null) {
+//            holder.textViewProductName.text = product.name
+//            holder.textViewProductPrice.text = product.price.toString()
+//        } else {
+//            holder.textViewProductName.text = "null"
+//            holder.textViewProductPrice.text = "null"
+//        }
+
     }
 
     override fun getItemCount(): Int {
+//        return Products.products.size
 
-        return Realm.getDefaultInstance().where(ProductRealm::class.java).findAll().size
+        return products.size
 
-//        Realm.getDefaultInstance().executeTransaction {
-//            realmTransaction ->
-//            itemCount = realmTransaction.where(ProductRealm::class.java)
-//                .findAll()
-//                .size
-//
-//        }
+//        return Realm.getDefaultInstance().where(ProductRealm::class.java).findAll().size
     }
 
 
