@@ -33,7 +33,7 @@
         app:layout_constraintVertical_bias="0.203" />
 
     <Button
-        android:id="@+id/buttonGoBack2"
+        android:id="@+id/buttonGoBack"
         android:layout_width="252dp"
         android:layout_height="101dp"
         android:layout_marginStart="97dp"
