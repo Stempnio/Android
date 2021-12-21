@@ -1,13 +1,11 @@
 package pl.edu.uj.ecommerce
 
-import pl.edu.uj.ecommerce.Data.Cart
 import pl.edu.uj.ecommerce.Data.CartItem
 import pl.edu.uj.ecommerce.Data.Customer
 import retrofit2.Call
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
-import retrofit2.http.GET
-import retrofit2.http.Path
+import retrofit2.http.*
 
 interface RetrofitService {
 
@@ -15,17 +13,27 @@ interface RetrofitService {
     fun getProductsCall() : Call<List<Product>>
 
     @GET("customer/{id}")
-    fun geCustomerByIdCall(@Path("id") id : String) : Call<List<Customer>>
+    fun getCustomerByIdCall(@Path("id") id : String) : Call<Customer>
+
+    //TODO customer registration
+    @POST("customer")
+    fun postCustomerCall(@Body customer : Customer) : Call<Customer>
 
     @GET("cart/{customerId}")
     fun getCartByIdCall(@Path("customerId") customerId : String) : Call<List<CartItem>>
+
+    @POST("cart/{customerId}/{productId}")
+    fun postCartItemCall(@Path("customerId") customerId: String, @Path("productId") productId : Int) : Call<CartItem>
+
+    @DELETE("cart/{customerId}/{productId}")
+    fun deleteCartItemCall(@Path("customerId") customerId: String, @Path("productId") productId: Int) : Call<CartItem>
 
     //TODO order
     //TODO orderdetails
 
     companion object {
 
-        var BASE_URL = "http://ad2b-185-25-121-220.ngrok.io/"
+        var BASE_URL = "https://7fe9-185-25-121-195.ngrok.io/"
 
         fun create() : RetrofitService {
 
