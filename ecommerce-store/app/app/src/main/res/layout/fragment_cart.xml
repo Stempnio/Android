@@ -7,65 +7,60 @@
     tools:context=".Fragments.CartFragment">
 
 
-    <ImageView
-        android:id="@+id/imageViewIcon1"
-        android:layout_width="128dp"
-        android:layout_height="94dp"
-
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.025"
-        app:srcCompat="@android:drawable/ic_menu_myplaces" />
-
     <Button
         android:id="@+id/buttonGoBack3"
-        android:layout_width="236dp"
-        android:layout_height="66dp"
+        android:layout_width="246dp"
+        android:layout_height="92dp"
+        android:layout_marginStart="67dp"
+        android:layout_marginEnd="67dp"
+        android:layout_marginBottom="55dp"
         android:text="@string/go_back"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/buttonBuy" />
+        app:layout_constraintTop_toBottomOf="@+id/textViewTotalPriceCart" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/RecyclerViewCartList"
-        android:layout_width="match_parent"
-        android:layout_height="390dp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="11dp"
+        android:layout_marginTop="25dp"
+        android:layout_marginEnd="11dp"
+        android:layout_marginBottom="25dp"
+        app:layout_constraintBottom_toTopOf="@+id/textViewTotalPriceCart"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageViewIcon1"
-        app:layout_constraintVertical_bias="0.112"
-        tools:listitem="@layout/cart_product_row" />
+        app:layout_constraintTop_toTopOf="parent"
+        tools:listitem="@layout/row_cart" />
 
     <Button
         android:id="@+id/buttonBuy"
-        android:layout_width="236dp"
-        android:layout_height="66dp"
-        android:layout_marginTop="20dp"
+        android:layout_width="121dp"
+        android:layout_height="101dp"
+        android:layout_marginStart="57dp"
+        android:layout_marginEnd="57dp"
         android:text="@string/buy"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintBottom_toBottomOf="@+id/textViewTotalPriceCart"
+        app:layout_constraintEnd_toStartOf="@+id/textViewTotalPriceCart"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/RecyclerViewCartList"
-        app:layout_constraintVertical_bias="0.084" />
+        app:layout_constraintTop_toTopOf="@+id/textViewTotalPriceCart" />
 
     <TextView
         android:id="@+id/textViewTotalPriceCart"
-        android:layout_width="113dp"
-        android:layout_height="82dp"
-        android:layout_marginEnd="16dp"
-        android:text=""
+        android:layout_width="136dp"
+        android:layout_height="87dp"
+        android:layout_marginEnd="57dp"
+        android:layout_marginBottom="16dp"
+        android:background="#4281A4"
         android:gravity="center"
-        app:layout_constraintBottom_toBottomOf="@+id/imageViewIcon1"
+        android:text=""
+        android:textColor="@color/white"
+        app:layout_constraintBottom_toTopOf="@+id/buttonGoBack3"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/imageViewIcon1"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintStart_toEndOf="@+id/buttonBuy"
+        app:layout_constraintTop_toBottomOf="@+id/RecyclerViewCartList"
+        tools:text="Total price" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
