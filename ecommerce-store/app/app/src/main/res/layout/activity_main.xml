@@ -6,27 +6,25 @@
     android:layout_height="match_parent"
     tools:context=".Activities.MainActivity">
 
-    <Button
-        android:id="@+id/buttonTmp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="SHOW"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
     <androidx.fragment.app.FragmentContainerView
         android:id="@+id/fragmentContainerView2"
         android:name="androidx.navigation.fragment.NavHostFragment"
         android:layout_width="409dp"
         android:layout_height="655dp"
         android:layout_marginStart="1dp"
-        android:layout_marginBottom="1dp"
         app:defaultNavHost="true"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/buttonTmp"
-        app:layout_constraintVertical_bias="1.0"
+        app:layout_constraintTop_toBottomOf="@+id/imageView"
         app:navGraph="@navigation/nav_graph" />
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="136dp"
+        android:layout_height="69dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/ic_main" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
