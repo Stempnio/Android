@@ -26,4 +26,7 @@
     <string name="remove_from_cart">REMOVE</string>
     <string name="go_to_cart">Go to cart</string>
     <string name="buy">BUY</string>
+    <string name="place_order">PLACE ORDER</string>
+    <string name="server_client_id">Web client 1</string>
+    <string name="delete">Delete</string>
 </resources>
