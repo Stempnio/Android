@@ -12,45 +12,53 @@
         android:layout_height="match_parent">
 
         <Button
-            android:id="@+id/buttonAddToCart"
+            android:id="@+id/buttonDeleteFromCart"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/add_to_cart"
-            app:layout_constraintBottom_toBottomOf="parent"
+            android:layout_marginTop="10dp"
+            android:text="@string/delete"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toEndOf="@+id/textViewProductPrice"
-            app:layout_constraintTop_toTopOf="parent"
-            android:layout_margin="10dp"/>
+            app:layout_constraintStart_toEndOf="@+id/textViewCartQuantity"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:id="@+id/textViewProductPrice"
+            android:id="@+id/textViewCartProductPrice"
             android:layout_width="72dp"
             android:layout_height="46dp"
-            android:layout_marginStart="20dp"
+            android:layout_marginTop="11dp"
             android:gravity="center"
             android:textStyle="bold"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/buttonAddToCart"
+            app:layout_constraintEnd_toStartOf="@+id/textViewCartQuantity"
             app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toEndOf="@+id/textViewProductName"
+            app:layout_constraintStart_toEndOf="@+id/textViewCartProductName"
             app:layout_constraintTop_toTopOf="parent"
-            android:layout_margin="10dp"
-            tools:text="Product price"/>
+            tools:text="Product price" />
 
         <TextView
-            android:id="@+id/textViewProductName"
+            android:id="@+id/textViewCartProductName"
             android:layout_width="120dp"
             android:layout_height="46dp"
+            android:layout_marginTop="11dp"
             android:gravity="center"
             android:text=""
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/textViewProductPrice"
+            app:layout_constraintEnd_toStartOf="@+id/textViewCartProductPrice"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            android:layout_margin="10dp"
-            tools:text="Product name"/>
+            tools:text="Product name" />
+
+        <TextView
+            android:id="@+id/textViewCartQuantity"
+            android:layout_width="38dp"
+            android:layout_height="48dp"
+            android:layout_marginTop="9dp"
+            android:gravity="center"
+            app:layout_constraintEnd_toStartOf="@+id/buttonDeleteFromCart"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/textViewCartProductPrice"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="1" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </androidx.cardview.widget.CardView>
