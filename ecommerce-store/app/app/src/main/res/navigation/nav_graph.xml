@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/logInFragment">
+
+    <fragment
+        android:id="@+id/productsFragment"
+        android:name="pl.edu.uj.ecommerce.Fragments.ProductsFragment"
+        android:label="fragment_products"
+        tools:layout="@layout/fragment_products" >
+        <action
+            android:id="@+id/action_productsFragment_to_aboutAppFragment"
+            app:destination="@id/aboutAppFragment" />
+        <action
+            android:id="@+id/action_productsFragment_to_cartFragment"
+            app:destination="@id/cartFragment" />
+        <action
+            android:id="@+id/action_productsFragment_to_logInFragment"
+            app:destination="@id/logInFragment"
+            app:popUpTo="@+id/logInFragment"
+            app:popUpToInclusive="true"/>
+    </fragment>
+    <fragment
+        android:id="@+id/logInFragment"
+        android:name="pl.edu.uj.ecommerce.Fragments.LogInFragment"
+        android:label="fragment_log_in"
+        tools:layout="@layout/fragment_log_in" >
+
+        <!--//TODO add poping stack so the user cant go back by clicking ....-->
+        <action
+            android:id="@+id/action_logInFragment_to_productsFragment"
+            app:destination="@id/productsFragment" />
+        <action
+            android:id="@+id/action_logInFragment_to_registerFragment"
+            app:destination="@id/registerFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/registerFragment"
+        android:name="pl.edu.uj.ecommerce.Fragments.RegisterFragment"
+        android:label="fragment_register"
+        tools:layout="@layout/fragment_register" >
+        <action
+            android:id="@+id/action_registerFragment_to_logInFragment"
+            app:destination="@id/logInFragment"
+            app:popUpTo="@+id/logInFragment"
+            app:popUpToInclusive="true"/>
+    </fragment>
+    <fragment
+        android:id="@+id/aboutAppFragment"
+        android:name="pl.edu.uj.ecommerce.Fragments.AboutAppFragment"
+        android:label="fragment_about_app"
+        tools:layout="@layout/fragment_about_app" >
+        <action
+            android:id="@+id/action_aboutAppFragment_to_productsFragment"
+            app:destination="@id/productsFragment"
+            app:popUpTo="@+id/logInFragment"
+            app:popUpToInclusive="true"/>
+    </fragment>
+    <fragment
+        android:id="@+id/cartFragment"
+        android:name="pl.edu.uj.ecommerce.Fragments.CartFragment"
+        android:label="fragment_cart"
+        tools:layout="@layout/fragment_cart" >
+        <action
+            android:id="@+id/action_cartFragment_to_buyFragment"
+            app:destination="@id/buyFragment" />
+        <action
+            android:id="@+id/action_cartFragment_to_productsFragment"
+            app:destination="@id/productsFragment"
+            app:popUpTo="@+id/productsFragment"
+            app:popUpToInclusive="true"/>
+    </fragment>
+    <fragment
+        android:id="@+id/buyFragment"
+        android:name="pl.edu.uj.ecommerce.Fragments.BuyFragment"
+        android:label="fragment_buy"
+        tools:layout="@layout/fragment_buy" >
+        <action
+            android:id="@+id/action_buyFragment_to_productsFragment"
+            app:destination="@id/productsFragment"
+            app:popUpTo="@+id/productsFragment"
+            app:popUpToInclusive="true"/>
+    </fragment>
+</navigation>
