@@ -8,6 +8,9 @@ import android.view.ViewGroup
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import pl.edu.uj.ecommerce.Adapters.ProductListAdapter
+import pl.edu.uj.ecommerce.Data.CURRENT_CUSTOMER_ID
+import pl.edu.uj.ecommerce.Data.DEFAULT_CUSTOMER_ID
+import pl.edu.uj.ecommerce.Data.getCartIntoDB
 import pl.edu.uj.ecommerce.Products.getProductsFromDbIntoList
 import pl.edu.uj.ecommerce.databinding.FragmentProductsBinding
 
@@ -36,10 +39,12 @@ class ProductsFragment : Fragment() {
         }
 
         binding.buttonGoToCart.setOnClickListener {
+            getCartIntoDB(CURRENT_CUSTOMER_ID)
             findNavController().navigate(ProductsFragmentDirections.actionProductsFragmentToCartFragment())
         }
 
         binding.buttonLogOut.setOnClickListener {
+            CURRENT_CUSTOMER_ID = DEFAULT_CUSTOMER_ID
             findNavController().navigate(ProductsFragmentDirections.actionProductsFragmentToLogInFragment())
         }
 
