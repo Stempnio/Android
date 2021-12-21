@@ -3,13 +3,16 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="../../../../../../../../layout/custom_preview.xml" value="0.325" />
         <entry key="app/src/main/res/layout/activity_about_app.xml" value="0.20742753623188406" />
         <entry key="app/src/main/res/layout/activity_buy.xml" value="0.20742753623188406" />
         <entry key="app/src/main/res/layout/activity_cart.xml" value="0.20742753623188406" />
         <entry key="app/src/main/res/layout/activity_log_in.xml" value="0.20742753623188406" />
-        <entry key="app/src/main/res/layout/activity_main.xml" value="0.20742753623188406" />
+        <entry key="app/src/main/res/layout/activity_main.xml" value="0.335" />
         <entry key="app/src/main/res/layout/activity_products.xml" value="0.20742753623188406" />
         <entry key="app/src/main/res/layout/activity_register.xml" value="0.21739130434782608" />
+        <entry key="app/src/main/res/layout/activity_test.xml" value="0.25169836025804293" />
+        <entry key="app/src/main/res/layout/cart_product_row.xml" value="0.11666666666666667" />
         <entry key="app/src/main/res/layout/fragment_about_app.xml" value="0.21739130434782608" />
         <entry key="app/src/main/res/layout/fragment_blank.xml" value="0.21739130434782608" />
         <entry key="app/src/main/res/layout/fragment_buy.xml" value="0.21739130434782608" />
@@ -18,7 +21,10 @@
         <entry key="app/src/main/res/layout/fragment_login.xml" value="0.21739130434782608" />
         <entry key="app/src/main/res/layout/fragment_products.xml" value="0.25" />
         <entry key="app/src/main/res/layout/fragment_register.xml" value="0.21739130434782608" />
+        <entry key="app/src/main/res/layout/fragment_test.xml" value="0.335" />
         <entry key="app/src/main/res/layout/fragment_test_frament.xml" value="0.20742753623188406" />
+        <entry key="app/src/main/res/layout/row_cart.xml" value="0.5" />
+        <entry key="app/src/main/res/layout/row_products.xml" value="0.335" />
       </map>
     </option>
   </component>
