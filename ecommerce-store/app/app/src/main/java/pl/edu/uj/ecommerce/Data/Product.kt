@@ -1,5 +1,6 @@
 package pl.edu.uj.ecommerce
 
+import android.util.Log
 import io.realm.Realm
 import io.realm.RealmObject
 import io.realm.annotations.PrimaryKey
@@ -17,7 +18,6 @@ open class ProductRealm : RealmObject() {
     var id : Int = -1
 }
 
-// TODO rename to Product
 class Product {
    // @SerializedName("name")
     var name : String = ""
@@ -36,7 +36,6 @@ fun mapProduct(productRealm: ProductRealm) : Product {
         this.description = productRealm.description
         this.id = productRealm.id
     }
-
 }
 
 object Products {
@@ -47,13 +46,17 @@ object Products {
     }
 
     fun getProductsFromDB() {
-//        products = Realm.getDefaultInstance().where<ProductRealm>().findAllAsync()
         products = Realm.getDefaultInstance().where<ProductRealm>().findAll()
+    }
+
+    fun getProductsFromDbIntoList() : List<Product> {
+        return products.map { mapProduct(it) }
+//        return Realm.getDefaultInstance().where<ProductRealm>().findAll().map { mapProduct(it) }
     }
 
 }
 
-
+//TODO notify about change?? binding?
 
 fun getProductsIntoDB() {
     val service = RetrofitService.create()
@@ -79,11 +82,13 @@ fun getProductsIntoDB() {
                     }
                 }
 
+                Log.d("GET_PRODUCTS_FROM_DB", "Products get successful")
+
             }
         }
 
         override fun onFailure(call: Call<List<Product>>, t: Throwable) {
-            //TODO onFailture get products
+            Log.d("GET_PRODUCTS_FROM_DB", t.message.toString())
         }
 
     })

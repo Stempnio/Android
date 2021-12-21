@@ -6,12 +6,13 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import pl.edu.uj.ecommerce.Data.postCart
 import pl.edu.uj.ecommerce.Product
 import pl.edu.uj.ecommerce.R
 
-class ProductListAdapter(private val products : List<Product>) : RecyclerView.Adapter<ProductListAdapter.ViewHolder>() {
+class ProductListAdapter(private val products : List<Product>) : RecyclerView.Adapter<ProductListAdapter.ProductViewHolder>() {
 
-    class ViewHolder(itemView : View) : RecyclerView.ViewHolder(itemView) {
+    class ProductViewHolder(itemView : View) : RecyclerView.ViewHolder(itemView) {
         val textViewProductName : TextView = itemView.findViewById(R.id.textViewProductName)
         val textViewProductPrice : TextView = itemView.findViewById(R.id.textViewProductPrice)
         val buttonAddToCart : Button = itemView.findViewById(R.id.buttonAddToCart)
@@ -20,43 +21,27 @@ class ProductListAdapter(private val products : List<Product>) : RecyclerView.Ad
     override fun onCreateViewHolder(
         parent: ViewGroup,
         viewType: Int
-    ): ViewHolder {
+    ): ProductViewHolder {
         val view = LayoutInflater.from(parent.context)
             .inflate(R.layout.row_products, parent, false)
 
-        return ViewHolder(view)
+        return ProductViewHolder(view)
     }
 
-    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-//        holder.textViewProductName.text = Products.products[position].name
-//        holder.textViewProductPrice.text = Products.products[position].price.toString()
+    override fun onBindViewHolder(holder: ProductViewHolder, position: Int) {
 
         holder.textViewProductName.text = products[position].name
         holder.textViewProductPrice.text = products[position].price.toString()
-
-
-//        if(position == 0)
-//            return
-//
-//        val product = Realm.getDefaultInstance().where(ProductRealm::class.java)
-//            .equalTo("id", position).findFirst()
-//
-//        if (product != null) {
-//            holder.textViewProductName.text = product.name
-//            holder.textViewProductPrice.text = product.price.toString()
-//        } else {
-//            holder.textViewProductName.text = "null"
-//            holder.textViewProductPrice.text = "null"
-//        }
+        holder.buttonAddToCart.setOnClickListener {
+            // TODO check if it is correct
+            notifyItemChanged(position)
+            postCart(products[position].id)
+        }
 
     }
 
     override fun getItemCount(): Int {
-//        return Products.products.size
-
         return products.size
-
-//        return Realm.getDefaultInstance().where(ProductRealm::class.java).findAll().size
     }
 
 
