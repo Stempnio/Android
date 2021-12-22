@@ -4,8 +4,6 @@ import android.util.Log
 import io.realm.Realm
 import io.realm.RealmObject
 import io.realm.annotations.PrimaryKey
-import io.realm.kotlin.where
-import pl.edu.uj.ecommerce.ProductRealm
 import pl.edu.uj.ecommerce.RetrofitService
 import retrofit2.Call
 import retrofit2.Callback
@@ -24,11 +22,14 @@ class CartItem {
     var quantity : Int = -1
 }
 
-//fun totalCartPrice() : Int {
-//    Realm.getDefaultInstance().where(CartItemRealm::class.java)
-//        .equalTo("customerId", CURRENT_CUSTOMER_ID)
-//        .sum
-//}
+fun isCartEmpty() : Boolean {
+
+    val count = Realm.getDefaultInstance().where(CartItemRealm::class.java)
+        .equalTo("customerId", CURRENT_CUSTOMER_ID)
+        .count()
+
+    return count < 1
+}
 
 fun removeCartItem(productId: Int) {
         val service = RetrofitService.create()
