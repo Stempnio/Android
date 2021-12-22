@@ -29,4 +29,8 @@
     <string name="place_order">PLACE ORDER</string>
     <string name="server_client_id">Web client 1</string>
     <string name="delete">Delete</string>
+    <string name="username">username</string>
+    <string name="my_orders">my orders</string>
+    <string name="details">DETAILS</string>
+    <string name="total_price">TOTAL PRICE</string>
 </resources>
