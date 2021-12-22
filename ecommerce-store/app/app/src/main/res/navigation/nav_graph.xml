@@ -96,5 +96,13 @@
             app:destination="@id/productsFragment"
             app:popUpTo="@+id/productsFragment"
             app:popUpToInclusive="true" />
+        <action
+            android:id="@+id/action_ordersFragment_to_orderDetailsFragment"
+            app:destination="@id/orderDetailsFragment" />
     </fragment>
+    <fragment
+        android:id="@+id/orderDetailsFragment"
+        android:name="pl.edu.uj.ecommerce.Fragments.OrderDetailsFragment"
+        android:label="fragment_order_details"
+        tools:layout="@layout/fragment_order_details" />
 </navigation>
