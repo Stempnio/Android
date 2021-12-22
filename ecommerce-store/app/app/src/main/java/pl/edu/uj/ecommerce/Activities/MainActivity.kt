@@ -12,42 +12,5 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
-
-
-//        binding.buttonTmp.setOnClickListener {
-//
-//            val productsFragment = ProductsFragment()
-//
-//            if(binding.buttonTmp.text.equals("SHOW")) {
-//                supportFragmentManager.beginTransaction().apply {
-//                    replace(R.id.frContainerViewActivityMain, productsFragment)
-//                    setReorderingAllowed(true)
-//                    commit()
-//                }
-//                binding.buttonTmp.text = "HIDE"
-//            } else {
-//                val frag = supportFragmentManager.findFragmentById(R.id.frContainerViewActivityMain)
-//                if(frag != null) {
-//                    supportFragmentManager.beginTransaction().apply {
-//                        remove(frag)
-//                        setReorderingAllowed(true)
-//                        commit()
-//                    }
-//                }
-//                binding.buttonTmp.text = "SHOW"
-//            }
-//        }
-
-//        setContentView(R.layout.activity_main)
-
-//        val intent = Intent(this, TestActivity::class.java).apply {
-////            putExtra("message",labelka.text)
-//        }
-//        startActivity(intent)
-
-        //TODO retrofit
-        //TODO realm
-
     }
 }
