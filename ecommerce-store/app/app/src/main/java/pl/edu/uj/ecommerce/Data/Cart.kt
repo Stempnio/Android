@@ -4,6 +4,8 @@ import android.util.Log
 import io.realm.Realm
 import io.realm.RealmObject
 import io.realm.annotations.PrimaryKey
+import pl.edu.uj.ecommerce.ProductRealm
+import pl.edu.uj.ecommerce.Products
 import pl.edu.uj.ecommerce.RetrofitService
 import retrofit2.Call
 import retrofit2.Callback
@@ -29,6 +31,34 @@ fun isCartEmpty() : Boolean {
         .count()
 
     return count < 1
+}
+
+fun cartToString() : String {
+        var result = ""
+
+        Realm.getDefaultInstance()
+            .where(CartItemRealm::class.java)
+            .equalTo("customerId", CURRENT_CUSTOMER_ID)
+            .findAll().forEach {
+                result += "Product: " + Products.productDetails(it.productId) + ", quantity: " + it.quantity + "\n\n"
+            }
+
+        return result
+}
+
+fun carTotalPrice() : Int {
+    var result = 0
+
+    Realm.getDefaultInstance()
+        .where(CartItemRealm::class.java)
+        .equalTo("customerId", CURRENT_CUSTOMER_ID)
+        .findAll().forEach {
+            result += ((Realm.getDefaultInstance().where(ProductRealm::class.java)
+                .equalTo("id", it.productId)
+                .findFirst()?.price ?: 0) * it.quantity)
+        }
+
+    return result
 }
 
 fun removeCartItem(productId: Int) {
@@ -79,12 +109,21 @@ fun postCart(productId : Int) {
     })
 
     // refresh cart so it is up to date
-    getCartIntoDB(CURRENT_CUSTOMER_ID)
+    getCartIntoDB()
 }
 
-fun getCartIntoDB(customerId : String) {
+fun refreshCart() {
+    Realm.getDefaultInstance().beginTransaction()
+    Realm.getDefaultInstance().where(CartItemRealm::class.java)
+        .equalTo("customerId", CURRENT_CUSTOMER_ID)
+        .findAll().deleteAllFromRealm()
+    Realm.getDefaultInstance().commitTransaction()
+    getCartIntoDB()
+}
+
+fun getCartIntoDB() {
     val service = RetrofitService.create()
-    val call = service.getCartByIdCall(customerId)
+    val call = service.getCartByIdCall(CURRENT_CUSTOMER_ID)
     call.enqueue(object : Callback<List<CartItem>> {
         override fun onResponse(
             call: Call<List<CartItem>>,
