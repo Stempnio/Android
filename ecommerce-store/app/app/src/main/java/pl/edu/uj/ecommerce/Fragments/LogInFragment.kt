@@ -37,7 +37,6 @@ class LogInFragment : Fragment(R.layout.fragment_products) {
 
             val id = binding.editTextTextEmail.text.toString()
             val password = binding.editTextPassword.text.toString()
-
             logIn(id, password)
         }
 
@@ -50,6 +49,12 @@ class LogInFragment : Fragment(R.layout.fragment_products) {
     }
 
     fun logIn(id : String, password: String) {
+
+        if(id == "") {
+            Toast.makeText(context, "LOG IN FAILED", Toast.LENGTH_LONG).show()
+            return
+        }
+
         val service = RetrofitService.create()
         val call = service.getCustomerByIdCall(id)
 
@@ -71,9 +76,9 @@ class LogInFragment : Fragment(R.layout.fragment_products) {
                     // update products and customers cart
                     getProductsIntoDB()
                     getCustomerByIdIntoDB(CURRENT_CUSTOMER_ID)
-                    getCartIntoDB(CURRENT_CUSTOMER_ID)
-                    getOrdersIntoDB(CURRENT_CUSTOMER_ID)
-                    getOrderDetailsIntoDB(CURRENT_CUSTOMER_ID)
+                    getCartIntoDB()
+                    getOrdersIntoDB()
+                    getOrderDetailsIntoDB()
 
                     findNavController().navigate(LogInFragmentDirections.actionLogInFragmentToProductsFragment())
                 }
