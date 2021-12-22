@@ -11,7 +11,6 @@ import io.realm.Realm
 import pl.edu.uj.ecommerce.Adapters.RecyclerViewOrderAdapter
 import pl.edu.uj.ecommerce.Data.CURRENT_CUSTOMER_ID
 import pl.edu.uj.ecommerce.Data.OrderRealm
-import pl.edu.uj.ecommerce.Data.ordersToString
 import pl.edu.uj.ecommerce.R
 import pl.edu.uj.ecommerce.databinding.FragmentOrdersBinding
 
