@@ -6,10 +6,7 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import pl.edu.uj.ecommerce.Adapters.ProductListAdapter
-import pl.edu.uj.ecommerce.Data.CURRENT_CUSTOMER_ID
-import pl.edu.uj.ecommerce.Data.DEFAULT_CUSTOMER_ID
-import pl.edu.uj.ecommerce.Data.getCartIntoDB
-import pl.edu.uj.ecommerce.Data.getOrdersIntoDB
+import pl.edu.uj.ecommerce.Data.*
 import pl.edu.uj.ecommerce.Products.getProductsFromDbIntoList
 import pl.edu.uj.ecommerce.R
 import pl.edu.uj.ecommerce.databinding.FragmentProductsBinding
@@ -45,6 +42,7 @@ class ProductsFragment : Fragment() {
 
         binding.buttonOrders.setOnClickListener {
             getOrdersIntoDB()
+            getOrderDetailsIntoDB()
             findNavController().navigate(ProductsFragmentDirections.actionProductsFragmentToOrdersFragment())
         }
 
