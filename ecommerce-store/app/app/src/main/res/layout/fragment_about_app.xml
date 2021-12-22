@@ -7,17 +7,25 @@
     tools:context=".Fragments.AboutAppFragment">
 
 
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="292dp"
-        android:layout_height="501dp"
-        android:layout_marginStart="58dp"
-        android:layout_marginEnd="59dp"
-        android:text="@string/lorem_ipsum_dolor_sit_amet_consectetur_adipiscing_elit_quisque_a_dui_sit_amet_lectus_lacinia_euismod_vitae_in_sapien_in_sit_amet_neque_dignissim_vehicula_felis_in_rutrum_leo_suspendisse_non_risus_sit_amet_risus_vehicula_tempus_vestibulum_ante_ipsum_primis_in_faucibus_orci_luctus_et_ultrices_posuere_cubilia_curae_aenean_efficitur_erat_in_leo_finibus_dignissim_cras_viverra_rhoncus_est_ut_molestie_lorem_pellentesque_sollicitudin_posuere_diam_non_mattis"
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginStart="58dp"
+        android:layout_marginEnd="59dp"
+        app:cardCornerRadius="30dp">
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="292dp"
+            android:layout_height="501dp"
+            android:padding="30dp"
+            android:layout_gravity="center"
+            android:text="@string/lorem_ipsum_dolor_sit_amet_consectetur_adipiscing_elit_quisque_a_dui_sit_amet_lectus_lacinia_euismod_vitae_in_sapien_in_sit_amet_neque_dignissim_vehicula_felis_in_rutrum_leo_suspendisse_non_risus_sit_amet_risus_vehicula_tempus_vestibulum_ante_ipsum_primis_in_faucibus_orci_luctus_et_ultrices_posuere_cubilia_curae_aenean_efficitur_erat_in_leo_finibus_dignissim_cras_viverra_rhoncus_est_ut_molestie_lorem_pellentesque_sollicitudin_posuere_diam_non_mattis"
+            />
+    </androidx.cardview.widget.CardView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
