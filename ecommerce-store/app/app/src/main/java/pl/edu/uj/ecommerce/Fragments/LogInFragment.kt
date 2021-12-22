@@ -76,7 +76,8 @@ class LogInFragment : Fragment(R.layout.fragment_products) {
                     // update products and customers cart
                     getProductsIntoDB()
                     getCustomerByIdIntoDB(CURRENT_CUSTOMER_ID)
-                    getCartIntoDB()
+
+                    refreshCart()
                     getOrdersIntoDB()
                     getOrderDetailsIntoDB()
 
