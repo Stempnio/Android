@@ -33,4 +33,5 @@
     <string name="my_orders">my orders</string>
     <string name="details">DETAILS</string>
     <string name="total_price">TOTAL PRICE</string>
+    <string name="latest_orders">LATEST ORDERS</string>
 </resources>
