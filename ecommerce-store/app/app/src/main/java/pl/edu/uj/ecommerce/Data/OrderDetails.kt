@@ -3,6 +3,7 @@ package pl.edu.uj.ecommerce.Data
 import android.util.Log
 import io.realm.Realm
 import io.realm.RealmObject
+import pl.edu.uj.ecommerce.Products
 import pl.edu.uj.ecommerce.RetrofitService
 import retrofit2.Call
 import retrofit2.Callback
@@ -20,16 +21,41 @@ class OrderDetails {
     var quantity : Int = -1
 }
 
+fun orderDetailsToString(orderId : Int) : String {
+    var result = "Order ID: $orderId\n"
 
-fun getOrderDetailsIntoDB(customerId : String) {
+    Realm.getDefaultInstance()
+        .where(OrderDetailsRealm::class.java)
+        .equalTo("orderId", orderId)
+        .findAll().forEach {
+            result += Products.productDetails(it.productId) + ", quantity: " + it.quantity + "\n"
+        }
+
+    return result
+}
+
+fun deleteOrderDetailsFromDB() {
+    Realm.getDefaultInstance().beginTransaction()
+
+    Realm.getDefaultInstance().where(OrderDetailsRealm::class.java)
+        .findAll().deleteAllFromRealm()
+
+    Realm.getDefaultInstance().commitTransaction()
+}
+fun getOrderDetailsIntoDB() {
     val service = RetrofitService.create()
-    val call = service.getCustomerOrderDetailsCall(customerId)
+    val call = service.getCustomerOrderDetailsCall(CURRENT_CUSTOMER_ID)
     call.enqueue(object : Callback<List<OrderDetails>> {
         override fun onResponse(
             call: Call<List<OrderDetails>>,
             response: Response<List<OrderDetails>>
         ) {
             if (response.code() == 200) {
+
+                // because order details doesnt have primary key (realm doesnt support multiple keys)
+                // order details have to be deleted in order to avoid duplicates
+                deleteOrderDetailsFromDB()
+
                 val orderResponse = response.body()!!
 
                 for (item in orderResponse) {
