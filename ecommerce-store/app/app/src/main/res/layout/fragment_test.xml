@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Fragments.AboutAppFragment">
+    tools:context=".Fragments.TestFragment">
 
 
     <ImageView
@@ -33,7 +33,7 @@
         app:layout_constraintVertical_bias="0.203" />
 
     <Button
-        android:id="@+id/buttonShowProductsTest"
+        android:id="@+id/buttonTestBack"
         android:layout_width="252dp"
         android:layout_height="101dp"
         android:layout_marginStart="97dp"
