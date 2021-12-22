@@ -19,41 +19,6 @@
 
     </androidx.recyclerview.widget.RecyclerView>
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:layout_margin="5dp">
-
-        <Button
-            android:id="@+id/buttonLogOut"
-            android:layout_weight="1"
-            android:layout_width="0dp"
-            android:layout_height="80dp"
-            android:layout_marginStart="15dp"
-            android:layout_marginEnd="15dp"
-            android:text="@string/log_out"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/buttonAboutApp"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/buttonGoToCart" />
-
-        <Button
-            android:id="@+id/buttonAboutApp"
-            android:layout_width="0dp"
-            android:layout_weight="1"
-            android:layout_height="80dp"
-            android:layout_marginStart="15dp"
-            android:layout_marginEnd="15dp"
-            android:text="@string/about_app"
-            app:layout_constraintBottom_toBottomOf="@+id/buttonLogOut"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toEndOf="@+id/buttonLogOut"
-            app:layout_constraintTop_toTopOf="@+id/buttonLogOut" />
-
-    </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -88,6 +53,29 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/RecycleViewProductList" />
     </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_margin="5dp">
+
+        <Button
+            android:id="@+id/buttonLogOut"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="80dp"
+            android:layout_marginStart="15dp"
+            android:layout_marginEnd="15dp"
+            android:text="@string/log_out"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/buttonAboutApp"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/buttonGoToCart" />
+
+    </LinearLayout>
+
 
 </LinearLayout>
 
