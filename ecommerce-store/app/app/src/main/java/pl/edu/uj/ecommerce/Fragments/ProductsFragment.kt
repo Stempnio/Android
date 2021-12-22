@@ -16,7 +16,6 @@ import pl.edu.uj.ecommerce.databinding.FragmentProductsBinding
 
 class ProductsFragment : Fragment() {
 
-    //TODO back stack handling
     private var _binding: FragmentProductsBinding? = null
     private val binding get() = _binding!!
 
@@ -29,7 +28,6 @@ class ProductsFragment : Fragment() {
         val recyclerViewProductList = binding.RecycleViewProductList
         recyclerViewProductList.layoutManager = LinearLayoutManager(context)
 
-        //TODO view model
         val products = getProductsFromDbIntoList()
         recyclerViewProductList.adapter = ProductListAdapter(products)
 
@@ -46,6 +44,10 @@ class ProductsFragment : Fragment() {
         binding.buttonLogOut.setOnClickListener {
             CURRENT_CUSTOMER_ID = DEFAULT_CUSTOMER_ID
             findNavController().navigate(ProductsFragmentDirections.actionProductsFragmentToLogInFragment())
+        }
+
+        binding.buttonOrders.setOnClickListener {
+            findNavController().navigate(ProductsFragmentDirections.actionProductsFragmentToOrdersFragment())
         }
 
         return binding.root
