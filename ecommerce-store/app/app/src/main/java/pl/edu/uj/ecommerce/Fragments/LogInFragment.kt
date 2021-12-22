@@ -51,7 +51,7 @@ class LogInFragment : Fragment(R.layout.fragment_products) {
     fun logIn(id : String, password: String) {
 
         if(id == "") {
-            Toast.makeText(context, "LOG IN FAILED", Toast.LENGTH_LONG).show()
+            Toast.makeText(context, R.string.log_in_failed, Toast.LENGTH_LONG).show()
             return
         }
 
@@ -67,7 +67,7 @@ class LogInFragment : Fragment(R.layout.fragment_products) {
                     val customer = response.body()
 
                     if(customer == null || customer.password != password) {
-                        Toast.makeText(context, "LOG IN FAILED", Toast.LENGTH_LONG).show()
+                        Toast.makeText(context, R.string.log_in_failed, Toast.LENGTH_LONG).show()
                         return
                     }
 
@@ -87,7 +87,7 @@ class LogInFragment : Fragment(R.layout.fragment_products) {
             }
 
             override fun onFailure(call: Call<Customer>, t: Throwable) {
-                Toast.makeText(context, "LOG IN FAILED", Toast.LENGTH_LONG).show()
+                Toast.makeText(context, R.string.log_in_failed, Toast.LENGTH_LONG).show()
             }
 
         })
