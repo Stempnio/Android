@@ -4,6 +4,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import androidx.core.os.bundleOf
+import androidx.navigation.Navigation
 import androidx.recyclerview.widget.RecyclerView
 import io.realm.OrderedRealmCollection
 import io.realm.Realm
@@ -37,13 +39,17 @@ internal class RecyclerViewOrderAdapter(data: OrderedRealmCollection<OrderRealm?
                 .equalTo("id", orderRealm.id)
                 .findFirst()
 
-            val orderId = "Order ID: " + order?.id.toString()
-            holder.textViewOrderId.text = orderId
+            val orderIdString = "Order ID: " + order?.id.toString()
+            holder.textViewOrderId.text = orderIdString
 
             holder.textViewOrderDate.text = order?.date.toString().substring(0..9)
 
             holder.buttonOrderDetails.setOnClickListener {
-                // TODO handle on click order listener ( order -> orderdetails)
+                Navigation
+                    .createNavigateOnClickListener(R.id.action_ordersFragment_to_orderDetailsFragment,
+                        bundleOf("orderId" to order?.id.toString())
+                    )
+                    .onClick(holder.buttonOrderDetails)
             }
 
         }
