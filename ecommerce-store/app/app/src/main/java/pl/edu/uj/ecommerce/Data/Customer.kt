@@ -1,7 +1,9 @@
 package pl.edu.uj.ecommerce.Data
 
 import android.util.Log
+import android.widget.Toast
 import io.realm.Realm
+import io.realm.Realm.getApplicationContext
 import io.realm.RealmObject
 import io.realm.annotations.PrimaryKey
 import pl.edu.uj.ecommerce.RetrofitService
@@ -68,10 +70,18 @@ fun postCustomer(customer: Customer) {
     val call = service.postCustomerCall(customer)
     call.enqueue(object : Callback<Customer> {
         override fun onResponse(call: Call<Customer>, response: Response<Customer>) {
-            Log.d("POST CUSTOMER SUCCESS", response.message())
+            if(response.isSuccessful) {
+                Toast.makeText(getApplicationContext(), "Successfully registered!", Toast.LENGTH_SHORT).show()
+                Log.d("POST CUSTOMER SUCCESS", response.message())
+            } else {
+                Toast.makeText(getApplicationContext(), "Error occurred while registration!", Toast.LENGTH_SHORT).show()
+                Log.d("POST CUSTOMER FAIL", response.message())
+            }
+
         }
 
         override fun onFailure(call: Call<Customer>, t: Throwable) {
+            Toast.makeText(getApplicationContext(), "Error occurred while registration!", Toast.LENGTH_SHORT).show()
             Log.d("POST CUSTOMER FAIL", t.message.toString())
         }
 
