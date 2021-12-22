@@ -45,6 +45,17 @@ object Products {
         getProductsFromDB()
     }
 
+    fun productDetails(id : Int) : String {
+        val product = Realm.getDefaultInstance().where(ProductRealm::class.java)
+            .equalTo("id", id)
+            .findFirst()
+
+        if(product == null)
+            return "product with $id ID not found"
+
+        return "Product: " + product.name + ", price: " + product.price
+    }
+
     fun getProductsFromDB() {
         products = Realm.getDefaultInstance().where<ProductRealm>().findAll()
     }
@@ -55,8 +66,6 @@ object Products {
     }
 
 }
-
-//TODO notify about change?? binding?
 
 fun getProductsIntoDB() {
     val service = RetrofitService.create()
