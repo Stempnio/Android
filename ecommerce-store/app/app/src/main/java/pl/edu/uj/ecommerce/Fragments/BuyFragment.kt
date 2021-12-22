@@ -9,7 +9,6 @@ import androidx.navigation.fragment.findNavController
 import pl.edu.uj.ecommerce.Data.carTotalPrice
 import pl.edu.uj.ecommerce.Data.cartToString
 import pl.edu.uj.ecommerce.Data.postOrder
-import pl.edu.uj.ecommerce.Data.refreshCart
 import pl.edu.uj.ecommerce.R
 import pl.edu.uj.ecommerce.databinding.FragmentBuyBinding
 
@@ -29,7 +28,7 @@ class BuyFragment : Fragment(R.layout.fragment_buy) {
 
         binding.buttonBuyFragmentPlaceOrder.setOnClickListener {
             postOrder()
-            refreshCart()
+//            refreshCart()
             findNavController().navigate(BuyFragmentDirections.actionBuyFragmentToProductsFragment())
         }
 
