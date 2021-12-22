@@ -33,12 +33,12 @@ class LogInFragment : Fragment(R.layout.fragment_products) {
         }
 
         binding.buttonLogIn.setOnClickListener {
-            // TODO logging system (for example oauth)
+            // TODO oauth2
 
             val id = binding.editTextTextEmail.text.toString()
-            var password = binding.editTextPassword.text.toString()
+            val password = binding.editTextPassword.text.toString()
 
-            logIn(id)
+            logIn(id, password)
         }
 
         return binding.root
@@ -49,7 +49,7 @@ class LogInFragment : Fragment(R.layout.fragment_products) {
         _binding = null
     }
 
-    fun logIn(id : String) {
+    fun logIn(id : String, password: String) {
         val service = RetrofitService.create()
         val call = service.getCustomerByIdCall(id)
 
@@ -59,6 +59,13 @@ class LogInFragment : Fragment(R.layout.fragment_products) {
                 response: Response<Customer>
             ) {
                 if (response.code() == 200) {
+                    val customer = response.body()
+
+                    if(customer == null || customer.password != password) {
+                        Toast.makeText(context, "LOG IN FAILED", Toast.LENGTH_LONG).show()
+                        return
+                    }
+
                     CURRENT_CUSTOMER_ID = id
 
                     // update products and customers cart
