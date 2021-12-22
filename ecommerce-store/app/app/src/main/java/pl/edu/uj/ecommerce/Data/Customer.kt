@@ -59,3 +59,18 @@ fun getCustomerByIdIntoDB(id : String) {
 
     })
 }
+
+fun postCustomer(customer: Customer) {
+    val service = RetrofitService.create()
+    val call = service.postCustomerCall(customer)
+    call.enqueue(object : Callback<Customer> {
+        override fun onResponse(call: Call<Customer>, response: Response<Customer>) {
+            Log.d("POST CUSTOMER SUCCESS", response.message())
+        }
+
+        override fun onFailure(call: Call<Customer>, t: Throwable) {
+            Log.d("POST CUSTOMER FAIL", t.message.toString())
+        }
+
+    })
+}
