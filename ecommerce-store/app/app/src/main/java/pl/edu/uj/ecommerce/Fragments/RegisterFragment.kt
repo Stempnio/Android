@@ -33,13 +33,13 @@ class RegisterFragment : Fragment(R.layout.fragment_products) {
             val password = binding.editTextSetPassword.text.toString()
             val repeatPassword = binding.editTextRepeatPassword.text.toString()
 
-            //TODO password
             if(password != repeatPassword) {
                 Toast.makeText(context, "Passwords are not equal!", Toast.LENGTH_SHORT).show()
             } else {
                 val newCustomer = Customer().apply {
                     this.id = customerId
                     this.email = customerEmail
+                    this.password = password
                 }
 
                 postCustomer(newCustomer)
