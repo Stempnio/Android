@@ -108,8 +108,10 @@ fun postCart(productId : Int) {
 
     })
 
+    //getCartIntoDB
+
     // refresh cart so it is up to date
-    getCartIntoDB()
+    refreshCart()
 }
 
 fun refreshCart() {
@@ -155,73 +157,3 @@ fun getCartIntoDB() {
 
     })
 }
-
-
-//object Cart {
-//    var cartItemsRealm = mutableListOf<CartItemRealm>()
-//    var cartItems = mutableListOf<CartItem>()
-//
-//    init {
-//        getCartItems()
-//        totalPrice()
-//    }
-//
-//    fun getCartItems() {
-//        cartItemsRealm = Realm.getDefaultInstance().where<CartItemRealm>().findAll()
-//    }
-//
-////    fun getCartItemsFromDbIntoList() : MutableList<CartItem> {
-////        return cartItems.map { mapCartItem(it) }
-////    }
-//
-//    fun getCartItemName(productId: Int) : String {
-//        val tmp = Realm.getDefaultInstance().where<ProductRealm>()
-//            .equalTo("id", productId).findFirst() ?: return "error while downloading name"
-//
-//        return tmp.name
-//    }
-//
-//    fun getCartItemPrice(productId: Int) : Int {
-//        val tmp = Realm.getDefaultInstance().where<ProductRealm>()
-//            .equalTo("id", productId).findFirst() ?: return 0
-//
-//        return tmp.price
-//    }
-//
-//    fun removeCartItem(productId: Int) {
-//        val service = RetrofitService.create()
-//        val call = service.deleteCartItemCall(CURRENT_CUSTOMER_ID, productId)
-//        call.enqueue(object : Callback<CartItem> {
-//            override fun onResponse(call: Call<CartItem>, response: Response<CartItem>) {
-//                getCartItems()
-//                Log.d("ITEM DELETE SUCCESS", response.message())
-//            }
-//
-//            override fun onFailure(call: Call<CartItem>, t: Throwable) {
-//                Log.d("ITEM DELETE FAIL", t.message.toString())
-//            }
-//
-//        })
-//
-//    }
-//
-//    fun totalPrice() : Int {
-//        var price = 0
-//        for(p in cartItemsRealm) {
-//            val itemPrice = getCartItemPrice(p.productId)
-//
-//            price += itemPrice * p.quantity
-//        }
-//
-//        return price
-//    }
-//}
-
-
-//fun mapCartItem(cartItemRealm: CartItemRealm) : CartItem {
-//    return CartItem().apply {
-//        this.customerId = cartItemRealm.customerId
-//        this.productId = cartItemRealm.productId
-//        this.quantity = cartItemRealm.quantity
-//    }
-//}
