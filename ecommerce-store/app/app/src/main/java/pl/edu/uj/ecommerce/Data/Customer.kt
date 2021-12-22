@@ -19,6 +19,7 @@ open class CustomerRealm : RealmObject() {
     var firstName : String = ""
     var lastName : String = ""
     var email : String = ""
+    var password : String = ""
 }
 
 class Customer {
@@ -26,6 +27,7 @@ class Customer {
     var firstName : String = ""
     var lastName : String = ""
     var email : String = ""
+    var password : String = ""
 }
 
 fun getCustomerByIdIntoDB(id : String) {
@@ -44,6 +46,7 @@ fun getCustomerByIdIntoDB(id : String) {
                     this.firstName = customerResponse.firstName
                     this.lastName = customerResponse.lastName
                     this.email = customerResponse.email
+                    this.password = customerResponse.password
                 }
 
                 Realm.getDefaultInstance().executeTransactionAsync {
