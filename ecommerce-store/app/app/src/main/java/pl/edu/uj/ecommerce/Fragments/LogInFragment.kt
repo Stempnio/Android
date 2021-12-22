@@ -1,6 +1,7 @@
 package pl.edu.uj.ecommerce.Fragments
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -50,8 +51,8 @@ class LogInFragment : Fragment(R.layout.fragment_products) {
 
     fun logIn(id : String, password: String) {
 
-        if(id == "") {
-            Toast.makeText(context, R.string.log_in_failed, Toast.LENGTH_LONG).show()
+        if(id == "" || password == "") {
+            Toast.makeText(context, "ENTER USERNAME AND PASSWORD", Toast.LENGTH_LONG).show()
             return
         }
 
@@ -67,7 +68,7 @@ class LogInFragment : Fragment(R.layout.fragment_products) {
                     val customer = response.body()
 
                     if(customer == null || customer.password != password) {
-                        Toast.makeText(context, R.string.log_in_failed, Toast.LENGTH_LONG).show()
+                        Toast.makeText(context, resources.getString(R.string.log_in_failed), Toast.LENGTH_LONG).show()
                         return
                     }
 
@@ -82,12 +83,15 @@ class LogInFragment : Fragment(R.layout.fragment_products) {
                     getOrderDetailsIntoDB()
 
                     findNavController().navigate(LogInFragmentDirections.actionLogInFragmentToProductsFragment())
+                } else {
+                    Toast.makeText(context, resources.getString(R.string.log_in_failed), Toast.LENGTH_LONG).show()
                 }
 
             }
 
             override fun onFailure(call: Call<Customer>, t: Throwable) {
-                Toast.makeText(context, R.string.log_in_failed, Toast.LENGTH_LONG).show()
+                Toast.makeText(context, resources.getString(R.string.log_in_failed), Toast.LENGTH_LONG).show()
+                Log.d(resources.getString(R.string.log_in_failed), t.message.toString())
             }
 
         })

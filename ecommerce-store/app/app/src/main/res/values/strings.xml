@@ -34,5 +34,6 @@
     <string name="details">DETAILS</string>
     <string name="total_price">TOTAL PRICE</string>
     <string name="latest_orders">LATEST ORDERS</string>
-    <string name="log_in_failed">LOG IN FAILED</string>
+    <string name="log_in_failed">INVALID USERNAME AND/OR PASSWORD!</string>
+    <string name="error_registration">ERROR OCCURRED WHILE REGISTRATION!</string>
 </resources>

@@ -33,15 +33,23 @@ class RegisterFragment : Fragment(R.layout.fragment_products) {
             val password = binding.editTextSetPassword.text.toString()
             val repeatPassword = binding.editTextRepeatPassword.text.toString()
 
+
             if(password != repeatPassword) {
                 Toast.makeText(context, "Passwords are not equal!", Toast.LENGTH_SHORT).show()
+            } else if(password == "" || repeatPassword == "") {
+                Toast.makeText(context, "Enter your password!", Toast.LENGTH_SHORT).show()
+            }else if(customerId == "") {
+                Toast.makeText(context, "Enter your username!", Toast.LENGTH_SHORT).show()
+            } else if(customerEmail == "") {
+                Toast.makeText(context, "Enter your email!", Toast.LENGTH_SHORT).show()
+            } else if(!customerEmail.contains('@')) {
+                Toast.makeText(context, "Invalid email!", Toast.LENGTH_SHORT).show()
             } else {
                 val newCustomer = Customer().apply {
                     this.id = customerId
                     this.email = customerEmail
                     this.password = password
                 }
-
                 postCustomer(newCustomer)
 
                 findNavController().navigate(RegisterFragmentDirections.actionRegisterFragmentToLogInFragment())
