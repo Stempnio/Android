@@ -1,11 +1,7 @@
 package pl.edu.uj.ecommerce.Activities
 
-import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import androidx.fragment.app.Fragment
-import pl.edu.uj.ecommerce.Fragments.ProductsFragment
-import pl.edu.uj.ecommerce.R
 import pl.edu.uj.ecommerce.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
