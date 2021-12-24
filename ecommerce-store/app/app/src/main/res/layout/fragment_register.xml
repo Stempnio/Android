@@ -48,26 +48,29 @@
         android:hint="@string/repeat_password"
         android:inputType="textPassword" />
 
-    <TextView
-        android:id="@+id/textViewEqualPasswords"
-        android:layout_marginStart="30dp"
-        android:layout_marginEnd="30dp"
-        android:layout_marginBottom="10dp"
-        android:layout_width="match_parent"
-        android:layout_height="80dp"
-        android:gravity="center"
-        tools:text="Equal passwords" />
-
-    <Button
+    <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/btnRegisterSignUp"
         android:layout_width="176dp"
         android:layout_height="82dp"
-        android:text="@string/sign_up" />
+        android:layout_margin="10dp"
+        android:text="@string/sign_up"
+        android:background="@drawable/button_shape"
+        android:shadowColor="@color/buttonShadowColor"
+        android:shadowDx="0"
+        android:shadowDy="0"
+        android:shadowRadius="10"
+        android:textColor="@color/buttonTextColor"/>
 
-    <Button
+    <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/btnRegisterGoBack"
         android:layout_width="176dp"
         android:layout_height="82dp"
-        android:text="@string/go_back" />
+        android:text="@string/go_back"
+        android:background="@drawable/button_shape"
+        android:shadowColor="@color/buttonShadowColor"
+        android:shadowDx="0"
+        android:shadowDy="0"
+        android:shadowRadius="10"
+        android:textColor="@color/buttonTextColor"/>
 
 </LinearLayout>

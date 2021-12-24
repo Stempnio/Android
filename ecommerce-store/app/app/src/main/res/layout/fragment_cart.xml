@@ -7,7 +7,7 @@
     tools:context=".Fragments.CartFragment">
 
 
-    <Button
+    <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/buttonGoBack3"
         android:layout_width="0dp"
         android:layout_height="100dp"
@@ -18,7 +18,13 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/buttonBuy"
-        app:layout_constraintTop_toBottomOf="@+id/RecyclerViewCartList" />
+        app:layout_constraintTop_toBottomOf="@+id/RecyclerViewCartList"
+        android:background="@drawable/button_shape"
+        android:shadowColor="@color/buttonShadowColor"
+        android:shadowDx="0"
+        android:shadowDy="0"
+        android:shadowRadius="10"
+        android:textColor="@color/buttonTextColor"/>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/RecyclerViewCartList"
@@ -34,7 +40,7 @@
         app:layout_constraintTop_toTopOf="parent"
         tools:listitem="@layout/row_cart" />
 
-    <Button
+    <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/buttonBuy"
         android:layout_width="0dp"
         android:layout_height="100dp"
@@ -44,7 +50,13 @@
         app:layout_constraintEnd_toStartOf="@+id/buttonGoBack3"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/buttonGoBack3" />
+        app:layout_constraintTop_toTopOf="@+id/buttonGoBack3"
+        android:background="@drawable/button_shape"
+        android:shadowColor="@color/buttonShadowColor"
+        android:shadowDx="0"
+        android:shadowDy="0"
+        android:shadowRadius="10"
+        android:textColor="@color/buttonTextColor"/>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

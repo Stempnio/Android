@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     tools:context=".Fragments.BuyFragment">
 
-    <Button
+    <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/buttonBuyFragmentPlaceOrder"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -14,10 +14,17 @@
         android:layout_marginBottom="104dp"
         android:text="@string/place_order"
         android:textSize="25sp"
+        android:padding="5dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvBuyFragmentTotalPrice" />
+        app:layout_constraintTop_toBottomOf="@+id/tvBuyFragmentTotalPrice"
+        android:background="@drawable/button_shape"
+        android:shadowColor="@color/buttonShadowColor"
+        android:shadowDx="0"
+        android:shadowDy="0"
+        android:shadowRadius="10"
+        android:textColor="@color/buttonTextColor"/>
 
     <TextView
         android:id="@+id/tvBuyFragmentTotalPriceHeader"

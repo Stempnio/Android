@@ -19,18 +19,27 @@
         app:layout_constraintTop_toTopOf="parent" />
 
 
-    <Button
+    <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/btnOrdersGoBack"
         android:layout_width="300dp"
         android:layout_height="100dp"
         android:layout_marginStart="46dp"
+        android:layout_marginTop="30dp"
         android:layout_marginEnd="47dp"
         android:layout_marginBottom="96dp"
+        android:background="@drawable/button_shape"
+        android:shadowColor="@color/buttonShadowColor"
+        android:shadowDx="0"
+        android:shadowDy="0"
+        android:shadowRadius="10"
         android:text="@string/go_back"
+        android:textColor="@color/buttonTextColor"
+        android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/recyclerViewOrders" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerViewOrders"
@@ -39,11 +48,11 @@
         android:layout_marginStart="1dp"
         android:layout_marginTop="1dp"
         android:layout_marginEnd="1dp"
-        android:layout_marginBottom="1dp"
-        tools:listitem="@layout/row_order"
+        android:layout_marginBottom="30dp"
         app:layout_constraintBottom_toTopOf="@+id/btnOrdersGoBack"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/twOrdersFragmentHeader" />
+        app:layout_constraintTop_toBottomOf="@+id/twOrdersFragmentHeader"
+        tools:listitem="@layout/row_order" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
