@@ -36,4 +36,6 @@
     <string name="latest_orders">LATEST ORDERS</string>
     <string name="log_in_failed">INVALID USERNAME AND/OR PASSWORD!</string>
     <string name="error_registration">ERROR OCCURRED WHILE REGISTRATION!</string>
+    <string name="change_password">change password</string>
+    <string name="delete_account">delete account</string>
 </resources>

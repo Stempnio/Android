@@ -22,6 +22,9 @@ interface RetrofitService {
     @POST("customer")
     fun postCustomerCall(@Body customer : Customer) : Call<Customer>
 
+    @PUT("customer")
+    fun putCustomerCall(@Body customer : Customer) : Call<Customer>
+
     @DELETE("customer/{customerId}")
     fun deleteCustomerCall(@Path("customerId") customerId: String) : Call<Customer>
 

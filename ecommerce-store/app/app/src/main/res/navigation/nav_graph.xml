@@ -31,6 +31,18 @@
             app:destination="@id/aboutAppFragment"
             app:enterAnim="@android:anim/fade_in"
             app:popEnterAnim="@android:anim/fade_in" />
+        <action
+            android:id="@+id/action_productsFragment_to_updateCustomerFragment"
+            app:destination="@id/updateCustomerFragment"
+            app:enterAnim="@android:anim/fade_in"
+            app:popEnterAnim="@android:anim/fade_in"
+            app:popUpTo="@id/logInFragment"
+            app:popUpToInclusive="true"/>
+        <action
+            android:id="@+id/action_productsFragment_to_deleteAccountFragment"
+            app:destination="@id/deleteAccountFragment"
+            app:enterAnim="@android:anim/fade_in"
+            app:popEnterAnim="@android:anim/fade_in" />
     </fragment>
     <fragment
         android:id="@+id/logInFragment"
@@ -118,11 +130,33 @@
             android:id="@+id/action_ordersFragment_to_orderDetailsFragment"
             app:destination="@id/orderDetailsFragment"
             app:enterAnim="@android:anim/fade_in"
-            app:popEnterAnim="@android:anim/fade_in" />
+            app:popEnterAnim="@android:anim/fade_in"
+            app:popUpTo="@id/productsFragment"
+            app:popUpToInclusive="true"/>
     </fragment>
     <fragment
         android:id="@+id/orderDetailsFragment"
         android:name="pl.edu.uj.ecommerce.Fragments.OrderDetailsFragment"
         android:label="fragment_order_details"
         tools:layout="@layout/fragment_order_details" />
+    <fragment
+        android:id="@+id/updateCustomerFragment"
+        android:name="pl.edu.uj.ecommerce.Fragments.UpdateCustomerFragment"
+        android:label="UpdateCustomerFragment"
+        tools:layout="@layout/fragment_update_customer">
+        <action
+            android:id="@+id/action_updateCustomerFragment_to_productsFragment"
+            app:destination="@id/productsFragment"
+            app:enterAnim="@android:anim/fade_in" />
+    </fragment>
+    <fragment
+        android:id="@+id/deleteAccountFragment"
+        android:name="pl.edu.uj.ecommerce.Fragments.DeleteAccountFragment"
+        android:label="DeleteAccountFragment"
+        tools:layout="@layout/fragment_delete_account">
+        <action
+            android:id="@+id/action_deleteAccountFragment_to_logInFragment"
+            app:destination="@id/logInFragment"
+            app:enterAnim="@android:anim/fade_in" />
+    </fragment>
 </navigation>

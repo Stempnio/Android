@@ -87,3 +87,67 @@ fun postCustomer(customer: Customer) {
 
     })
 }
+
+fun updateCustomer(customer : Customer) {
+    val service = RetrofitService.create()
+    val call = service.putCustomerCall(customer)
+    call.enqueue(object : Callback<Customer> {
+        override fun onResponse(call: Call<Customer>, response: Response<Customer>) {
+            if(response.isSuccessful) {
+                Toast.makeText(getApplicationContext(), "Successfully changed password!", Toast.LENGTH_SHORT).show()
+                Log.d("PUT CUSTOMER SUCCESS", response.message())
+            } else {
+                Toast.makeText(getApplicationContext(), "Error occurred while updating password!", Toast.LENGTH_SHORT).show()
+                Log.d("PUT CUSTOMER FAIL", response.message())
+            }
+        }
+
+        override fun onFailure(call: Call<Customer>, t: Throwable) {
+            Toast.makeText(getApplicationContext(), "Error occurred while updating password!", Toast.LENGTH_SHORT).show()
+            Log.d("PUT CUSTOMER FAIL", t.message.toString())
+        }
+
+    })
+}
+
+fun deleteCustomer() {
+    val service = RetrofitService.create()
+    val call = service.deleteCustomerCall(CURRENT_CUSTOMER_ID)
+    call.enqueue(object : Callback<Customer> {
+        override fun onResponse(call: Call<Customer>, response: Response<Customer>) {
+            if(response.isSuccessful) {
+                Toast.makeText(getApplicationContext(), "Successfully deleted account!", Toast.LENGTH_SHORT).show()
+                Log.d("DELETE CUSTOMER SUCCESS", response.message())
+            } else {
+                Toast.makeText(getApplicationContext(), "Error occurred while deleting account!", Toast.LENGTH_SHORT).show()
+                Log.d("DELETE CUSTOMER FAIL", response.message())
+            }
+        }
+
+        override fun onFailure(call: Call<Customer>, t: Throwable) {
+            Toast.makeText(getApplicationContext(), "Error occurred while deleting account!", Toast.LENGTH_SHORT).show()
+            Log.d("DELETE CUSTOMER FAIL", t.message.toString())
+        }
+
+    })
+}
+
+fun getCurrentCustomer() : Customer {
+    val custRealm =  Realm.getDefaultInstance().where(CustomerRealm::class.java)
+        .equalTo("id", CURRENT_CUSTOMER_ID)
+        .findFirst()
+
+    if(custRealm != null) {
+        return Customer().apply {
+            this.id = custRealm.id
+            this.password = custRealm.password
+            this.firstName = custRealm.firstName
+            this.lastName = custRealm.lastName
+            this.email = custRealm.email
+        }
+    } else {
+        // if error occurs (current customer cant be found) return empty customer
+        return Customer()
+    }
+
+}
