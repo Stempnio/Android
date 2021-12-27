@@ -35,6 +35,15 @@ fun getOrderDetails(orderId : Int) : List<OrderDetails> {
     }
 }
 
+fun getCustomerOrderDetails(customerId : String) : List<OrderDetails> {
+    return transaction {
+        (OrderDetailsTable innerJoin OrderTable)
+            .slice(OrderDetailsTable.orderId, OrderDetailsTable.productId, OrderDetailsTable.quantity)
+            .select { (OrderDetailsTable.orderId eq OrderTable.id) and (OrderTable.customerId eq customerId) }
+            .map { it.toOrderDetails() }
+    }
+}
+
 fun getAllOrderDetails() : List<OrderDetails> {
     return transaction {
         OrderDetailsTable.selectAll().map { it.toOrderDetails() }

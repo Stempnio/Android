@@ -2,6 +2,7 @@ package pl.edu.uj.routes
 
 import com.google.gson.Gson
 import io.ktor.application.*
+import io.ktor.http.*
 import io.ktor.request.*
 import io.ktor.response.*
 import io.ktor.routing.*
@@ -24,7 +25,10 @@ fun Route.productRouting() {
             val id = call.parameters["id"]
             if(id != null) {
                 val prod = getProduct(id.toInt())
-                call.respond(prod)
+                if(prod != null)
+                    call.respond(prod)
+                else
+                    call.respond(HttpStatusCode.NotFound)
             }
         }
 

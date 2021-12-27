@@ -1,6 +1,7 @@
 package pl.edu.uj.routes
 
 import io.ktor.application.*
+import io.ktor.http.*
 import io.ktor.request.*
 import io.ktor.response.*
 import io.ktor.routing.*
@@ -21,7 +22,10 @@ fun Route.customerRouting() {
             val id = call.parameters["id"]
             if(id != null) {
                 val customer = getCustomer(id)
-                call.respond(customer)
+                if(customer != null)
+                    call.respond(customer)
+                else
+                    call.respond(HttpStatusCode.NotFound)
             }
         }
 

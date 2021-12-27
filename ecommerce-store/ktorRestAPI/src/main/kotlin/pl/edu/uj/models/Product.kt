@@ -61,8 +61,8 @@ fun getAllProducts() : List<Product> {
     }
 }
 
-fun getProduct(id : Int) : List<Product> {
+fun getProduct(id : Int) : Product? {
     return transaction {
-        ProductTable.select { ProductTable.id eq id }.map { it.toProduct() }
+        ProductTable.select { ProductTable.id eq id }.map { it.toProduct() }.firstOrNull()
     }
 }

@@ -1,18 +1,17 @@
 package pl.edu.uj.models
 
 import org.jetbrains.exposed.sql.*
-import org.jetbrains.exposed.sql.javatime.datetime
 import org.jetbrains.exposed.sql.transactions.transaction
 import java.time.LocalDateTime
 
-data class Order(val customerId: String, val date: LocalDateTime, val id: Int = -1)
+data class Order(val customerId: String, val date: String, val id: Int = -1)
 
 object OrderTable : Table() {
     val id = integer("id").autoIncrement()
     override val primaryKey = PrimaryKey(id)
 
     val customerId = varchar("consumerId", 20).references(CustomerTable.id)
-    val date = datetime("date")
+    val date = varchar("date", 30)
 }
 
 fun ResultRow.toOrder() = Order(
@@ -33,9 +32,9 @@ fun getCustomerOrders(customerId: String) : List<Order> {
     }
 }
 
-fun getOrder(id : Int) : List<Order> {
+fun getOrder(id : Int) : Order? {
     return transaction {
-        OrderTable.select { OrderTable.id eq id }.map { it.toOrder() }
+        OrderTable.select { OrderTable.id eq id }.map { it.toOrder() }.singleOrNull()
     }
 }
 
@@ -46,7 +45,7 @@ fun placeOrder(customerId: String) {
         if (customerCart.isNotEmpty()) {
             orderId = OrderTable.insert {
                 it[OrderTable.customerId] = customerId
-                it[date] = LocalDateTime.now()
+                it[date] = LocalDateTime.now().toString()
             } get OrderTable.id
 
             for(cart in customerCart) {
