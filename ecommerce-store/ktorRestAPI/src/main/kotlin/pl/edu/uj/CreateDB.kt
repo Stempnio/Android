@@ -37,20 +37,26 @@ fun createDB() {
 }
 
 fun createSampleDB() {
-    val customer1 = Customer("cust1", "jan", "kowalski", "jankowalski@gmail.com")
-    val customer2 = Customer("cust2", "pawel", "nowak", "pawelnowak@gmail.com")
-    val product1 = Product("p1", 100, "product 1")
-    val product2 = Product( "p2", 100, "product 2")
-    val product3 = Product( "p3", 100, "product 3")
-    val product4 = Product( "p4", 100, "product 4")
+    val customer1 = Customer("cust1", "jan", "kowalski", "jankowalski@gmail.com", "1234")
+    val customer2 = Customer("cust2", "pawel", "nowak", "pawelnowak@gmail.com", "1234")
+    val customer3 = Customer("bartek", "bartek", "szwaja", "szwaja@gmail.com", "1234")
+    val product1 = Product("laptop", 1000, "product 1")
+    val product2 = Product( "pralka", 500, "product 2")
+    val product3 = Product( "lodowka", 300, "product 3")
+    val product4 = Product( "ksiazka", 20, "product 4")
+    val product5 = Product( "rower", 500, "product 5")
+    val product6 = Product( "glosniki", 250, "product 6")
 
     addProduct(product1)
     addProduct(product2)
     addProduct(product3)
     addProduct(product4)
+    addProduct(product5)
+    addProduct(product6)
 
     addCustomer(customer1)
     addCustomer(customer2)
+    addCustomer(customer3)
 
     addToCart("cust1", 1)
     addToCart("cust1", 3)
