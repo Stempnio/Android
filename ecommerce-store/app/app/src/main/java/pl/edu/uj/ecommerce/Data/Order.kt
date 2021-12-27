@@ -76,3 +76,15 @@ fun getOrdersIntoDB() {
 
     })
 }
+
+fun refreshOrders() {
+    Realm.getDefaultInstance().beginTransaction()
+    Realm.getDefaultInstance().where(OrderRealm::class.java)
+        .equalTo("customerId", CURRENT_CUSTOMER_ID)
+        .findAll().deleteAllFromRealm()
+    Realm.getDefaultInstance().commitTransaction()
+
+    getOrdersIntoDB()
+
+    getOrderDetailsIntoDB()
+}

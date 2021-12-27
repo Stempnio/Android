@@ -79,8 +79,7 @@ class LogInFragment : Fragment(R.layout.fragment_products) {
                     getCustomerByIdIntoDB(CURRENT_CUSTOMER_ID)
 
                     refreshCart()
-                    getOrdersIntoDB()
-                    getOrderDetailsIntoDB()
+                    refreshOrders()
 
                     findNavController().navigate(LogInFragmentDirections.actionLogInFragmentToProductsFragment())
                 } else {
