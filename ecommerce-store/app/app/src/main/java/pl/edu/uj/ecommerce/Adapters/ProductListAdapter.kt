@@ -7,7 +7,7 @@ import android.widget.Button
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import pl.edu.uj.ecommerce.Data.postCart
-import pl.edu.uj.ecommerce.Product
+import pl.edu.uj.ecommerce.Data.Product
 import pl.edu.uj.ecommerce.R
 
 class ProductListAdapter(private val products : List<Product>) : RecyclerView.Adapter<ProductListAdapter.ProductViewHolder>() {

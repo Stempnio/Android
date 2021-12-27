@@ -1,4 +1,3 @@
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -10,7 +9,7 @@ import io.realm.Realm
 import io.realm.RealmRecyclerViewAdapter
 import pl.edu.uj.ecommerce.Data.CartItemRealm
 import pl.edu.uj.ecommerce.Data.removeCartItem
-import pl.edu.uj.ecommerce.ProductRealm
+import pl.edu.uj.ecommerce.Data.ProductRealm
 import pl.edu.uj.ecommerce.R
 
 internal class RecyclerViewCartAdapter(data: OrderedRealmCollection<CartItemRealm?>?) :
@@ -56,9 +55,5 @@ internal class RecyclerViewCartAdapter(data: OrderedRealmCollection<CartItemReal
     override fun getItemId(index: Int): Long {
         return getItem(index)!!.productId.toLong()
     }
-
-
-
-
 
 }

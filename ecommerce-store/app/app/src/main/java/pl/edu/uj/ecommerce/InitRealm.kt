@@ -3,6 +3,7 @@ package pl.edu.uj.ecommerce
 import android.app.Application
 import io.realm.Realm
 import io.realm.RealmConfiguration
+import pl.edu.uj.ecommerce.Data.getProductsIntoDB
 
 class InitRealm : Application() {
 
@@ -19,9 +20,6 @@ class InitRealm : Application() {
 
         getProductsIntoDB()
 
-//        getCustomerByIdIntoDB(CURRENT_CUSTOMER_ID)
-//
-//        getCartIntoDB(CURRENT_CUSTOMER_ID)
     }
 
 

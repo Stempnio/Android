@@ -12,7 +12,7 @@ import pl.edu.uj.ecommerce.Data.*
 import pl.edu.uj.ecommerce.R
 import pl.edu.uj.ecommerce.RetrofitService
 import pl.edu.uj.ecommerce.databinding.FragmentLogInBinding
-import pl.edu.uj.ecommerce.getProductsIntoDB
+import pl.edu.uj.ecommerce.Data.getProductsIntoDB
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response

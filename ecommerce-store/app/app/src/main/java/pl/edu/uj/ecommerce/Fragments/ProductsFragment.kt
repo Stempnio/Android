@@ -7,7 +7,7 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import pl.edu.uj.ecommerce.Adapters.ProductListAdapter
 import pl.edu.uj.ecommerce.Data.*
-import pl.edu.uj.ecommerce.Products.getProductsFromDbIntoList
+import pl.edu.uj.ecommerce.Data.Products.getProductsFromDbIntoList
 import pl.edu.uj.ecommerce.R
 import pl.edu.uj.ecommerce.databinding.FragmentProductsBinding
 

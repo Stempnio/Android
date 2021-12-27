@@ -1,9 +1,6 @@
 package pl.edu.uj.ecommerce
 
-import pl.edu.uj.ecommerce.Data.CartItem
-import pl.edu.uj.ecommerce.Data.Customer
-import pl.edu.uj.ecommerce.Data.Order
-import pl.edu.uj.ecommerce.Data.OrderDetails
+import pl.edu.uj.ecommerce.Data.*
 import retrofit2.Call
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
