@@ -58,11 +58,25 @@ class ProductsFragment : Fragment() {
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        if(item.itemId == R.id.aboutAppFragment){
-            findNavController().navigate(ProductsFragmentDirections.actionProductsFragmentToAboutAppFragment())
-            return true
-        } else {
-            return super.onOptionsItemSelected(item)
+        return when(item.itemId) {
+            R.id.updateCustomerFragment -> {
+                findNavController()
+                    .navigate(ProductsFragmentDirections.actionProductsFragmentToUpdateCustomerFragment())
+                true
+            }
+
+            R.id.aboutAppFragment -> {
+                findNavController()
+                    .navigate(ProductsFragmentDirections.actionProductsFragmentToAboutAppFragment())
+                true
+            }
+
+            R.id.deleteAccountFragment -> {
+                findNavController()
+                    .navigate(ProductsFragmentDirections.actionProductsFragmentToDeleteAccountFragment())
+                true
+            }
+            else -> super.onOptionsItemSelected(item)
         }
     }
 
