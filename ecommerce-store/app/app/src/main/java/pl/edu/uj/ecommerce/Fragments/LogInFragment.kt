@@ -36,7 +36,7 @@ class LogInFragment : Fragment(R.layout.fragment_products) {
         binding.buttonLogIn.setOnClickListener {
             // TODO oauth2
 
-            val id = binding.editTextTextEmail.text.toString()
+            val id = binding.editTextUsername.text.toString()
             val password = binding.editTextPassword.text.toString()
             logIn(id, password)
         }
