@@ -74,14 +74,18 @@ class LogInFragment : Fragment(R.layout.fragment_products) {
 
                     CURRENT_CUSTOMER_ID = id
 
-                    // update products and customers cart
-                    getProductsIntoDB()
-                    getCustomerByIdIntoDB(CURRENT_CUSTOMER_ID)
 
-                    refreshCart()
-                    refreshOrders()
+                    if(!(CURRENT_CUSTOMER_ID.contains("admin"))) {
+                        findNavController().navigate(LogInFragmentDirections.actionLogInFragmentToProductsFragment())
+                        // update products and customers cart
+                        getProductsIntoDB()
+                        getCustomerByIdIntoDB(CURRENT_CUSTOMER_ID)
 
-                    findNavController().navigate(LogInFragmentDirections.actionLogInFragmentToProductsFragment())
+                        refreshCart()
+                        refreshOrders()
+                    } else {
+                        findNavController().navigate(LogInFragmentDirections.actionLogInFragmentToAdminHomeFragment())
+                    }
                 } else {
                     Toast.makeText(context, resources.getString(R.string.log_in_failed), Toast.LENGTH_LONG).show()
                 }
