@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".admin.AdminHomeFragment"
+    android:orientation="vertical"
+    android:gravity="center">
+
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btnAdminHomeProducts"
+        android:layout_width="200dp"
+        android:layout_height="80dp"
+        android:text="Products" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btnAdminHomeCustomers"
+        android:layout_width="200dp"
+        android:layout_height="80dp"
+        android:text="Customers" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btnAdminHomeOrders"
+        android:layout_width="200dp"
+        android:layout_height="80dp"
+        android:text="Orders" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btnAdminHomeCarts"
+        android:layout_width="200dp"
+        android:layout_height="80dp"
+        android:text="Carts" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btnAdminHomeLogOut"
+        android:layout_width="200dp"
+        android:layout_height="80dp"
+        android:text="Log out" />
+
+</androidx.appcompat.widget.LinearLayoutCompat>

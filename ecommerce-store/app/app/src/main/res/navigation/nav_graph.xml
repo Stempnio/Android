@@ -35,9 +35,7 @@
             android:id="@+id/action_productsFragment_to_updateCustomerFragment"
             app:destination="@id/updateCustomerFragment"
             app:enterAnim="@android:anim/fade_in"
-            app:popEnterAnim="@android:anim/fade_in"
-            app:popUpTo="@id/logInFragment"
-            app:popUpToInclusive="true"/>
+            app:popEnterAnim="@android:anim/fade_in" />
         <action
             android:id="@+id/action_productsFragment_to_deleteAccountFragment"
             app:destination="@id/deleteAccountFragment"
@@ -59,6 +57,11 @@
         <action
             android:id="@+id/action_logInFragment_to_registerFragment"
             app:destination="@id/registerFragment"
+            app:enterAnim="@android:anim/fade_in"
+            app:popEnterAnim="@android:anim/fade_in" />
+        <action
+            android:id="@+id/action_logInFragment_to_adminHomeFragment"
+            app:destination="@id/adminHomeFragment"
             app:enterAnim="@android:anim/fade_in"
             app:popEnterAnim="@android:anim/fade_in" />
     </fragment>
@@ -130,9 +133,7 @@
             android:id="@+id/action_ordersFragment_to_orderDetailsFragment"
             app:destination="@id/orderDetailsFragment"
             app:enterAnim="@android:anim/fade_in"
-            app:popEnterAnim="@android:anim/fade_in"
-            app:popUpTo="@id/productsFragment"
-            app:popUpToInclusive="true"/>
+            app:popEnterAnim="@android:anim/fade_in" />
     </fragment>
     <fragment
         android:id="@+id/orderDetailsFragment"
@@ -158,5 +159,63 @@
             android:id="@+id/action_deleteAccountFragment_to_logInFragment"
             app:destination="@id/logInFragment"
             app:enterAnim="@android:anim/fade_in" />
+        <action
+            android:id="@+id/action_deleteAccountFragment_to_productsFragment"
+            app:destination="@id/productsFragment"
+            app:enterAnim="@android:anim/fade_in"
+            app:popEnterAnim="@android:anim/fade_in" />
     </fragment>
+    <fragment
+        android:id="@+id/adminHomeFragment"
+        android:name="pl.edu.uj.ecommerce.admin.AdminHomeFragment"
+        android:label="fragment_admin_home"
+        tools:layout="@layout/fragment_admin_home" >
+        <action
+            android:id="@+id/action_adminHomeFragment_to_adminCartFragment"
+            app:destination="@id/adminCartFragment"
+            app:enterAnim="@android:anim/fade_in"
+            app:popEnterAnim="@android:anim/fade_in" />
+        <action
+            android:id="@+id/action_adminHomeFragment_to_adminCustomerFragment"
+            app:destination="@id/adminCustomerFragment"
+            app:enterAnim="@android:anim/fade_in"
+            app:popEnterAnim="@android:anim/fade_in" />
+        <action
+            android:id="@+id/action_adminHomeFragment_to_adminOrderFragment"
+            app:destination="@id/adminOrderFragment"
+            app:enterAnim="@android:anim/fade_in"
+            app:popEnterAnim="@android:anim/fade_in" />
+        <action
+            android:id="@+id/action_adminHomeFragment_to_adminProductsFragment"
+            app:destination="@id/adminProductsFragment"
+            app:enterAnim="@android:anim/fade_in"
+            app:popEnterAnim="@android:anim/fade_in" />
+        <action
+            android:id="@+id/action_adminHomeFragment_to_logInFragment"
+            app:destination="@id/logInFragment"
+            app:enterAnim="@android:anim/fade_in"
+            app:popEnterAnim="@android:anim/fade_in"
+            app:popUpTo="@id/logInFragment"
+            app:popUpToInclusive="true" />
+    </fragment>
+    <fragment
+        android:id="@+id/adminCartFragment"
+        android:name="pl.edu.uj.ecommerce.admin.AdminCartFragment"
+        android:label="fragment_admin_cart"
+        tools:layout="@layout/fragment_admin_cart" />
+    <fragment
+        android:id="@+id/adminCustomerFragment"
+        android:name="pl.edu.uj.ecommerce.admin.AdminCustomerFragment"
+        android:label="fragment_admin_customer"
+        tools:layout="@layout/fragment_admin_customer" />
+    <fragment
+        android:id="@+id/adminOrderFragment"
+        android:name="pl.edu.uj.ecommerce.admin.AdminOrderFragment"
+        android:label="fragment_admin_order"
+        tools:layout="@layout/fragment_admin_order" />
+    <fragment
+        android:id="@+id/adminProductsFragment"
+        android:name="pl.edu.uj.ecommerce.admin.AdminProductsFragment"
+        android:label="fragment_admin_products"
+        tools:layout="@layout/fragment_admin_products" />
 </navigation>

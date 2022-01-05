@@ -38,4 +38,16 @@
     <string name="error_registration">ERROR OCCURRED WHILE REGISTRATION!</string>
     <string name="change_password">change password</string>
     <string name="delete_account">delete account</string>
+
+
+    <!--    registration-->
+    <string name="passwords_not_equal">Passwords are not equal!</string>
+    <string name="enter_passwords">Enter your password!</string>
+    <string name="enter_email">Enter your email!</string>
+    <string name="invalid_email">Invalid email!</string>
+    <string name="enter_username">Enter your username!</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+
 </resources>
