@@ -8,6 +8,9 @@
         app:showAsAction="always"/>
 
     <item
+        android:id="@+id/googleMapsFragment"
+        android:title="@string/find_our_shops" />
+    <item
         android:id="@id/updateCustomerFragment"
         android:title="@string/change_password" />
 
