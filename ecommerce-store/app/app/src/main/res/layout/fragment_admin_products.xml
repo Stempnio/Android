@@ -1,14 +1,219 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".admin.AdminProductsFragment">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".admin.AdminProductsFragment"
+    android:orientation="vertical"
+    android:gravity="center">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:layout_height="match_parent" >
 
-</FrameLayout>
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:gravity="center">
+
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                app:cardCornerRadius="30dp">
+
+                <androidx.appcompat.widget.LinearLayoutCompat
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical"
+                    android:layout_margin="20dp"
+                    android:gravity="center">
+
+
+                    <androidx.appcompat.widget.AppCompatEditText
+                        android:id="@+id/etAdminProductsAddName"
+                        android:hint="Enter product name"
+                        android:layout_width="200dp"
+                        android:layout_height="wrap_content" />
+
+                    <androidx.appcompat.widget.AppCompatEditText
+                        android:id="@+id/etAdminProductsAddPrice"
+                        android:hint="Enter product price"
+                        android:inputType="numberSigned"
+                        android:layout_width="200dp"
+                        android:layout_height="wrap_content" />
+
+                    <androidx.appcompat.widget.AppCompatEditText
+                        android:id="@+id/etAdminProductsAddDescription"
+                        android:hint="Enter product description"
+                        android:layout_width="200dp"
+                        android:layout_height="wrap_content" />
+
+                    <androidx.appcompat.widget.AppCompatButton
+                        android:id="@+id/btnAdminProductsAdd"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Add product" />
+
+                </androidx.appcompat.widget.LinearLayoutCompat>
+
+
+            </com.google.android.material.card.MaterialCardView>
+
+
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                app:cardCornerRadius="30dp">
+
+                <androidx.appcompat.widget.LinearLayoutCompat
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical"
+                    android:layout_margin="20dp"
+                    android:gravity="center">
+
+                    <androidx.appcompat.widget.AppCompatEditText
+                        android:id="@+id/etAdminProductsUpdateId"
+                        android:hint="Enter product ID"
+                        android:layout_width="200dp"
+                        android:layout_height="wrap_content" />
+
+                    <androidx.appcompat.widget.AppCompatEditText
+                        android:id="@+id/etAdminProductsUpdateName"
+                        android:hint="Enter product name"
+                        android:layout_width="200dp"
+                        android:layout_height="wrap_content" />
+
+                    <androidx.appcompat.widget.AppCompatEditText
+                        android:id="@+id/etAdminProductsUpdatePrice"
+                        android:hint="Enter product price"
+                        android:inputType="numberSigned"
+                        android:layout_width="200dp"
+                        android:layout_height="wrap_content" />
+
+                    <androidx.appcompat.widget.AppCompatEditText
+                        android:id="@+id/etAdminProductsUpdateDescription"
+                        android:hint="Enter product description"
+                        android:layout_width="200dp"
+                        android:layout_height="wrap_content" />
+
+                    <androidx.appcompat.widget.AppCompatButton
+                        android:id="@+id/btnAdminProductsUpdate"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="update product" />
+
+                </androidx.appcompat.widget.LinearLayoutCompat>
+
+
+            </com.google.android.material.card.MaterialCardView>
+
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                app:cardCornerRadius="30dp">
+
+                <androidx.appcompat.widget.LinearLayoutCompat
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical"
+                    android:layout_margin="20dp"
+                    android:gravity="center">
+
+                    <androidx.appcompat.widget.AppCompatEditText
+                        android:id="@+id/etAdminProductsGetById"
+                        android:hint="Enter product ID"
+                        android:layout_width="200dp"
+                        android:layout_height="wrap_content" />
+
+                    <androidx.appcompat.widget.AppCompatButton
+                        android:id="@+id/btnAdminProductsGetById"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="get product" />
+
+                    <TextView
+                        android:id="@+id/tvAdminProductsGetId"
+                        android:layout_width="200dp"
+                        android:layout_height="wrap_content"
+                        android:text="null id"/>
+
+                    <TextView
+                        android:id="@+id/tvAdminProductsGetName"
+                        android:layout_width="200dp"
+                        android:layout_height="wrap_content"
+                        android:text="null name"/>
+
+                    <TextView
+                        android:id="@+id/tvAdminProductsGetPrice"
+                        android:layout_width="200dp"
+                        android:layout_height="wrap_content"
+                        android:text="null price"/>
+
+                    <TextView
+                        android:id="@+id/tvAdminProductsGetDescription"
+                        android:layout_width="200dp"
+                        android:layout_height="wrap_content"
+                        android:text="null description"/>
+
+
+                </androidx.appcompat.widget.LinearLayoutCompat>
+
+
+            </com.google.android.material.card.MaterialCardView>
+
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                app:cardCornerRadius="30dp">
+
+                <androidx.appcompat.widget.LinearLayoutCompat
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical"
+                    android:layout_margin="20dp"
+                    android:gravity="center">
+
+                    <androidx.appcompat.widget.AppCompatEditText
+                        android:id="@+id/etAdminProductsDeleteById"
+                        android:hint="Enter product ID"
+                        android:layout_width="200dp"
+                        android:layout_height="wrap_content" />
+
+                    <androidx.appcompat.widget.AppCompatButton
+                        android:id="@+id/btnAdminProductsDeleteById"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="delete product" />
+
+                </androidx.appcompat.widget.LinearLayoutCompat>
+
+
+            </com.google.android.material.card.MaterialCardView>
+
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btnAdminProductsDeleteAll"
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="20dp"
+                android:layout_width="200dp"
+                android:layout_height="80dp"
+                android:text="delete all products"
+                android:background="#FF0000"/>
+
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+    </ScrollView>
+
+
+
+
+
+
+</androidx.appcompat.widget.LinearLayoutCompat>
