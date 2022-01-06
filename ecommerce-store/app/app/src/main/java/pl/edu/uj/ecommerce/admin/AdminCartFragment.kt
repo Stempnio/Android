@@ -6,12 +6,17 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.viewModels
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers.Default
+import kotlinx.coroutines.launch
 import pl.edu.uj.ecommerce.Data.CartItem
 import pl.edu.uj.ecommerce.Data.Product
 import pl.edu.uj.ecommerce.Data.deleteAllCarts
 import pl.edu.uj.ecommerce.Data.deleteCustomerCart
 import pl.edu.uj.ecommerce.R
 import pl.edu.uj.ecommerce.RetrofitService
+import pl.edu.uj.ecommerce.admin.view_models.AdminCartViewModel
 import pl.edu.uj.ecommerce.databinding.FragmentAboutAppBinding
 import pl.edu.uj.ecommerce.databinding.FragmentAdminCartBinding
 import retrofit2.Call
@@ -20,9 +25,9 @@ import retrofit2.Response
 
 class AdminCartFragment : Fragment() {
     private var _binding : FragmentAdminCartBinding? = null
-
     private val binding get() = _binding!!
 
+    private val viewModel by viewModels<AdminCartViewModel>()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -43,6 +48,10 @@ class AdminCartFragment : Fragment() {
             getAllCarts()
         }
 
+        viewModel.cartListString.observe(viewLifecycleOwner, { string ->
+            binding.tvAdminCartList.text = string
+        })
+
         return binding.root
     }
 
@@ -57,7 +66,7 @@ class AdminCartFragment : Fragment() {
                 val cartList = response.body()
 
                 if(cartList != null) {
-                    binding.tvAdminCartList.text = cartToString(cartList)
+                    displayCart(cartList)
                 } else {
                     binding.tvAdminCartList.text = "not found"
                 }
@@ -73,13 +82,16 @@ class AdminCartFragment : Fragment() {
         })
     }
 
-    fun cartToString( list : List<CartItem>) : String {
-        var result = ""
-        list.forEach { result += "customerID:" +
-                it.customerId + "| product:" +
-                it.productId + "| quantity:" +
-                it.quantity + "\n" }
-        return result
+    fun displayCart(list : List<CartItem>) {
+        CoroutineScope(Default).launch {
+            var result = ""
+            list.forEach { result += "customerID:" +
+                    it.customerId + "| product:" +
+                    it.productId + "| quantity:" +
+                    it.quantity + "\n" }
+
+
+        }
     }
 
     override fun onDestroyView() {

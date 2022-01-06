@@ -2,18 +2,19 @@ package pl.edu.uj.ecommerce.admin
 
 import android.os.Bundle
 import android.util.Log
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import io.realm.Realm
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers.Default
+import kotlinx.coroutines.launch
 import pl.edu.uj.ecommerce.Data.Customer
-import pl.edu.uj.ecommerce.Data.CustomerRealm
 import pl.edu.uj.ecommerce.Data.deleteAllCustomers
 import pl.edu.uj.ecommerce.Data.deleteCustomerById
-import pl.edu.uj.ecommerce.R
 import pl.edu.uj.ecommerce.RetrofitService
-import pl.edu.uj.ecommerce.databinding.FragmentAboutAppBinding
+import pl.edu.uj.ecommerce.admin.view_models.AdminCustomerViewModel
 import pl.edu.uj.ecommerce.databinding.FragmentAdminCustomerBinding
 import retrofit2.Call
 import retrofit2.Callback
@@ -22,9 +23,9 @@ import retrofit2.Response
 
 class AdminCustomerFragment : Fragment() {
     private var _binding : FragmentAdminCustomerBinding? = null
-
     private val binding get() = _binding!!
 
+    private val viewModel by viewModels<AdminCustomerViewModel>()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -50,6 +51,10 @@ class AdminCustomerFragment : Fragment() {
 
             getCustomerById(id)
         }
+
+        viewModel.customerListString.observe(viewLifecycleOwner, {string ->
+            binding.tvAdminCustomerList.text = string
+        })
 
 
         return binding.root
@@ -98,7 +103,7 @@ class AdminCustomerFragment : Fragment() {
                 val customerList = response.body()
 
                 if(customerList != null) {
-                    binding.tvAdminCustomerList.text = customersToSting(customerList)
+                    displayCustomers(customerList)
                 } else {
                     binding.tvAdminCustomerList.text = "not found"
                 }
@@ -111,18 +116,21 @@ class AdminCustomerFragment : Fragment() {
         })
     }
 
-    fun customersToSting(list : List<Customer>) : String {
-        var result = ""
-        list.forEach {
-            result += "customerID:" +
-                    it.id + " | first name:" +
-                    it.firstName + " | last name:" +
-                    it.lastName + " | email:" +
-                    it.email + "\n"
-        }
+    fun displayCustomers(list : List<Customer>) {
+        CoroutineScope(Default).launch {
+            var result = ""
+            list.forEach {
+                result += "customerID:" +
+                        it.id + " | first name:" +
+                        it.firstName + " | last name:" +
+                        it.lastName + " | email:" +
+                        it.email + "\n"
+            }
 
-        return result
+            viewModel.customerListString.postValue(result)
+        }
     }
+
 
     override fun onDestroyView() {
         super.onDestroyView()
