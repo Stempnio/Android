@@ -7,4 +7,6 @@ import pl.edu.uj.ecommerce.Data.Order
 class AdminOrderViewModel : ViewModel() {
     val orderListString = MutableLiveData<String>()
 
+    val orderDetailsListString = MutableLiveData<String>()
+
 }

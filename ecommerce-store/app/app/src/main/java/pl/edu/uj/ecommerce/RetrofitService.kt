@@ -79,11 +79,14 @@ interface RetrofitService {
     @DELETE("order/{id}")
     fun deleteOrderByIdCall(@Path("id") orderId: Int) : Call<Order>
 
+    @DELETE("order")
+    fun deleteAllOrders() : Call<List<Order>>
+
 //    Order details
     @GET("orderDetails")
     fun getAllOrderDetailsCall() : Call<List<OrderDetails>>
 
-    @GET("oderDetails/{orderId}")
+    @GET("orderDetails/{orderId}")
     fun getOrderDetailsByIdCall(@Path("orderId") orderId : Int) : Call<List<OrderDetails>>
 
     @GET("orderDetails/customer/{customerId}")

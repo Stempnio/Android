@@ -1,14 +1,134 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:gravity="center"
+    android:orientation="vertical"
     tools:context=".admin.AdminOrderFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:layout_height="match_parent" >
 
-</FrameLayout>
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:gravity="center">
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btnAdminOrderRefresh"
+                android:layout_width="200dp"
+                android:layout_height="80dp"
+                android:layout_marginTop="20dp"
+                android:text="Refresh order list" />
+
+
+            <ScrollView
+                android:id="@+id/svAdminOrderList"
+                android:layout_width="match_parent"
+                android:layout_height="350dp"
+                android:layout_marginHorizontal="20dp">
+
+                <androidx.appcompat.widget.LinearLayoutCompat
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical" >
+
+                    <TextView
+                        android:id="@+id/tvAdminOrderList"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        tools:text="orders"/>
+
+                </androidx.appcompat.widget.LinearLayoutCompat>
+
+            </ScrollView>
+
+
+
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                app:cardCornerRadius="30dp">
+
+                <androidx.appcompat.widget.LinearLayoutCompat
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical"
+                    android:layout_margin="20dp"
+                    android:gravity="center">
+
+                    <androidx.appcompat.widget.AppCompatEditText
+                        android:id="@+id/etAdminOrderDetailsGetById"
+                        android:hint="Enter order ID"
+                        android:layout_width="200dp"
+                        android:layout_height="wrap_content" />
+
+                    <androidx.appcompat.widget.AppCompatButton
+                        android:id="@+id/btnAdminOrderDetailsGetById"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="get order details" />
+
+                    <TextView
+                        android:id="@+id/tvAdminOrderDetailsGetById"
+                        android:layout_width="200dp"
+                        android:layout_height="wrap_content"
+                        tools:text="order details"/>
+
+
+                </androidx.appcompat.widget.LinearLayoutCompat>
+
+
+            </com.google.android.material.card.MaterialCardView>
+
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                app:cardCornerRadius="30dp">
+
+                <androidx.appcompat.widget.LinearLayoutCompat
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical"
+                    android:layout_margin="20dp"
+                    android:gravity="center">
+
+                    <androidx.appcompat.widget.AppCompatEditText
+                        android:id="@+id/etAdminOrderDeleteById"
+                        android:hint="Enter order ID"
+                        android:layout_width="200dp"
+                        android:layout_height="wrap_content" />
+
+                    <androidx.appcompat.widget.AppCompatButton
+                        android:id="@+id/btnAdminOrderDeleteById"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="delete order" />
+
+                </androidx.appcompat.widget.LinearLayoutCompat>
+
+
+            </com.google.android.material.card.MaterialCardView>
+
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btnAdminOrderDeleteAll"
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="20dp"
+                android:layout_width="200dp"
+                android:layout_height="80dp"
+                android:text="delete all orders"
+                android:background="#FF0000"/>
+
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+    </ScrollView>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

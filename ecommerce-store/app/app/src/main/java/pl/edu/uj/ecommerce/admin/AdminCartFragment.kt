@@ -2,22 +2,19 @@ package pl.edu.uj.ecommerce.admin
 
 import android.os.Bundle
 import android.util.Log
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers.Default
 import kotlinx.coroutines.launch
 import pl.edu.uj.ecommerce.Data.CartItem
-import pl.edu.uj.ecommerce.Data.Product
 import pl.edu.uj.ecommerce.Data.deleteAllCarts
 import pl.edu.uj.ecommerce.Data.deleteCustomerCart
-import pl.edu.uj.ecommerce.R
 import pl.edu.uj.ecommerce.RetrofitService
 import pl.edu.uj.ecommerce.admin.view_models.AdminCartViewModel
-import pl.edu.uj.ecommerce.databinding.FragmentAboutAppBinding
 import pl.edu.uj.ecommerce.databinding.FragmentAdminCartBinding
 import retrofit2.Call
 import retrofit2.Response
@@ -90,7 +87,7 @@ class AdminCartFragment : Fragment() {
                     it.productId + "| quantity:" +
                     it.quantity + "\n" }
 
-
+            viewModel.cartListString.postValue(result)
         }
     }
 
