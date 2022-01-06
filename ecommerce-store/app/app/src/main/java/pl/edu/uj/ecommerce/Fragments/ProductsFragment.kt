@@ -76,6 +76,11 @@ class ProductsFragment : Fragment() {
                     .navigate(ProductsFragmentDirections.actionProductsFragmentToDeleteAccountFragment())
                 true
             }
+            R.id.googleMapsFragment -> {
+                findNavController()
+                    .navigate(ProductsFragmentDirections.actionProductsFragmentToGoogleMapsFragment())
+                true
+            }
             else -> super.onOptionsItemSelected(item)
         }
     }
