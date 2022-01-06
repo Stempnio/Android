@@ -1,10 +1,11 @@
-package pl.edu.uj.ecommerce
+package pl.edu.uj.ecommerce.Data
 
 import android.util.Log
 import io.realm.Realm
 import io.realm.RealmObject
 import io.realm.annotations.PrimaryKey
 import io.realm.kotlin.where
+import pl.edu.uj.ecommerce.RetrofitService
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -19,13 +20,9 @@ open class ProductRealm : RealmObject() {
 }
 
 class Product {
-   // @SerializedName("name")
     var name : String = ""
-    //@SerializedName("price")
     var price : Int = -1
-    //@SerializedName("description")
     var description : String = ""
-    //@SerializedName("id")
     var id : Int = 0
 }
 
@@ -98,6 +95,72 @@ fun getProductsIntoDB() {
 
         override fun onFailure(call: Call<List<Product>>, t: Throwable) {
             Log.d("GET_PRODUCTS_FROM_DB", t.message.toString())
+        }
+
+    })
+}
+
+
+
+/*
+    ADMIN FUNCTIONS
+ */
+
+fun postProduct(product: Product) {
+    val service = RetrofitService.create()
+    val call = service.postProductCall(product)
+    call.enqueue(object : Callback<Product> {
+        override fun onResponse(call: Call<Product>, response: Response<Product>) {
+            Log.d("POST_PRODUCT", "Product post successful")
+        }
+
+        override fun onFailure(call: Call<Product>, t: Throwable) {
+            Log.d("POST_PRODUCT", t.message.toString())
+        }
+
+    })
+}
+
+fun deleteProductById(id: Int) {
+    val service = RetrofitService.create()
+    val call = service.deleteProductByIdCall(id)
+    call.enqueue(object : Callback<Product> {
+        override fun onResponse(call: Call<Product>, response: Response<Product>) {
+            Log.d("DELETE_PRODUCT", "success")
+        }
+
+        override fun onFailure(call: Call<Product>, t: Throwable) {
+            Log.d("DELETE_PRODUCT", t.message.toString())
+        }
+
+    })
+}
+
+fun updateProduct(product: Product) {
+    val service = RetrofitService.create()
+    val call = service.updateProductCall(product)
+    call.enqueue(object : Callback<Product> {
+        override fun onResponse(call: Call<Product>, response: Response<Product>) {
+            Log.d("UPDATE_PRODUCT", "success")
+        }
+
+        override fun onFailure(call: Call<Product>, t: Throwable) {
+            Log.d("UPDATE_PRODUCT", t.message.toString())
+        }
+
+    })
+}
+
+fun deleteAllProducts() {
+    val service = RetrofitService.create()
+    val call = service.deleteAllProductsCall()
+    call.enqueue(object : Callback<Product> {
+        override fun onResponse(call: Call<Product>, response: Response<Product>) {
+            Log.d("DELETE_PRODUCTS_ALL", "success")
+        }
+
+        override fun onFailure(call: Call<Product>, t: Throwable) {
+            Log.d("DELETE_PRODUCTS_ALL", t.message.toString())
         }
 
     })
