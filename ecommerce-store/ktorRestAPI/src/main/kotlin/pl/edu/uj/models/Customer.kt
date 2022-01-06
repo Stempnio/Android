@@ -39,6 +39,7 @@ fun addCustomer(customer : Customer) {
 fun deleteCustomer(id: String) {
     transaction {
         CustomerTable.deleteWhere { CustomerTable.id eq id }
+        deleteCustomerCart(id)
     }
 }
 

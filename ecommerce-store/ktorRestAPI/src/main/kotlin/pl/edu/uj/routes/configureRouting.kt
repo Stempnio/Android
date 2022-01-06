@@ -10,5 +10,6 @@ fun Application.configureRouting() {
         customerRouting()
         cartRouting()
         orderDetailsRouting()
+        adminRouting()
     }
 }

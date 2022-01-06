@@ -1,6 +1,7 @@
 package pl.edu.uj
 
 import org.jetbrains.exposed.sql.Database
+import org.jetbrains.exposed.sql.Schema
 import org.jetbrains.exposed.sql.SchemaUtils
 import org.jetbrains.exposed.sql.transactions.TransactionManager
 import org.jetbrains.exposed.sql.transactions.transaction
@@ -29,6 +30,7 @@ fun createDB() {
         SchemaUtils.create(OrderTable)
         SchemaUtils.create(CustomerTable)
         SchemaUtils.create(OrderDetailsTable)
+        SchemaUtils.create(AdminTable)
 
         createSampleDB()
 
@@ -37,6 +39,10 @@ fun createDB() {
 }
 
 fun createSampleDB() {
+
+    val admin1 = Admin("admin1", "pkowalski@gmail.com", "admin")
+    addAdmin(admin1)
+
     val customer1 = Customer("cust1", "jan", "kowalski", "jankowalski@gmail.com", "1234")
     val customer2 = Customer("cust2", "pawel", "nowak", "pawelnowak@gmail.com", "1234")
     val customer3 = Customer("bartek", "bartek", "szwaja", "szwaja@gmail.com", "1234")
@@ -53,6 +59,7 @@ fun createSampleDB() {
     addProduct(product4)
     addProduct(product5)
     addProduct(product6)
+
 
     addCustomer(customer1)
     addCustomer(customer2)
