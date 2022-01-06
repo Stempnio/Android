@@ -13,7 +13,7 @@ interface RetrofitService {
     fun getProductsCall() : Call<List<Product>>
 
     @GET("product/{id}")
-    fun getProductByIdCall(@Path("id") id : String) : Call<Product>
+    fun getProductByIdCall(@Path("id") id : Int) : Call<Product>
 
     @POST("product")
     fun postProductCall(@Body product: Product) : Call<Product>
@@ -22,10 +22,10 @@ interface RetrofitService {
     fun updateProductCall(@Body product: Product) : Call<Product>
 
     @DELETE("product/{id}")
-    fun deleteProductByIdCall(@Body productId: Int) : Call<Product>
+    fun deleteProductByIdCall(@Path("id") productId: Int) : Call<Product>
 
     @DELETE("product")
-    fun deleteAllProductsCall()
+    fun deleteAllProductsCall() : Call<Product>
 
 //    Customer
     @GET("customer")

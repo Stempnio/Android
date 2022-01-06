@@ -79,6 +79,7 @@
                     <androidx.appcompat.widget.AppCompatEditText
                         android:id="@+id/etAdminProductsUpdateId"
                         android:hint="Enter product ID"
+                        android:inputType="numberSigned"
                         android:layout_width="200dp"
                         android:layout_height="wrap_content" />
 
@@ -128,6 +129,7 @@
                     <androidx.appcompat.widget.AppCompatEditText
                         android:id="@+id/etAdminProductsGetById"
                         android:hint="Enter product ID"
+                        android:inputType="numberSigned"
                         android:layout_width="200dp"
                         android:layout_height="wrap_content" />
 
@@ -183,6 +185,7 @@
                     <androidx.appcompat.widget.AppCompatEditText
                         android:id="@+id/etAdminProductsDeleteById"
                         android:hint="Enter product ID"
+                        android:inputType="numberSigned"
                         android:layout_width="200dp"
                         android:layout_height="wrap_content" />
 

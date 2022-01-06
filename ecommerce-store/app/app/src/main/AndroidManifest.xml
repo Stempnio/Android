@@ -14,31 +14,8 @@
         android:theme="@style/Theme.CustomSplashScreenTheme"
         android:usesCleartextTraffic="true">
         <activity
-            android:name=".Activities.AdminActivity"
-            android:exported="false" />
-        <activity
-            android:name=".Activities.TestActivity"
-            android:exported="false" />
-        <activity
-            android:name=".Activities.BuyActivity"
-            android:exported="false" />
-        <activity
-            android:name=".Activities.ProductsActivity"
-            android:exported="false" />
-        <activity
-            android:name=".Activities.CartActivity"
-            android:exported="false" />
-        <activity
-            android:name=".Activities.AboutAppActivity"
-            android:exported="false" />
-        <activity
-            android:name=".Activities.RegisterActivity"
-            android:exported="false" />
-        <activity
-            android:name=".Activities.LogInActivity"
-            android:exported="false" />
-        <activity
             android:name=".Activities.MainActivity"
+            android:windowSoftInputMode="adjustPan"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
