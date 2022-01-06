@@ -1,13 +1,23 @@
 package pl.edu.uj.ecommerce.admin
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import io.realm.Realm
+import pl.edu.uj.ecommerce.Data.Customer
+import pl.edu.uj.ecommerce.Data.CustomerRealm
+import pl.edu.uj.ecommerce.Data.deleteAllCustomers
+import pl.edu.uj.ecommerce.Data.deleteCustomerById
 import pl.edu.uj.ecommerce.R
+import pl.edu.uj.ecommerce.RetrofitService
 import pl.edu.uj.ecommerce.databinding.FragmentAboutAppBinding
 import pl.edu.uj.ecommerce.databinding.FragmentAdminCustomerBinding
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 
 class AdminCustomerFragment : Fragment() {
@@ -22,9 +32,97 @@ class AdminCustomerFragment : Fragment() {
     ): View {
         _binding = FragmentAdminCustomerBinding.inflate(layoutInflater, container, false)
 
+        binding.btnAdminCustomerDeleteAll.setOnClickListener {
+            deleteAllCustomers()
+        }
+
+        binding.btnAdminCustomerRefresh.setOnClickListener {
+            getAllCustomers()
+        }
+
+        binding.btnAdminCustomerDeleteById.setOnClickListener {
+            val id = binding.etAdminCustomerDeleteById.text.toString()
+            deleteCustomerById(id)
+        }
+
+        binding.btnAdminCustomerGetById.setOnClickListener {
+            val id = binding.etAdminCustomerGetById.text.toString()
+
+            getCustomerById(id)
+        }
+
+
         return binding.root
     }
 
+    private fun getCustomerById(id : String) {
+        val service = RetrofitService.create()
+        val call = service.getCustomerByIdCall(id)
+        call.enqueue(object : Callback<Customer> {
+            override fun onResponse(
+                call: Call<Customer>,
+                response: Response<Customer>
+            ) {
+                if (response.code() == 200) {
+                    val cust = response.body()
+                    if(cust != null) {
+                        binding.tvAdminCustomerGetId.text = cust.id
+                        binding.tvAdminCustomerGetFirst.text = cust.firstName
+                        binding.tvAdminCustomerGetLastName.text = cust.lastName
+                        binding.tvAdminCustomerGetEmail.text = cust.email
+                    }
+                    Log.d("GET_CUSTOMER_BY_ID", "success")
+                } else {
+                    binding.tvAdminCustomerGetId.text = "-1"
+                    binding.tvAdminCustomerGetFirst.text = "customer not found"
+                }
+            }
+
+            override fun onFailure(call: Call<Customer>, t: Throwable) {
+                binding.tvAdminCustomerGetId.text = "-1"
+                binding.tvAdminCustomerGetFirst.text = "customer not found"
+                Log.d("GET_CUSTOMER_BY_ID", t.message.toString())
+            }
+
+        })
+    }
+
+    private fun getAllCustomers() {
+        val service = RetrofitService.create()
+        val call = service.getAllCustomersCall()
+        call.enqueue(object : Callback<List<Customer>>{
+            override fun onResponse(
+                call: Call<List<Customer>>,
+                response: Response<List<Customer>>
+            ) {
+                val customerList = response.body()
+
+                if(customerList != null) {
+                    binding.tvAdminCustomerList.text = customersToSting(customerList)
+                } else {
+                    binding.tvAdminCustomerList.text = "not found"
+                }
+            }
+
+            override fun onFailure(call: Call<List<Customer>>, t: Throwable) {
+                Log.d("GET_CUSTOMERS_ALL", t.message.toString())
+            }
+
+        })
+    }
+
+    fun customersToSting(list : List<Customer>) : String {
+        var result = ""
+        list.forEach {
+            result += "customerID:" +
+                    it.id + " | first name:" +
+                    it.firstName + " | last name:" +
+                    it.lastName + " | email:" +
+                    it.email + "\n"
+        }
+
+        return result
+    }
 
     override fun onDestroyView() {
         super.onDestroyView()
