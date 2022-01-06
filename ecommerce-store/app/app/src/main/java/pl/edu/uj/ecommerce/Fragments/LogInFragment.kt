@@ -13,6 +13,7 @@ import pl.edu.uj.ecommerce.R
 import pl.edu.uj.ecommerce.RetrofitService
 import pl.edu.uj.ecommerce.databinding.FragmentLogInBinding
 import pl.edu.uj.ecommerce.Data.getProductsIntoDB
+import pl.edu.uj.ecommerce.admin.Admin
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -49,13 +50,7 @@ class LogInFragment : Fragment(R.layout.fragment_products) {
         _binding = null
     }
 
-    fun logIn(id : String, password: String) {
-
-        if(id == "" || password == "") {
-            Toast.makeText(context, "ENTER USERNAME AND PASSWORD", Toast.LENGTH_LONG).show()
-            return
-        }
-
+    private fun customerLogIn(id : String, password: String) {
         val service = RetrofitService.create()
         val call = service.getCustomerByIdCall(id)
 
@@ -74,18 +69,13 @@ class LogInFragment : Fragment(R.layout.fragment_products) {
 
                     CURRENT_CUSTOMER_ID = id
 
+                    findNavController().navigate(LogInFragmentDirections.actionLogInFragmentToProductsFragment())
+                    // update products and customers cart
+                    getProductsIntoDB()
+                    getCustomerByIdIntoDB(CURRENT_CUSTOMER_ID)
 
-                    if(!(CURRENT_CUSTOMER_ID.contains("admin"))) {
-                        findNavController().navigate(LogInFragmentDirections.actionLogInFragmentToProductsFragment())
-                        // update products and customers cart
-                        getProductsIntoDB()
-                        getCustomerByIdIntoDB(CURRENT_CUSTOMER_ID)
-
-                        refreshCart()
-                        refreshOrders()
-                    } else {
-                        findNavController().navigate(LogInFragmentDirections.actionLogInFragmentToAdminHomeFragment())
-                    }
+                    refreshCart()
+                    refreshOrders()
                 } else {
                     Toast.makeText(context, resources.getString(R.string.log_in_failed), Toast.LENGTH_LONG).show()
                 }
@@ -98,5 +88,50 @@ class LogInFragment : Fragment(R.layout.fragment_products) {
             }
 
         })
+    }
+
+    private fun adminLogIn(id : String, password: String) {
+        val service = RetrofitService.create()
+        val call = service.getAdminByIdCall(id)
+
+        call.enqueue(object : Callback<Admin> {
+            override fun onResponse(call: Call<Admin>, response: Response<Admin>) {
+                if (response.code() == 200) {
+                    val admin = response.body()
+
+                    if(admin == null || admin.password != password) {
+                        Toast.makeText(context, response.message().toString(), Toast.LENGTH_LONG).show()
+                        return
+                    }
+
+                    CURRENT_CUSTOMER_ID = id
+                    findNavController().navigate(LogInFragmentDirections.actionLogInFragmentToAdminHomeFragment())
+                } else {
+                    Toast.makeText(context, resources.getString(R.string.log_in_failed), Toast.LENGTH_LONG).show()
+                }
+            }
+
+            override fun onFailure(call: Call<Admin>, t: Throwable) {
+                Toast.makeText(context, resources.getString(R.string.log_in_failed), Toast.LENGTH_LONG).show()
+                Log.d(resources.getString(R.string.log_in_failed), t.message.toString())
+            }
+
+        })
+    }
+
+    fun logIn(id : String, password: String) {
+
+        if(id == "" || password == "") {
+            Toast.makeText(context, "ENTER USERNAME AND PASSWORD", Toast.LENGTH_LONG).show()
+            return
+        }
+
+        if(id.contains("admin")) {
+            adminLogIn(id, password)
+        } else {
+            customerLogIn(id, password)
+        }
+
+
     }
 }

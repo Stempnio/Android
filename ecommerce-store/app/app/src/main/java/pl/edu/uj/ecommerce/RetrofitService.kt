@@ -1,6 +1,7 @@
 package pl.edu.uj.ecommerce
 
 import pl.edu.uj.ecommerce.Data.*
+import pl.edu.uj.ecommerce.admin.Admin
 import retrofit2.Call
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
@@ -63,7 +64,7 @@ interface RetrofitService {
     fun deleteCustomerCartCall(@Path("customerId") customerId: String) : Call<List<CartItem>>
 
     @DELETE("cart")
-    fun deleteAllCarts()
+    fun deleteAllCarts() : Call<List<CartItem>>
 
 //    Orders
     @GET("order")
@@ -87,6 +88,10 @@ interface RetrofitService {
 
     @GET("orderDetails/customer/{customerId}")
     fun getCustomerOrderDetailsCall(@Path("customerId") customerId: String) : Call<List<OrderDetails>>
+
+//    Admin
+    @GET("admin/{id}")
+    fun getAdminByIdCall(@Path("id") id : String) : Call<Admin>
 
 
     companion object {
