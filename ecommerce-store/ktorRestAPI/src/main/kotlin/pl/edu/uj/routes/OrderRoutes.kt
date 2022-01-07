@@ -47,5 +47,9 @@ fun Route.orderRouting() {
                 call.respond(deleteOrder(id.toInt()))
         }
 
+        delete {
+            call.respond(deleteAllOrders())
+        }
+
     }
 }

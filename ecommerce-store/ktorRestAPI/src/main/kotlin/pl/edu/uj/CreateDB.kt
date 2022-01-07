@@ -1,11 +1,11 @@
 package pl.edu.uj
 
 import org.jetbrains.exposed.sql.Database
-import org.jetbrains.exposed.sql.Schema
 import org.jetbrains.exposed.sql.SchemaUtils
 import org.jetbrains.exposed.sql.transactions.TransactionManager
 import org.jetbrains.exposed.sql.transactions.transaction
 import pl.edu.uj.models.*
+import java.io.File
 import java.sql.Connection
 
 fun dropExistingDB() {
@@ -14,11 +14,26 @@ fun dropExistingDB() {
     SchemaUtils.drop(OrderTable)
     SchemaUtils.drop(CustomerTable)
     SchemaUtils.drop(OrderDetailsTable)
+    SchemaUtils.drop(AdminTable)
 }
 
-fun createDB() {
 
-    Database.connect("jdbc:sqlite:./data/db.sqlite", "org.sqlite.JDBC")
+fun createDB() {
+    /*
+    FOR DOCKER
+     */
+    val homeENV = System.getenv("HOME")
+    val dbfile = "$homeENV/db/db.sqlite"
+
+    /*
+    FOR LOCAL
+     */
+//    val dbfile = "./data/db.sqlite"
+
+    File(dbfile).createNewFile()
+
+    Database.connect("jdbc:sqlite:$dbfile", "org.sqlite.JDBC")
+
     TransactionManager.manager.defaultIsolationLevel = Connection.TRANSACTION_SERIALIZABLE
 
     transaction {

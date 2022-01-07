@@ -55,18 +55,22 @@ fun placeOrder(customerId: String) {
             // after placing an order delete all products from cart
             deleteCustomerCart(customerId)
 
-        } else {
-            // TODO empty cart
         }
 
     }
 
 }
 
-
 fun deleteOrder(orderId : Int) {
     transaction {
         OrderTable.deleteWhere { OrderTable.id eq orderId }
         deleteOrderDetails(orderId)
+    }
+}
+
+fun deleteAllOrders() {
+    transaction {
+        OrderTable.deleteAll()
+        OrderDetailsTable.deleteAll()
     }
 }

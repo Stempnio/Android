@@ -16,9 +16,18 @@ application {
 
 repositories {
     mavenCentral()
+    maven(url = "https://maven.pkg.jetbrains.space/public/p/kotlinx-html/maven")
+}
+
+tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile> {
+    kotlinOptions {
+        jvmTarget = "1.8"
+    }
 }
 
 dependencies {
+    implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlin_version")
+
     implementation("io.ktor:ktor-server-core:$ktor_version")
     implementation("io.ktor:ktor-gson:$ktor_version")
     implementation("io.ktor:ktor-server-netty:$ktor_version")
@@ -31,5 +40,6 @@ dependencies {
     implementation("org.jetbrains.exposed:exposed-jdbc:$exposedVersion")
     implementation("org.xerial:sqlite-jdbc:3.36.0.2")
 
+    implementation("org.postgresql:postgresql:42.3.1")
     implementation("org.jetbrains.exposed:exposed-java-time:$exposedVersion")
 }
