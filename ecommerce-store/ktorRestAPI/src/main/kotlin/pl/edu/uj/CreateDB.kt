@@ -17,18 +17,17 @@ fun dropExistingDB() {
     SchemaUtils.drop(AdminTable)
 }
 
-
-fun createDB() {
+fun createDB(forTesting : Boolean = false) {
     /*
     FOR DOCKER
      */
-    val homeENV = System.getenv("HOME")
-    val dbfile = "$homeENV/db/db.sqlite"
+//    val homeENV = System.getenv("HOME")
+//    val dbfile = "$homeENV/db/db.sqlite"
 
     /*
     FOR LOCAL
      */
-//    val dbfile = "./data/db.sqlite"
+    val dbfile = "./data/db.sqlite"
 
     File(dbfile).createNewFile()
 
@@ -47,11 +46,13 @@ fun createDB() {
         SchemaUtils.create(OrderDetailsTable)
         SchemaUtils.create(AdminTable)
 
-        createSampleDB()
+        if(!forTesting)
+            createSampleDB()
 
     }
 
 }
+
 
 fun createSampleDB() {
 

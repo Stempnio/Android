@@ -32,6 +32,7 @@ dependencies {
     implementation("io.ktor:ktor-gson:$ktor_version")
     implementation("io.ktor:ktor-server-netty:$ktor_version")
     implementation("ch.qos.logback:logback-classic:$logback_version")
+    implementation("org.junit.jupiter:junit-jupiter:5.7.0")
     testImplementation("io.ktor:ktor-server-tests:$ktor_version")
     testImplementation("org.jetbrains.kotlin:kotlin-test-junit:$kotlin_version")
 
@@ -42,4 +43,9 @@ dependencies {
 
     implementation("org.postgresql:postgresql:42.3.1")
     implementation("org.jetbrains.exposed:exposed-java-time:$exposedVersion")
+
+    testImplementation("io.ktor:ktor-server-test-host:$ktor_version")
+    testImplementation("org.jetbrains.kotlin:kotlin-test:$kotlin_version")
+
+
 }

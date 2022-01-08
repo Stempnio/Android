@@ -20,3 +20,12 @@ fun main() {
 
     }.start(wait = true)
 }
+
+fun Application.module(testing: Boolean = false) {
+    createDB(testing)
+    configureRouting()
+    install(ContentNegotiation) {
+        gson {
+        }
+    }
+}
