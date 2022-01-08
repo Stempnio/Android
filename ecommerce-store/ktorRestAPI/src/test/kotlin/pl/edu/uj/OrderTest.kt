@@ -4,37 +4,33 @@ import com.google.gson.Gson
 import io.ktor.http.*
 import io.ktor.server.testing.*
 import org.junit.Before
+import pl.edu.uj.models.Customer
 import pl.edu.uj.models.Order
 import kotlin.test.Test
 import kotlin.test.assertEquals
 
 class OrderTest {
-    val cart = CartTest()
-    val emptyCart = cart.emptyCart
 
-    val customerTest = CustomerTest()
-    val customer = customerTest.customer
+    fun TestApplicationEngine.postOrderTest() {
+        with(handleRequest(HttpMethod.Post, "/order/${customer.id}")) {
+            assertEquals(HttpStatusCode.OK, response.status())
+        }
+    }
 
-    val emptyOrderList = mutableListOf<Order>()
-
-    @Before
-    fun setup() {
-        customerTest.testPostAndGetCustomer()
-        cart.testPostAndGetCartItem()
+    fun TestApplicationEngine.getOrderTest() {
+        handleRequest(HttpMethod.Get, "/order/customer/${customer.id}").apply {
+            assertEquals(Gson().toJson(emptyCart), response.content)
+            assertEquals(HttpStatusCode.OK, response.status())
+        }
     }
 
     @Test
     fun testPostAndGetOrder() {
 
         withTestApplication({ module(testing = true) }) {
-            with(handleRequest(HttpMethod.Post, "/order/${customer.id}")) {
-                assertEquals(HttpStatusCode.OK, response.status())
-            }
 
-            handleRequest(HttpMethod.Get, "/order/customer/${customer.id}").apply {
-                assertEquals(Gson().toJson(emptyCart), response.content)
-                assertEquals(HttpStatusCode.OK, response.status())
-            }
+            postOrderTest()
+            getOrderTest()
         }
     }
 
@@ -43,7 +39,7 @@ class OrderTest {
 
         withTestApplication({ module(testing = true) }) {
 
-            testPostAndGetOrder()
+            postOrderTest()
 
             handleRequest(HttpMethod.Delete, "/order/0")
 
@@ -57,7 +53,7 @@ class OrderTest {
     fun testDeleteAllOrders() {
 
         withTestApplication({ module(testing = true) }) {
-            testPostAndGetOrder()
+            postOrderTest()
 
             handleRequest(HttpMethod.Delete, "/order")
 

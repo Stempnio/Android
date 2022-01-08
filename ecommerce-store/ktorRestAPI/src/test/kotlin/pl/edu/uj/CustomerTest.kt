@@ -4,28 +4,46 @@ import com.google.gson.Gson
 import io.ktor.http.*
 import io.ktor.server.testing.*
 import org.junit.Test
-import pl.edu.uj.models.Customer
 import kotlin.test.assertEquals
 
 
 class CustomerTest {
 
-    val customer = Customer("customerTest",
-        "jan",
-        "kowalski",
-        "kowalski@gmail.com",
-        "1234")
+    fun TestApplicationEngine.postCustomerTest() {
+        with(handleRequest(HttpMethod.Post, "/customer"){
+            addHeader(HttpHeaders.ContentType, ContentType.Application.Json.toString())
+            setBody(Gson().toJson(customer))
+        }) {
+            assertEquals(HttpStatusCode.OK, response.status())
+        }
+    }
 
-    private val customerUpdated = Customer("customerTest",
-        "janek",
-        "kowalski",
-        "kowalskiii@gmail.com",
-        "1234")
+    @Test
+    fun testPostCustomer() {
+        withTestApplication({ module(testing = true) }) {
+            postCustomerTest()
+        }
+    }
+
+    fun TestApplicationEngine.getCustomerTest() {
+        handleRequest(HttpMethod.Get, "/customer/${customer.id}").apply {
+            assertEquals(Gson().toJson(customer), response.content)
+            assertEquals(HttpStatusCode.OK, response.status())
+        }
+    }
+    @Test
+    fun testPostAndGetCustomer() {
+        withTestApplication({ module(testing = true) }) {
+            postCustomerTest()
+            getCustomerTest()
+        }
+    }
 
     @Test
     fun updateCustomer() {
         withTestApplication({ module(testing = true) }) {
-            testPostAndGetCustomer()
+
+            postCustomerTest()
 
             with(handleRequest(HttpMethod.Put, "/customer"){
                 addHeader(HttpHeaders.ContentType, ContentType.Application.Json.toString())
@@ -43,33 +61,13 @@ class CustomerTest {
     }
 
     @Test
-    fun testPostCustomer() {
+    fun testGetNonExistingCustomer() {
         withTestApplication({ module(testing = true) }) {
-            with(handleRequest(HttpMethod.Post, "/customer"){
-                addHeader(HttpHeaders.ContentType, ContentType.Application.Json.toString())
-                setBody(Gson().toJson(customer))
-            }) {
-                assertEquals(HttpStatusCode.OK, response.status())
-            }
-        }
-    }
-
-    @Test
-    fun testPostAndGetCustomer() {
-
-        withTestApplication({ module(testing = true) }) {
-
-            with(handleRequest(HttpMethod.Post, "/customer"){
-                addHeader(HttpHeaders.ContentType, ContentType.Application.Json.toString())
-                setBody(Gson().toJson(customer))
-            }) {
-                assertEquals(HttpStatusCode.OK, response.status())
-            }
 
             handleRequest(HttpMethod.Get, "/customer/${customer.id}").apply {
-                assertEquals(Gson().toJson(customer), response.content)
-                assertEquals(HttpStatusCode.OK, response.status())
+                assertEquals(HttpStatusCode.NotFound, response.status())
             }
+
         }
     }
 
