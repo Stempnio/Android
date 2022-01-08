@@ -9,7 +9,7 @@ import kotlin.test.assertEquals
 
 class ProductTest {
 
-    private val product1 = Product("productTest1",
+    val product1 = Product("productTest1",
         100,
         "productTest1",
         1)
@@ -19,10 +19,11 @@ class ProductTest {
         "productTest1",
         1)
 
+    private val emptyProductList = mutableListOf<Product>()
+
     @Test
     fun testPostAndGetProduct() {
         withTestApplication({ module(testing = true) }) {
-
             with(handleRequest(HttpMethod.Post, "/product"){
                 addHeader(HttpHeaders.ContentType, ContentType.Application.Json.toString())
                 setBody(Gson().toJson(product1))
@@ -41,12 +42,7 @@ class ProductTest {
     fun testUpdateAndGetProduct() {
         withTestApplication({ module(testing = true) }) {
 
-            with(handleRequest(HttpMethod.Post, "/product"){
-                addHeader(HttpHeaders.ContentType, ContentType.Application.Json.toString())
-                setBody(Gson().toJson(product1))
-            }) {
-                assertEquals(HttpStatusCode.OK, response.status())
-            }
+            testPostAndGetProduct()
 
             with(handleRequest(HttpMethod.Put, "/product"){
                 addHeader(HttpHeaders.ContentType, ContentType.Application.Json.toString())
@@ -66,17 +62,26 @@ class ProductTest {
     fun testDeleteProduct() {
         withTestApplication({ module(testing = true) }) {
 
-            with(handleRequest(HttpMethod.Post, "/product"){
-                addHeader(HttpHeaders.ContentType, ContentType.Application.Json.toString())
-                setBody(Gson().toJson(product1))
-            }) {
-                assertEquals(HttpStatusCode.OK, response.status())
-            }
+            testPostAndGetProduct()
 
             handleRequest(HttpMethod.Delete, "/product/${product1.id}")
 
             handleRequest(HttpMethod.Get, "/product/${product1.id}").apply {
                 assertEquals(HttpStatusCode.NotFound, response.status())
+            }
+        }
+    }
+
+    @Test
+    fun testDeleteAllProducts() {
+        withTestApplication({ module(testing = true) }) {
+
+            testPostAndGetProduct()
+
+            handleRequest(HttpMethod.Delete, "/product")
+
+            handleRequest(HttpMethod.Get, "/product").apply {
+                assertEquals(Gson().toJson(emptyProductList), response.content)
             }
         }
     }

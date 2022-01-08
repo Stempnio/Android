@@ -10,7 +10,7 @@ import kotlin.test.assertEquals
 
 class CustomerTest {
 
-    private val customer = Customer("customerTest",
+    val customer = Customer("customerTest",
         "jan",
         "kowalski",
         "kowalski@gmail.com",
@@ -25,12 +25,7 @@ class CustomerTest {
     @Test
     fun updateCustomer() {
         withTestApplication({ module(testing = true) }) {
-            with(handleRequest(HttpMethod.Post, "/customer"){
-                addHeader(HttpHeaders.ContentType, ContentType.Application.Json.toString())
-                setBody(Gson().toJson(customer))
-            }) {
-                assertEquals(HttpStatusCode.OK, response.status())
-            }
+            testPostAndGetCustomer()
 
             with(handleRequest(HttpMethod.Put, "/customer"){
                 addHeader(HttpHeaders.ContentType, ContentType.Application.Json.toString())
@@ -44,16 +39,6 @@ class CustomerTest {
                 assertEquals(HttpStatusCode.OK, response.status())
             }
 
-        }
-    }
-
-    @Test
-    fun testDeleteCustomer() {
-
-        withTestApplication({ module(testing = true) }) {
-            handleRequest(HttpMethod.Delete, "/customer/${customer.id}").apply {
-                assertEquals(HttpStatusCode.OK, response.status())
-            }
         }
     }
 
@@ -88,5 +73,12 @@ class CustomerTest {
         }
     }
 
-
+    @Test
+    fun testDeleteCustomer() {
+        withTestApplication({ module(testing = true) }) {
+            handleRequest(HttpMethod.Delete, "/customer/${customer.id}").apply {
+                assertEquals(HttpStatusCode.OK, response.status())
+            }
+        }
+    }
 }
