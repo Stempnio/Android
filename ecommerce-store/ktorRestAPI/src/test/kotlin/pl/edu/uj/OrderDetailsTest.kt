@@ -22,4 +22,34 @@ class OrderDetailsTest {
             }
         }
     }
+
+    @Test
+    fun testGetCustomerOrderDetails() {
+        withTestApplication({ module(testing = true) }) {
+            postCustomerTest()
+            postProductTest()
+            postCartItemTest()
+            postOrderTest()
+
+            handleRequest(HttpMethod.Get, "/orderDetails/customer/${customer.id}").apply {
+                assertEquals(HttpStatusCode.OK, response.status())
+                assertEquals(Gson().toJson(orderDetails1), response.content)
+            }
+        }
+    }
+
+    @Test
+    fun testGetAllOrderDetails() {
+        withTestApplication({ module(testing = true) }) {
+            postCustomerTest()
+            postProductTest()
+            postCartItemTest()
+            postOrderTest()
+
+            handleRequest(HttpMethod.Get, "/orderDetails").apply {
+                assertEquals(HttpStatusCode.OK, response.status())
+                assertEquals(Gson().toJson(orderDetails1), response.content)
+            }
+        }
+    }
 }
