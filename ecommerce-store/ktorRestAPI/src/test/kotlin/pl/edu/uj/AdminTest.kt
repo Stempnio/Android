@@ -46,11 +46,8 @@ class AdminTest {
             }
 
             handleRequest(HttpMethod.Get, "/admin/${admin.id}").apply {
-                assertEquals(Gson().toJson(admin),
-                    response.content
-                )
+                assertEquals(Gson().toJson(admin), response.content)
                 assertEquals(HttpStatusCode.OK, response.status())
-                assertEquals(Gson().toJson(admin), response.content.toString())
             }
         }
     }

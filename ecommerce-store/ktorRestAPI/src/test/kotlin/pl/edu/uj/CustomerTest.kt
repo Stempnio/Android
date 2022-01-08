@@ -16,6 +16,37 @@ class CustomerTest {
         "kowalski@gmail.com",
         "1234")
 
+    private val customerUpdated = Customer("customerTest",
+        "janek",
+        "kowalski",
+        "kowalskiii@gmail.com",
+        "1234")
+
+    @Test
+    fun updateCustomer() {
+        withTestApplication({ module(testing = true) }) {
+            with(handleRequest(HttpMethod.Post, "/customer"){
+                addHeader(HttpHeaders.ContentType, ContentType.Application.Json.toString())
+                setBody(Gson().toJson(customer))
+            }) {
+                assertEquals(HttpStatusCode.OK, response.status())
+            }
+
+            with(handleRequest(HttpMethod.Put, "/customer"){
+                addHeader(HttpHeaders.ContentType, ContentType.Application.Json.toString())
+                setBody(Gson().toJson(customerUpdated))
+            }) {
+                assertEquals(HttpStatusCode.OK, response.status())
+            }
+
+            handleRequest(HttpMethod.Get, "/customer/${customer.id}").apply {
+                assertEquals(Gson().toJson(customerUpdated), response.content)
+                assertEquals(HttpStatusCode.OK, response.status())
+            }
+
+        }
+    }
+
     @Test
     fun testDeleteCustomer() {
 
@@ -51,12 +82,8 @@ class CustomerTest {
             }
 
             handleRequest(HttpMethod.Get, "/customer/${customer.id}").apply {
-                assertEquals(
-                    Gson().toJson(customer),
-                    response.content
-                )
+                assertEquals(Gson().toJson(customer), response.content)
                 assertEquals(HttpStatusCode.OK, response.status())
-                assertEquals(Gson().toJson(customer), response.content.toString())
             }
         }
     }
