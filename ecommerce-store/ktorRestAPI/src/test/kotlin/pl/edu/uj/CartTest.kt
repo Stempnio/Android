@@ -16,9 +16,8 @@ class CartTest {
     val productTest = ProductTest()
     val product = productTest.product1
 
-
-    private val cart = mutableListOf(Cart(customer.id, product.id, 1))
-    private val emptyCart = mutableListOf<Cart>()
+    val cart = mutableListOf(Cart(customer.id, product.id, 1))
+    val emptyCart = mutableListOf<Cart>()
 
     @Before
     fun setup() {
