@@ -1,9 +1,7 @@
 package pl.edu.uj
 
-import pl.edu.uj.models.Cart
-import pl.edu.uj.models.Customer
-import pl.edu.uj.models.Order
-import pl.edu.uj.models.Product
+import pl.edu.uj.models.*
+
 /*
 DATA FOR TESTS
  */
@@ -21,6 +19,8 @@ val customerUpdated = Customer("customerTest",
     "kowalski",
     "kowalskiii@gmail.com",
     "1234")
+
+val emptyCustomerList = mutableListOf<Customer>()
 
 // Products
 
@@ -43,4 +43,9 @@ val emptyCart = mutableListOf<Cart>()
 
 // Order
 
+val order = Order(customerId = customer.id, id = 1, date = "")
 val emptyOrderList = mutableListOf<Order>()
+
+// Order Details
+
+val orderDetails1 = mutableListOf(OrderDetails(1,1,1))

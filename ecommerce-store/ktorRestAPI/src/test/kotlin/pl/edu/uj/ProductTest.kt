@@ -6,28 +6,28 @@ import io.ktor.server.testing.*
 import org.junit.Test
 import kotlin.test.assertEquals
 
-class ProductTest {
-
-    fun TestApplicationEngine.postProductTest() {
-        with(handleRequest(HttpMethod.Post, "/product") {
-            addHeader(HttpHeaders.ContentType, ContentType.Application.Json.toString())
-            setBody(Gson().toJson(product1))
-        }) {
-            assertEquals(HttpStatusCode.OK, response.status())
-        }
+fun TestApplicationEngine.postProductTest() {
+    with(handleRequest(HttpMethod.Post, "/product") {
+        addHeader(HttpHeaders.ContentType, ContentType.Application.Json.toString())
+        setBody(Gson().toJson(product1))
+    }) {
+        assertEquals(HttpStatusCode.OK, response.status())
     }
+}
+
+fun TestApplicationEngine.getProductTest() {
+    handleRequest(HttpMethod.Get, "/product/${product1.id}").apply {
+        assertEquals(Gson().toJson(product1), response.content)
+        assertEquals(HttpStatusCode.OK, response.status())
+    }
+}
+
+class ProductTest {
 
     @Test
     fun testPostProduct() {
         withTestApplication({ module(testing = true) }) {
             postProductTest()
-        }
-    }
-
-    fun TestApplicationEngine.getProductTest() {
-        handleRequest(HttpMethod.Get, "/product/${product1.id}").apply {
-            assertEquals(Gson().toJson(product1), response.content)
-            assertEquals(HttpStatusCode.OK, response.status())
         }
     }
 
