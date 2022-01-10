@@ -50,6 +50,7 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="find_our_shops">find our shops</string>
     <string name="title_activity_google_maps">GoogleMapsActivity</string>
+    <string name="log_in_with_google">log in with google</string>
 
 
 </resources>

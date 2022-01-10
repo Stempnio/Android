@@ -10,8 +10,8 @@ android {
     compileSdk 31
 
     defaultConfig {
-        applicationId "pl.edu.uj.zadanie_3"
-        minSdk 29
+        applicationId "pl.edu.uj.ecommerce"
+        minSdk 30
         targetSdk 31
         versionCode 1
         versionName "1.0"
@@ -24,6 +24,9 @@ android {
     }
 
     buildTypes {
+        debug {
+            testCoverageEnabled = true
+        }
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
@@ -51,7 +54,7 @@ dependencies {
 
     implementation 'io.realm:android-adapters:4.0.0'
 
-    implementation 'com.google.android.gms:play-services-auth:20.0.0'
+    implementation 'com.google.android.gms:play-services-auth:20.0.1'
 
 
     implementation "androidx.navigation:navigation-fragment-ktx:$nav_version"
@@ -73,6 +76,7 @@ dependencies {
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
 
     implementation 'com.google.android.gms:play-services-maps:18.0.1'
+    implementation 'com.google.android.gms:play-services-auth:20.0.1'
 
     implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-android:1.5.2'
 
@@ -86,4 +90,5 @@ dependencies {
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
     debugImplementation "androidx.fragment:fragment-testing:$fragment_version"
     androidTestImplementation "androidx.navigation:navigation-testing:$nav_version"
+
 }
