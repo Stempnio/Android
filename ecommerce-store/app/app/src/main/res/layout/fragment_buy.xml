@@ -6,52 +6,18 @@
     android:layout_height="match_parent"
     tools:context=".Fragments.BuyFragment">
 
-    <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/buttonBuyFragmentPlaceOrder"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:layout_marginBottom="104dp"
-        android:text="@string/place_order"
-        android:textSize="25sp"
-        android:padding="5dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvBuyFragmentTotalPrice"
-        android:background="@drawable/button_shape"
-        android:shadowColor="@color/buttonShadowColor"
-        android:shadowDx="0"
-        android:shadowDy="0"
-        android:shadowRadius="10"
-        android:textColor="@color/buttonTextColor"/>
 
-    <TextView
-        android:id="@+id/tvBuyFragmentTotalPriceHeader"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="30dp"
-        android:layout_marginTop="20dp"
-        android:layout_marginEnd="31dp"
-        android:layout_marginBottom="16dp"
-        android:gravity="center"
-        android:text="@string/total_price"
-        android:textSize="20sp"
-        app:layout_constraintBottom_toTopOf="@+id/tvBuyFragmentTotalPrice"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/scrollViewBuyFragment" />
 
     <ScrollView
         android:id="@+id/scrollViewBuyFragment"
         android:layout_width="346dp"
         android:layout_height="250dp"
         android:layout_marginStart="20dp"
-        android:layout_marginTop="118dp"
+        android:layout_marginTop="50dp"
         android:layout_marginEnd="20dp"
         android:layout_marginBottom="30dp"
         android:foregroundGravity="center"
+        app:layout_constraintVertical_bias="0.1"
         app:layout_constraintBottom_toTopOf="@+id/tvBuyFragmentTotalPriceHeader"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -73,6 +39,8 @@
         </LinearLayout>
     </ScrollView>
 
+
+
     <TextView
         android:id="@+id/tvBuyFragmentTotalPrice"
         android:layout_width="match_parent"
@@ -84,10 +52,57 @@
         android:gravity="center"
         android:text=""
         android:textSize="30sp"
-        app:layout_constraintBottom_toTopOf="@+id/buttonBuyFragmentPlaceOrder"
+        app:layout_constraintBottom_toTopOf="@+id/cardInputWidget"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tvBuyFragmentTotalPriceHeader"
         tools:text="total price value" />
+
+    <TextView
+        android:id="@+id/tvBuyFragmentTotalPriceHeader"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="31dp"
+        android:layout_marginBottom="16dp"
+        android:gravity="center"
+        android:text="@string/total_price"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toTopOf="@+id/tvBuyFragmentTotalPrice"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/scrollViewBuyFragment" />
+
+    <com.stripe.android.view.CardInputWidget
+        android:id="@+id/cardInputWidget"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginVertical="20dp"
+        android:layout_marginHorizontal="10dp"
+        app:layout_constraintBottom_toTopOf="@id/buttonBuyFragmentPlaceOrder"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tvBuyFragmentTotalPrice" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/buttonBuyFragmentPlaceOrder"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="104dp"
+        android:text="@string/place_order"
+        android:textSize="25sp"
+        android:padding="5dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/cardInputWidget"
+        android:background="@drawable/button_shape"
+        android:shadowColor="@color/buttonShadowColor"
+        android:shadowDx="0"
+        android:shadowDy="0"
+        android:shadowRadius="10"
+        android:textColor="@color/buttonTextColor"/>
 </androidx.constraintlayout.widget.ConstraintLayout>
