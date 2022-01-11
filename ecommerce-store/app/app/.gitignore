@@ -2,3 +2,4 @@
 /src/debug/res/values/google_maps_api.xml
 /src/main/res/values/googleOauth2.xml
 /src/main/res/values/stripe.xml
+/src/main/res/xml/network_security_config.xml
