@@ -80,6 +80,7 @@ class LogInFragment : Fragment(R.layout.fragment_products) {
         oneTapClient.beginSignIn(signInRequest)
             .addOnSuccessListener(requireActivity()) { result ->
                 try {
+                    Log.d("TAG", "starting intent sender for result")
                     startIntentSenderForResult(
                         result.pendingIntent.intentSender, REQ_ONE_TAP,
                         null, 0, 0, 0, null)
@@ -96,20 +97,24 @@ class LogInFragment : Fragment(R.layout.fragment_products) {
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
-
+        Log.d("google sign in", "onActivityResult")
         when (requestCode) {
             REQ_ONE_TAP -> {
                 try {
+
                     val credential = oneTapClient.getSignInCredentialFromIntent(data)
                     val googleCustomer = Customer().apply { this.id =
                         if(credential.id.length <= 20)
                             credential.id
                         else
                             credential.id.substring(0,19)}
+
+                    Log.d("google sign in", "id " + credential.id)
                     googlePostCustomerIfNotExists(googleCustomer)
 
 
                 } catch (e: ApiException) {
+                    Log.e("google sign in api exception", e.message.toString())
                 }
             }
         }
@@ -145,9 +150,11 @@ class LogInFragment : Fragment(R.layout.fragment_products) {
                 response: Response<Customer>
             ) {
                 if (response.code() != 200) {
+                    Log.d("google", "creating account")
                     postCustomer(customer)
                 }
 
+                Log.d("google", "account exists")
                 CURRENT_CUSTOMER_ID = customer.id
 
                 findNavController().navigate(LogInFragmentDirections.actionLogInFragmentToProductsFragment())
