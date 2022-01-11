@@ -33,7 +33,6 @@ class ProductListAdapter(private val products : List<Product>) : RecyclerView.Ad
         holder.textViewProductName.text = products[position].name
         holder.textViewProductPrice.text = products[position].price.toString()
         holder.buttonAddToCart.setOnClickListener {
-            // TODO check if it is correct
             notifyItemChanged(position)
             postCart(products[position].id)
         }

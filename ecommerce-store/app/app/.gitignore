@@ -1,3 +1,4 @@
 /build
 /src/debug/res/values/google_maps_api.xml
 /src/main/res/values/googleOauth2.xml
+/src/main/res/values/stripe.xml

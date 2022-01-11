@@ -2,12 +2,12 @@ package pl.edu.uj.ecommerce.admin
 
 import android.os.Bundle
 import android.util.Log
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.fragment.app.viewModels
+import androidx.fragment.app.Fragment
 import pl.edu.uj.ecommerce.Data.*
+import pl.edu.uj.ecommerce.R
 import pl.edu.uj.ecommerce.RetrofitService
 import pl.edu.uj.ecommerce.databinding.FragmentAdminProductsBinding
 import retrofit2.Response
@@ -98,7 +98,7 @@ class AdminProductsFragment : Fragment() {
                         binding.tvAdminProductsGetDescription.text = prod.description
                     } else {
                         binding.tvAdminProductsGetId.text = "-1"
-                        binding.tvAdminProductsGetName.text = "product not found"
+                        binding.tvAdminProductsGetName.text = getString(R.string.product_not_found)
                         binding.tvAdminProductsGetPrice.text = ""
                         binding.tvAdminProductsGetDescription.text = ""
                     }

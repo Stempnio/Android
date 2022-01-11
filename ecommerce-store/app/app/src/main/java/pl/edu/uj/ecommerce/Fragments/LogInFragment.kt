@@ -41,6 +41,8 @@ class LogInFragment : Fragment(R.layout.fragment_products) {
     ): View {
         _binding = FragmentLogInBinding.inflate(layoutInflater, container, false)
 
+        refreshProducts()
+
         setUpGoogleClient()
 
         binding.buttonSignUp.setOnClickListener {

@@ -80,7 +80,7 @@ interface RetrofitService {
     fun deleteOrderByIdCall(@Path("id") orderId: Int) : Call<Order>
 
     @DELETE("order")
-    fun deleteAllOrders() : Call<List<Order>>
+    fun deleteAllOrders() : Call<Unit>
 
 //    Order details
     @GET("orderDetails")
@@ -99,7 +99,7 @@ interface RetrofitService {
 
     companion object {
 
-//        var BASE_URL = "https://1bae-185-25-121-195.ngrok.io/"
+//        var BASE_URL = "https://74ce-185-25-121-195.ngrok.io/"
         var BASE_URL = "http://10.0.2.2:8080/"
 
         fun create() : RetrofitService {
@@ -111,6 +111,16 @@ interface RetrofitService {
 
             return retrofit.create(RetrofitService::class.java)
 
+        }
+
+        fun createTest() : RetrofitService {
+
+            val retrofit = Retrofit.Builder()
+                .addConverterFactory(GsonConverterFactory.create())
+                .baseUrl("http://127.0.0.1:8080/")
+                .build()
+
+            return retrofit.create(RetrofitService::class.java)
         }
     }
 }

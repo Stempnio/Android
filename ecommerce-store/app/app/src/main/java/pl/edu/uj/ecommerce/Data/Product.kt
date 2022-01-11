@@ -107,6 +107,11 @@ fun getProductsIntoDB() {
     })
 }
 
+fun refreshProducts() {
+    deleteAllProductsFromDB()
+    getProductsIntoDB()
+}
+
 
 
 /*

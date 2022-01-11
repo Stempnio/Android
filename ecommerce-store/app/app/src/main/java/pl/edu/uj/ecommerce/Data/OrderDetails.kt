@@ -3,7 +3,6 @@ package pl.edu.uj.ecommerce.Data
 import android.util.Log
 import io.realm.Realm
 import io.realm.RealmObject
-import pl.edu.uj.ecommerce.Products
 import pl.edu.uj.ecommerce.RetrofitService
 import retrofit2.Call
 import retrofit2.Callback
@@ -42,6 +41,7 @@ fun deleteOrderDetailsFromDB() {
 
     Realm.getDefaultInstance().commitTransaction()
 }
+
 fun getOrderDetailsIntoDB() {
     val service = RetrofitService.create()
     val call = service.getCustomerOrderDetailsCall(CURRENT_CUSTOMER_ID)

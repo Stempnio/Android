@@ -12,6 +12,7 @@ import kotlinx.coroutines.Dispatchers.Default
 import kotlinx.coroutines.launch
 import pl.edu.uj.ecommerce.Data.Order
 import pl.edu.uj.ecommerce.Data.OrderDetails
+import pl.edu.uj.ecommerce.R
 import pl.edu.uj.ecommerce.RetrofitService
 import pl.edu.uj.ecommerce.admin.view_models.AdminOrderViewModel
 import pl.edu.uj.ecommerce.databinding.FragmentAdminOrderBinding
@@ -80,12 +81,12 @@ class AdminOrderFragment : Fragment() {
     fun deleteAllOrders() {
         val service = RetrofitService.create()
         val call = service.deleteAllOrders()
-        call.enqueue(object : Callback<List<Order>> {
-            override fun onResponse(call: Call<List<Order>>, response: Response<List<Order>>) {
+        call.enqueue(object : Callback<Unit> {
+            override fun onResponse(call: Call<Unit>, response: Response<Unit>) {
                 Log.d("DELETE_ALL_ORDERS", response.message().toString())
             }
 
-            override fun onFailure(call: Call<List<Order>>, t: Throwable) {
+            override fun onFailure(call: Call<Unit>, t: Throwable) {
                 Log.d("DELETE_ALL_ORDERS", t.message.toString())
             }
 
@@ -106,11 +107,11 @@ class AdminOrderFragment : Fragment() {
                     if(list != null) {
                         displayOrderDetails(list)
                     } else {
-                        binding.tvAdminOrderDetailsGetById.text = "not found"
+                        binding.tvAdminOrderDetailsGetById.text = getString(R.string.not_found)
                     }
                     Log.d("GET_ORDER_DETAILS_BY_ID", response.message().toString())
                 } else {
-                    binding.tvAdminOrderDetailsGetById.text = "not found"
+                    binding.tvAdminOrderDetailsGetById.text = getString(R.string.not_found)
                     Log.d("GET_ORDER_DETAILS_BY_ID", response.message().toString())
                 }
             }

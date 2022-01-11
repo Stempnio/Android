@@ -21,7 +21,7 @@
     <string name="product_2">Product 2</string>
     <string name="product_1">Product 1</string>
     <string name="about_app">About app</string>
-    <string name="lorem_ipsum_dolor_sit_amet_consectetur_adipiscing_elit_quisque_a_dui_sit_amet_lectus_lacinia_euismod_vitae_in_sapien_in_sit_amet_neque_dignissim_vehicula_felis_in_rutrum_leo_suspendisse_non_risus_sit_amet_risus_vehicula_tempus_vestibulum_ante_ipsum_primis_in_faucibus_orci_luctus_et_ultrices_posuere_cubilia_curae_aenean_efficitur_erat_in_leo_finibus_dignissim_cras_viverra_rhoncus_est_ut_molestie_lorem_pellentesque_sollicitudin_posuere_diam_non_mattis">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque a dui sit amet lectus lacinia euismod vitae in sapien. In sit amet neque dignissim, vehicula felis in, rutrum leo. Suspendisse non risus sit amet risus vehicula tempus. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Aenean efficitur erat in leo finibus dignissim. Cras viverra rhoncus est, ut molestie lorem. Pellentesque sollicitudin posuere diam non mattis.</string>
+    <string name="lorem_ipsum">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque a dui sit amet lectus lacinia euismod vitae in sapien. In sit amet neque dignissim, vehicula felis in, rutrum leo. Suspendisse non risus sit amet risus vehicula tempus. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Aenean efficitur erat in leo finibus dignissim. Cras viverra rhoncus est, ut molestie lorem. Pellentesque sollicitudin posuere diam non mattis.</string>
     <string name="log_out">Log out</string>
     <string name="remove_from_cart">REMOVE</string>
     <string name="go_to_cart">Go to cart</string>
@@ -38,7 +38,7 @@
     <string name="error_registration">ERROR OCCURRED WHILE REGISTRATION!</string>
     <string name="change_password">change password</string>
     <string name="delete_account">delete account</string>
-
+    <string name="about_app_text">Ecommerce app allows you to buy your favorite products online\n\nAuthor:\nJakub Stepien</string>
 
     <!--    registration-->
     <string name="passwords_not_equal">Passwords are not equal!</string>
@@ -46,11 +46,13 @@
     <string name="enter_email">Enter your email!</string>
     <string name="invalid_email">Invalid email!</string>
     <string name="enter_username">Enter your username!</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+
     <string name="find_our_shops">find our shops</string>
     <string name="title_activity_google_maps">GoogleMapsActivity</string>
     <string name="log_in_with_google">log in with google</string>
+    <string name="product_not_found">product not found</string>
+    <string name="not_found">not found</string>
 
 
 </resources>
