@@ -116,6 +116,7 @@ fun deleteCustomer() {
     call.enqueue(object : Callback<Customer> {
         override fun onResponse(call: Call<Customer>, response: Response<Customer>) {
             if(response.isSuccessful) {
+                CURRENT_CUSTOMER_ID = DEFAULT_CUSTOMER_ID
                 Toast.makeText(getApplicationContext(), "Successfully deleted account!", Toast.LENGTH_SHORT).show()
                 Log.d("DELETE CUSTOMER SUCCESS", response.message())
             } else {
@@ -187,3 +188,4 @@ fun deleteAllCustomers() {
 
     })
 }
+
