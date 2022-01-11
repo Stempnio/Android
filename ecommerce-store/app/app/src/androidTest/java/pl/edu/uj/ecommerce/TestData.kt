@@ -13,6 +13,12 @@ val testProduct = Product().apply {
     this.name = "test product 1"
 }
 
+val testCartItem = CartItem().apply {
+    this.productId = testProduct.id
+    this.customerId = testCustomer.id
+    this.quantity = 1
+}
+
 fun addTestCustomer() {
     RetrofitService
         .create()
@@ -41,3 +47,17 @@ fun addTestProduct() {
 
     getProductsIntoDB()
 }
+
+fun addTestCartItem() {
+    RetrofitService
+        .create()
+        .postCartItemCall(testCustomer.id, testProduct.id)
+        .execute()
+
+    getCartIntoDB()
+
+}
+
+
+
+
