@@ -64,7 +64,8 @@ fun removeCartItem(productId: Int) {
         val call = service.deleteCartItemCall(CURRENT_CUSTOMER_ID, productId)
         call.enqueue(object : Callback<CartItem> {
             override fun onResponse(call: Call<CartItem>, response: Response<CartItem>) {
-                Log.d("ITEM DELETE SUCCESS", response.message())
+                if(response.isSuccessful)
+                    Log.d("ITEM DELETE SUCCESS", response.message())
             }
 
             override fun onFailure(call: Call<CartItem>, t: Throwable) {
