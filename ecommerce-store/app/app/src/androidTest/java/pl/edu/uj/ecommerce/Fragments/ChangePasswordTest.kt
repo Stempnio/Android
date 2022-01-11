@@ -15,10 +15,8 @@ import org.junit.After
 import org.junit.Before
 import org.junit.Test
 import org.junit.runner.RunWith
+import pl.edu.uj.ecommerce.*
 import pl.edu.uj.ecommerce.Data.*
-import pl.edu.uj.ecommerce.R
-import pl.edu.uj.ecommerce.RetrofitService
-import pl.edu.uj.ecommerce.ToastMatcher
 
 @RunWith(AndroidJUnit4::class)
 class ChangePasswordTest {
@@ -29,23 +27,8 @@ class ChangePasswordTest {
     @Before
     fun setup() {
 
-        val testCustomer = Customer().apply {
-            this.id="testCustomer"
-        }
-
-        RetrofitService
-            .create()
-            .deleteCustomerCall(testCustomer.id)
-            .execute()
-
-        RetrofitService
-            .create()
-            .postCustomerCall(testCustomer)
-            .execute()
-
-
-        CURRENT_CUSTOMER_ID = testCustomer.id
-        getCustomerByIdIntoDB(CURRENT_CUSTOMER_ID)
+        addTestCustomer()
+        addTestProduct()
 
         navController = TestNavHostController(ApplicationProvider.getApplicationContext())
         productsScenario = launchFragmentInContainer()

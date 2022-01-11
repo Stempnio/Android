@@ -15,7 +15,11 @@ import com.google.common.truth.Truth.assertThat
 import org.junit.Before
 import org.junit.Test
 import org.junit.runner.RunWith
+import pl.edu.uj.ecommerce.Data.Customer
 import pl.edu.uj.ecommerce.R
+import pl.edu.uj.ecommerce.RetrofitService
+import pl.edu.uj.ecommerce.addTestCustomer
+import pl.edu.uj.ecommerce.testCustomer
 
 @RunWith(AndroidJUnit4::class)
 class LogInFragmentTest {
@@ -26,9 +30,12 @@ class LogInFragmentTest {
 
     @Before
     fun setup() {
+
+        addTestCustomer()
+
         navController = TestNavHostController(ApplicationProvider.getApplicationContext())
 
-        logInScenario = launchFragmentInContainer<LogInFragment>()
+        logInScenario = launchFragmentInContainer()
 
         logInScenario.onFragment { fragment ->
             navController.setGraph(R.navigation.nav_graph)
@@ -46,11 +53,8 @@ class LogInFragmentTest {
     @Test
     fun existingUsernameAndPasswordLogIn() {
 
-        val username = "cust1"
-        val password = 1234
-
-        onView(withId(R.id.editTextUsername)).perform(typeText(username))
-        onView(withId(R.id.editTextPassword)).perform(typeText(password.toString()))
+        onView(withId(R.id.editTextUsername)).perform(typeText(testCustomer.id))
+        onView(withId(R.id.editTextPassword)).perform(typeText(testCustomer.password))
 
         closeSoftKeyboard()
 
@@ -61,8 +65,15 @@ class LogInFragmentTest {
 
     @Test
     fun nonExistingUsernameAndPasswordLogIn() {
+
+
         val username = "nonexistingcustomer"
         val password = 1111
+
+        RetrofitService
+            .create()
+            .deleteCustomerCall(username)
+            .execute()
 
         onView(withId(R.id.editTextUsername)).perform(typeText(username))
         onView(withId(R.id.editTextPassword)).perform(typeText(password.toString()))

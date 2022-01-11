@@ -14,9 +14,8 @@ import com.google.common.truth.Truth
 import org.junit.Before
 import org.junit.Test
 import org.junit.runner.RunWith
+import pl.edu.uj.ecommerce.*
 import pl.edu.uj.ecommerce.Data.*
-import pl.edu.uj.ecommerce.R
-import pl.edu.uj.ecommerce.RetrofitService
 
 @RunWith(AndroidJUnit4::class)
 class ProductsFragmentTest {
@@ -26,43 +25,8 @@ class ProductsFragmentTest {
     @Before
     fun setup() {
 
-        val testCustomer = Customer().apply {
-            this.id="testCustomer"
-        }
-
-        RetrofitService
-            .create()
-            .deleteCustomerCall(testCustomer.id)
-            .execute()
-
-        RetrofitService
-            .create()
-            .postCustomerCall(testCustomer)
-            .execute()
-
-        RetrofitService
-            .create()
-            .deleteAllProductsCall()
-            .execute()
-
-        val testProduct = Product().apply {
-            this.id = 1
-            this.price = 100
-            this.name = "test product 1"
-        }
-
-        RetrofitService
-            .create()
-            .postProductCall(testProduct)
-            .execute()
-
-
-        CURRENT_CUSTOMER_ID = testCustomer.id
-        getProductsIntoDB()
-        getCustomerByIdIntoDB(CURRENT_CUSTOMER_ID)
-
-        refreshCart()
-        refreshOrders()
+        addTestCustomer()
+        addTestProduct()
 
         navController = TestNavHostController(ApplicationProvider.getApplicationContext())
         productsScenario = launchFragmentInContainer()

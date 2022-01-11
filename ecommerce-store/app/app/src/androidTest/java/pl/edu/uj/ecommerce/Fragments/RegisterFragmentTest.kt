@@ -7,6 +7,7 @@ import androidx.navigation.testing.TestNavHostController
 import androidx.test.core.app.ApplicationProvider
 import androidx.test.espresso.Espresso
 import androidx.test.espresso.action.ViewActions
+import androidx.test.espresso.assertion.ViewAssertions.matches
 import androidx.test.espresso.matcher.ViewMatchers
 import androidx.test.espresso.matcher.ViewMatchers.isDisplayed
 import androidx.test.ext.junit.runners.AndroidJUnit4
@@ -16,7 +17,6 @@ import org.junit.Test
 import org.junit.runner.RunWith
 import pl.edu.uj.ecommerce.R
 import pl.edu.uj.ecommerce.ToastMatcher
-import androidx.test.espresso.assertion.ViewAssertions.matches
 import kotlin.random.Random
 
 @RunWith(AndroidJUnit4::class)
@@ -30,6 +30,7 @@ class RegisterFragmentTest {
 
     @Before
     fun setup() {
+
         navController = TestNavHostController(ApplicationProvider.getApplicationContext())
 
         registerScenario = launchFragmentInContainer()
@@ -55,8 +56,8 @@ class RegisterFragmentTest {
 
         Truth.assertThat(navController.currentDestination?.id).isEqualTo(R.id.registerFragment)
 
-//        Espresso.onView(ViewMatchers.withText(R.string.enter_username)).inRoot(ToastMatcher())
-//            .check(matches(isDisplayed()))
+        Espresso.onView(ViewMatchers.withText(R.string.enter_username)).inRoot(ToastMatcher())
+            .check(matches(isDisplayed()))
     }
 
     @Test
