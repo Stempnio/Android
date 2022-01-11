@@ -45,11 +45,29 @@
         android:shadowRadius="10"
         android:text="@string/change_password"
         android:textColor="@color/buttonTextColor"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/btnUpdateCustomerGoBack"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editTextUpdatePasswordRepeat" />
+
+    <Button
+        android:id="@+id/btnUpdateCustomerGoBack"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/button_shape"
+        android:padding="5dp"
+        android:shadowColor="@color/buttonShadowColor"
+        android:shadowDx="0"
+        android:shadowDy="0"
+        android:shadowRadius="10"
+        android:text="@string/go_back"
+        android:textColor="@color/buttonTextColor"
+        android:textSize="25sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/buttonUpdatePassword" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

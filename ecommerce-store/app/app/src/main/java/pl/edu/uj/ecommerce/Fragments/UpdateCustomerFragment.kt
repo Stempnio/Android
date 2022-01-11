@@ -42,6 +42,10 @@ class UpdateCustomerFragment : Fragment() {
             }
         }
 
+        binding.btnUpdateCustomerGoBack.setOnClickListener {
+            findNavController().navigate(UpdateCustomerFragmentDirections.actionUpdateCustomerFragmentToProductsFragment())
+        }
+
         return binding.root
     }
 

@@ -63,4 +63,10 @@ class DeleteCustomerTest {
         Truth.assertThat(notExistingCustomer).isNull()
 
     }
+
+    @Test
+    fun testGoBack() {
+        Espresso.onView(ViewMatchers.withId(R.id.btnDeleteAccountGoBack)).perform(ViewActions.click())
+        Truth.assertThat(navController.currentDestination?.id).isEqualTo(R.id.productsFragment)
+    }
 }

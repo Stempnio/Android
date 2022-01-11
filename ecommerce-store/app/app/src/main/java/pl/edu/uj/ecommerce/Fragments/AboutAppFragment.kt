@@ -4,7 +4,9 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.app.ActionBar
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import pl.edu.uj.ecommerce.R
 import pl.edu.uj.ecommerce.databinding.FragmentAboutAppBinding
 
@@ -20,6 +22,10 @@ class AboutAppFragment : Fragment(R.layout.fragment_products) {
         savedInstanceState: Bundle?
     ): View {
         _binding = FragmentAboutAppBinding.inflate(layoutInflater, container, false)
+
+        binding.btnAboutAppGoBack.setOnClickListener {
+            findNavController().navigate(AboutAppFragmentDirections.actionAboutAppFragmentToProductsFragment())
+        }
 
         return binding.root
     }

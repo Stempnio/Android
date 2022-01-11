@@ -15,7 +15,6 @@ import com.google.common.truth.Truth.assertThat
 import org.junit.Before
 import org.junit.Test
 import org.junit.runner.RunWith
-import pl.edu.uj.ecommerce.Data.Customer
 import pl.edu.uj.ecommerce.R
 import pl.edu.uj.ecommerce.RetrofitService
 import pl.edu.uj.ecommerce.addTestCustomer
@@ -92,7 +91,17 @@ class LogInFragmentTest {
         assertThat(navController.currentDestination?.id).isEqualTo(R.id.registerFragment)
     }
 
+    @Test
+    fun adminLogIn() {
+        onView(withId(R.id.editTextUsername)).perform(typeText("admin1"))
+        onView(withId(R.id.editTextPassword)).perform(typeText("admin"))
 
+        closeSoftKeyboard()
 
+        onView(withId(R.id.buttonLogIn)).perform(click())
+
+        assertThat(navController.currentDestination?.id).isEqualTo(R.id.adminHomeFragment)
+
+    }
 
 }

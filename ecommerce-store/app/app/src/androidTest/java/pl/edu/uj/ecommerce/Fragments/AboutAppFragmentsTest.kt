@@ -17,33 +17,23 @@ import com.google.common.truth.Truth
 import org.junit.Before
 import org.junit.Test
 import org.junit.runner.RunWith
-import pl.edu.uj.ecommerce.*
-import pl.edu.uj.ecommerce.Data.CURRENT_CUSTOMER_ID
-import pl.edu.uj.ecommerce.Data.OrderDetails
-import pl.edu.uj.ecommerce.Data.orderDetailsToString
+import pl.edu.uj.ecommerce.R
+import pl.edu.uj.ecommerce.addTestCustomer
+import pl.edu.uj.ecommerce.addTestOrder
+import pl.edu.uj.ecommerce.addTestProduct
 
 @RunWith(AndroidJUnit4::class)
-class OrderDetailsFragmentTest {
+class AboutAppFragmentsTest {
 
     private lateinit var navController : TestNavHostController
-    private lateinit var scenario : FragmentScenario<OrderDetailsFragment>
-
-    private var orderDetails : OrderDetails? = null
+    private lateinit var scenario : FragmentScenario<AboutAppFragment>
 
     @Before
     fun setup() {
 
         addTestCustomer()
         addTestProduct()
-        addTestOrderDetailsToDB()
-
-        val orderDetailsList = RetrofitService
-            .create()
-            .getCustomerOrderDetailsCall(CURRENT_CUSTOMER_ID)
-            .execute()
-            .body()
-
-        orderDetails = orderDetailsList?.get(0)
+        addTestOrder()
 
         navController = TestNavHostController(ApplicationProvider.getApplicationContext())
         scenario = launchFragmentInContainer()
@@ -52,26 +42,18 @@ class OrderDetailsFragmentTest {
             navController.setGraph(R.navigation.nav_graph)
 
             Navigation.setViewNavController(fragment.requireView(), navController)
-            navController.setCurrentDestination(R.id.orderDetailsFragment)
-
-            if(orderDetails != null)
-                fragment.setOrderDetailsText(orderDetails!!.orderId)
+            navController.setCurrentDestination(R.id.aboutAppFragment)
         }
     }
 
     @Test
-    fun testCorrectOrderDetails() {
-        Truth.assertThat(orderDetails).isNotNull()
-
-        val expectedString = orderDetailsToString(orderDetails!!.orderId)
-
-        onView(withId(R.id.tvOrderDetails)).check(matches(withText(expectedString)))
+    fun testIsTvAboutAppDisplayed() {
+        onView(withId(R.id.tvAboutApp)).check(matches(withText(R.string.about_app_text)))
     }
 
-//    @Test
-//    fun testGoBack() {
-//        Espresso.onView(ViewMatchers.withId(R.id.btnOrderDetailsGoBack)).perform(ViewActions.click())
-//        Truth.assertThat(navController.currentDestination?.id).isEqualTo(R.id.ordersFragment)
-//    }
-
+    @Test
+    fun testGoBack() {
+        Espresso.onView(ViewMatchers.withId(R.id.btnAboutAppGoBack)).perform(ViewActions.click())
+        Truth.assertThat(navController.currentDestination?.id).isEqualTo(R.id.productsFragment)
+    }
 }

@@ -27,6 +27,10 @@ class DeleteAccountFragment : Fragment() {
                 .navigate(DeleteAccountFragmentDirections.actionDeleteAccountFragmentToLogInFragment())
         }
 
+        binding.btnDeleteAccountGoBack.setOnClickListener {
+            findNavController().navigate(DeleteAccountFragmentDirections.actionDeleteAccountFragmentToProductsFragment())
+        }
+
         return binding.root
     }
 

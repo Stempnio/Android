@@ -103,4 +103,10 @@ class ChangePasswordTest {
             .check(ViewAssertions.matches(ViewMatchers.isDisplayed()))
         Truth.assertThat(navController.currentDestination?.id).isEqualTo(R.id.updateCustomerFragment)
     }
+
+    @Test
+    fun testGoBack() {
+        Espresso.onView(ViewMatchers.withId(R.id.btnUpdateCustomerGoBack)).perform(ViewActions.click())
+        Truth.assertThat(navController.currentDestination?.id).isEqualTo(R.id.productsFragment)
+    }
 }
