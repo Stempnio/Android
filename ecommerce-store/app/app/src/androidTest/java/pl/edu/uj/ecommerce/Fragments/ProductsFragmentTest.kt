@@ -40,6 +40,26 @@ class ProductsFragmentTest {
     }
 
     @Test
+    fun addProductToCart() {
+        Espresso.onView(ViewMatchers.withId(R.id.buttonAddToCart))
+            .perform(ViewActions.click())
+
+        val cartItem = RetrofitService
+            .create()
+            .getCartByIdCall(CURRENT_CUSTOMER_ID)
+            .execute()
+            .body()
+
+        Truth.assertThat(cartItem).isNotNull()
+
+        if(cartItem != null) {
+            Truth.assertThat(cartItem.size).isEqualTo(1)
+            Truth.assertThat(cartItem[0].customerId).isEqualTo(CURRENT_CUSTOMER_ID)
+            Truth.assertThat(cartItem[0].quantity).isEqualTo(1)
+        }
+    }
+
+    @Test
     fun goToCart() {
         Espresso.onView(ViewMatchers.withId(R.id.buttonGoToCart)).perform(ViewActions.click())
 

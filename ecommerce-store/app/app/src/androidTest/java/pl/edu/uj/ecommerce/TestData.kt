@@ -13,11 +13,6 @@ val testProduct = Product().apply {
     this.name = "test product 1"
 }
 
-val testCartItem = CartItem().apply {
-    this.productId = testProduct.id
-    this.customerId = testCustomer.id
-    this.quantity = 1
-}
 
 fun addTestCustomer() {
     RetrofitService
@@ -35,6 +30,9 @@ fun addTestCustomer() {
 }
 
 fun addTestProduct() {
+
+    deleteAllProductsFromDB()
+
     RetrofitService
         .create()
         .deleteAllProductsCall()
@@ -46,6 +44,7 @@ fun addTestProduct() {
         .execute()
 
     getProductsIntoDB()
+
 }
 
 fun addTestCartItem() {
@@ -58,6 +57,45 @@ fun addTestCartItem() {
 
 }
 
+fun addTestOrder() {
+
+    RetrofitService
+        .create()
+        .deleteAllOrders()
+        .execute()
+
+    RetrofitService
+        .create()
+        .postCartItemCall(testCustomer.id, testProduct.id)
+        .execute()
+
+    RetrofitService
+        .create()
+        .postCustomerOrderCall(CURRENT_CUSTOMER_ID)
+        .execute()
+
+
+    refreshOrders()
+}
+
+fun addTestOrderDetailsToDB() {
+
+    RetrofitService
+        .create()
+        .deleteAllOrders()
+        .execute()
+
+    RetrofitService
+        .create()
+        .postCartItemCall(testCustomer.id, testProduct.id)
+        .execute()
+
+    RetrofitService
+        .create()
+        .postCustomerOrderCall(CURRENT_CUSTOMER_ID)
+        .execute()
+
+}
 
 
 
