@@ -64,6 +64,13 @@ object Products {
 
 }
 
+fun deleteAllProductsFromDB() {
+    Realm.getDefaultInstance().beginTransaction()
+    Realm.getDefaultInstance().where(ProductRealm::class.java).findAll().deleteAllFromRealm()
+    Realm.getDefaultInstance().commitTransaction()
+}
+
+
 fun getProductsIntoDB() {
     val service = RetrofitService.create()
     val call = service.getProductsCall()
