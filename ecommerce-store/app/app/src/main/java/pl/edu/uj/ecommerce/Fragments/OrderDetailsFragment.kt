@@ -21,16 +21,20 @@ class OrderDetailsFragment : Fragment(R.layout.fragment_order_details) {
         _binding = FragmentOrderDetailsBinding.inflate(layoutInflater, container, false)
 
 
-        val bookId = arguments?.getString("orderId")?.toInt()
+        val orderId = arguments?.getString("orderId")?.toInt()
 
-        if(bookId != null) {
-            val headerText = "DETAILS OF ORDER: $bookId"
+        if(orderId != null) {
+            val headerText = "DETAILS OF ORDER: $orderId"
             binding.tvOrderDetailsHeader.text = headerText
-            binding.tvOrderDetails.text = orderDetailsToString(bookId)
+            binding.tvOrderDetails.text = orderDetailsToString(orderId)
         } else
-            Toast.makeText(context, "ERROR, ORDER WITH ID: $bookId NOT FOUND", Toast.LENGTH_SHORT).show()
+            Toast.makeText(context, "ERROR, ORDER WITH ID: $orderId NOT FOUND", Toast.LENGTH_SHORT).show()
 
         return binding.root
+    }
+
+    fun setOrderDetailsText(orderId : Int) {
+        binding.tvOrderDetails.text = orderDetailsToString(orderId)
     }
 
     override fun onDestroyView() {
