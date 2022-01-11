@@ -16,6 +16,7 @@ import org.junit.Before
 import org.junit.Test
 import org.junit.runner.RunWith
 import pl.edu.uj.ecommerce.R
+import pl.edu.uj.ecommerce.RetrofitService
 import pl.edu.uj.ecommerce.ToastMatcher
 import kotlin.random.Random
 
@@ -43,6 +44,54 @@ class RegisterFragmentTest {
         }
     }
 
+
+    @Test
+    fun allFieldsCorrect() {
+        val correctRandomUsername = correctUsername + (Random.nextLong(100000000, 999999999).toString())
+        val correctRandomEmail = ((Random.nextLong(100000, 999999)).toString() + correctEmail)
+
+        Espresso.onView(ViewMatchers.withId(R.id.editTextRegisterId))
+            .perform(ViewActions.typeText(correctRandomUsername))
+
+        Espresso.closeSoftKeyboard()
+
+        Espresso.onView(ViewMatchers.withId(R.id.editTextSetEmail))
+            .perform(ViewActions.typeText(correctRandomEmail))
+
+        Espresso.closeSoftKeyboard()
+
+        val password = "1234"
+
+        Espresso.onView(ViewMatchers.withId(R.id.editTextSetPassword))
+            .perform(ViewActions.typeText(password))
+
+        Espresso.closeSoftKeyboard()
+
+        Espresso.onView(ViewMatchers.withId(R.id.editTextRepeatPassword))
+            .perform(ViewActions.typeText(password))
+
+        Espresso.closeSoftKeyboard()
+
+        Espresso.onView(ViewMatchers.withId(R.id.btnRegisterSignUp)).perform(ViewActions.click())
+
+        Truth.assertThat(navController.currentDestination?.id).isEqualTo(R.id.logInFragment)
+        Espresso.onView(ViewMatchers.withText("Successfully registered!")).inRoot(ToastMatcher())
+            .check(matches(isDisplayed()))
+
+        val newCustomer = RetrofitService
+            .create()
+            .getCustomerByIdCall(correctRandomUsername)
+            .execute()
+            .body()
+
+        Truth.assertThat(newCustomer).isNotNull()
+        if (newCustomer != null) {
+            Truth.assertThat(newCustomer.id).isEqualTo(correctRandomUsername)
+            Truth.assertThat(newCustomer.email).isEqualTo(correctRandomEmail)
+            Truth.assertThat(newCustomer.password).isEqualTo(password)
+        }
+
+    }
 
     @Test
     fun goBackFromRegisterToLogIn() {
@@ -144,37 +193,7 @@ class RegisterFragmentTest {
             .check(matches(isDisplayed()))
     }
 
-    @Test
-    fun allFieldsCorrect() {
-        Espresso.onView(ViewMatchers.withId(R.id.editTextRegisterId))
-            .perform(ViewActions.typeText(correctUsername + (Random.nextLong(100000000, 999999999).toString()) ))
 
-        Espresso.closeSoftKeyboard()
-
-        Espresso.onView(ViewMatchers.withId(R.id.editTextSetEmail))
-            .perform(ViewActions.typeText((Random.nextLong(100000, 999999)).toString() + correctEmail))
-
-        Espresso.closeSoftKeyboard()
-
-        val password = 1234
-
-        Espresso.onView(ViewMatchers.withId(R.id.editTextSetPassword))
-            .perform(ViewActions.typeText(password.toString()))
-
-        Espresso.closeSoftKeyboard()
-
-        Espresso.onView(ViewMatchers.withId(R.id.editTextRepeatPassword))
-            .perform(ViewActions.typeText(password.toString()))
-
-        Espresso.closeSoftKeyboard()
-
-        Espresso.onView(ViewMatchers.withId(R.id.btnRegisterSignUp)).perform(ViewActions.click())
-
-        Truth.assertThat(navController.currentDestination?.id).isEqualTo(R.id.logInFragment)
-        Espresso.onView(ViewMatchers.withText("Successfully registered!")).inRoot(ToastMatcher())
-            .check(matches(isDisplayed()))
-
-    }
 
 
 }

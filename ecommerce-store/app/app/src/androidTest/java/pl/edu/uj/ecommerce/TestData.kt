@@ -53,7 +53,7 @@ fun addTestCartItem() {
         .postCartItemCall(testCustomer.id, testProduct.id)
         .execute()
 
-    getCartIntoDB()
+    refreshCart()
 
 }
 

@@ -15,10 +15,9 @@ import com.google.common.truth.Truth
 import org.junit.Before
 import org.junit.Test
 import org.junit.runner.RunWith
-import pl.edu.uj.ecommerce.R
-import pl.edu.uj.ecommerce.ToastMatcher
-import pl.edu.uj.ecommerce.addTestCustomer
-import pl.edu.uj.ecommerce.addTestProduct
+import pl.edu.uj.ecommerce.*
+import pl.edu.uj.ecommerce.Data.CURRENT_CUSTOMER_ID
+import pl.edu.uj.ecommerce.Data.DEFAULT_CUSTOMER_ID
 
 
 @RunWith(AndroidJUnit4::class)
@@ -51,9 +50,17 @@ class DeleteCustomerTest {
             .perform(ViewActions.click())
 
         Truth.assertThat(navController.currentDestination?.id).isEqualTo(R.id.logInFragment)
+        Truth.assertThat(CURRENT_CUSTOMER_ID).isEqualTo(DEFAULT_CUSTOMER_ID)
 
         Espresso.onView(ViewMatchers.withText("Successfully deleted account!")).inRoot(ToastMatcher())
             .check(matches(isDisplayed()))
+
+        val notExistingCustomer = RetrofitService.create()
+            .getCustomerByIdCall(testCustomer.id)
+            .execute()
+            .body()
+
+        Truth.assertThat(notExistingCustomer).isNull()
 
     }
 }
