@@ -31,14 +31,22 @@ fun Route.customerRouting() {
 
         // update customer
         put {
-            val customer = call.receive<Customer>()
-            call.respond(updateCustomer(customer))
+            try {
+                val customer = call.receive<Customer>()
+                call.respond(updateCustomer(customer))
+            } catch (e : Exception) {
+                call.respond(HttpStatusCode.BadRequest, e.message.toString())
+            }
         }
 
         // adds customer
         post {
-            val customer = call.receive<Customer>()
-            call.respond(addCustomer(customer))
+            try {
+                val customer = call.receive<Customer>()
+                call.respond(addCustomer(customer))
+            } catch (e : Exception) {
+                call.respond(HttpStatusCode.BadRequest, e.message.toString())
+            }
         }
 
         // deletes all customers

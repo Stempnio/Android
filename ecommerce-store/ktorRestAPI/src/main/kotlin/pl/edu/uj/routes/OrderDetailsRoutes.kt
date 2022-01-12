@@ -1,6 +1,7 @@
 package pl.edu.uj.routes
 
 import io.ktor.application.*
+import io.ktor.http.*
 import io.ktor.response.*
 import io.ktor.routing.*
 import pl.edu.uj.models.getAllOrderDetails
@@ -15,9 +16,13 @@ fun Route.orderDetailsRouting() {
         }
 
         get("/{order_id}") {
-            val id = call.parameters["order_id"]
-            if( id != null) {
-                call.respond(getOrderDetails(id.toInt()))
+            try {
+                val id = call.parameters["order_id"]
+                if (id != null) {
+                    call.respond(getOrderDetails(id.toInt()))
+                }
+            } catch (e : Exception) {
+                call.respond(HttpStatusCode.BadRequest, e.message.toString())
             }
         }
 

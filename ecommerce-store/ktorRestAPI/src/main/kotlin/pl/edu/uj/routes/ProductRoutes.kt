@@ -15,11 +15,6 @@ fun Route.productRouting() {
             call.respond(getAllProducts())
         }
 
-//        // gets all products
-//        get {
-//            call.respond(Gson().toJson(getAllProducts()))
-//        }
-
         // gets product by given id
         get("/{id}") {
             val id = call.parameters["id"]
@@ -34,14 +29,22 @@ fun Route.productRouting() {
 
         // update product
         put {
-            val product = call.receive<Product>()
-            call.respond(updateProduct(product))
+            try {
+                val product = call.receive<Product>()
+                call.respond(updateProduct(product))
+            } catch (e : Exception) {
+                call.respond(HttpStatusCode.BadRequest, e.message.toString())
+            }
         }
 
         // adds product
         post {
+            try {
             val product = call.receive<Product>()
             call.respond(addProduct(product))
+            } catch (e : Exception) {
+                call.respond(HttpStatusCode.BadRequest, e.message.toString())
+            }
         }
 
         // deletes all products

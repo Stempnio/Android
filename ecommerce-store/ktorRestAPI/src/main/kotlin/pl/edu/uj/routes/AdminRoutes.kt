@@ -22,8 +22,12 @@ fun Route.adminRouting() {
         }
 
         post {
-            val admin = call.receive<Admin>()
-            call.respond(addAdmin(admin))
+            try {
+                val admin = call.receive<Admin>()
+                call.respond(addAdmin(admin))
+            } catch (e : Exception) {
+                call.respond(HttpStatusCode.BadRequest, e.message.toString())
+            }
         }
 
         delete("/{id}") {

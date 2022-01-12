@@ -22,21 +22,29 @@ fun Route.orderRouting() {
 
         // gets order by given id
         get("/{id}") {
-            val id = call.parameters["id"]
-            if(id != null) {
-                val order = getOrder(id.toInt())
-                if(order != null)
-                    call.respond(order)
-                else
-                    call.respond(HttpStatusCode.NotFound)
+            try {
+                val id = call.parameters["id"]
+                if (id != null) {
+                    val order = getOrder(id.toInt())
+                    if (order != null)
+                        call.respond(order)
+                    else
+                        call.respond(HttpStatusCode.NotFound)
+                }
+            } catch (e : Exception) {
+                call.respond(HttpStatusCode.BadRequest, e.message.toString())
             }
         }
 
         // adds new order
         post("/{customer_id}") {
-            val id = call.parameters["customer_id"]
-            if(id != null)
-                call.respond(placeOrder(id))
+            try {
+                val id = call.parameters["customer_id"]
+                if (id != null)
+                    call.respond(placeOrder(id))
+            } catch (e : Exception) {
+                call.respond(HttpStatusCode.BadRequest, e.message.toString())
+            }
 
         }
 

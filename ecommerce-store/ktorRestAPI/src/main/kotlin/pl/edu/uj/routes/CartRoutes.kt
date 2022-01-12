@@ -1,6 +1,7 @@
 package pl.edu.uj.routes
 
 import io.ktor.application.*
+import io.ktor.http.*
 import io.ktor.response.*
 import io.ktor.routing.*
 import pl.edu.uj.models.*
@@ -24,10 +25,14 @@ fun Route.cartRouting() {
 
         // puts product in customer's cart
         post("/{customer_id}/{product_id}") {
-            val customerId = call.parameters["customer_id"]
-            val productId = call.parameters["product_id"]
-            if(customerId != null && productId != null) {
-                call.respond(addToCart(customerId, productId.toInt()))
+            try {
+                val customerId = call.parameters["customer_id"]
+                val productId = call.parameters["product_id"]
+                if (customerId != null && productId != null) {
+                    call.respond(addToCart(customerId, productId.toInt()))
+                }
+            } catch (e : Exception) {
+                call.respond(HttpStatusCode.BadRequest, e.message.toString())
             }
         }
 
