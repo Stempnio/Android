@@ -152,7 +152,9 @@
         <action
             android:id="@+id/action_updateCustomerFragment_to_productsFragment"
             app:destination="@id/productsFragment"
-            app:enterAnim="@android:anim/fade_in" />
+            app:enterAnim="@android:anim/fade_in"
+            app:popUpTo="@id/productsFragment"
+            app:popUpToInclusive="true"/>
     </fragment>
     <fragment
         android:id="@+id/deleteAccountFragment"
@@ -162,11 +164,15 @@
         <action
             android:id="@+id/action_deleteAccountFragment_to_logInFragment"
             app:destination="@id/logInFragment"
-            app:enterAnim="@android:anim/fade_in" />
+            app:enterAnim="@android:anim/fade_in"
+            app:popUpTo="@id/logInFragment"
+            app:popUpToInclusive="true"/>
         <action
             android:id="@+id/action_deleteAccountFragment_to_productsFragment"
             app:destination="@id/productsFragment"
-            app:enterAnim="@android:anim/fade_in" />
+            app:enterAnim="@android:anim/fade_in"
+            app:popUpTo="@id/productsFragment"
+            app:popUpToInclusive="true"/>
     </fragment>
     <fragment
         android:id="@+id/adminHomeFragment"
@@ -225,11 +231,5 @@
         android:id="@+id/googleMapsFragment"
         android:name="pl.edu.uj.ecommerce.Fragments.GoogleMapsFragment"
         android:label="fragment_google_maps"
-        tools:layout="@layout/fragment_google_maps" >
-        <action
-            android:id="@+id/action_googleMapsFragment_to_productsFragment"
-            app:destination="@id/productsFragment"
-            app:enterAnim="@android:anim/fade_in"
-            app:popEnterAnim="@android:anim/fade_in" />
-    </fragment>
+        tools:layout="@layout/fragment_google_maps" />
 </navigation>

@@ -161,8 +161,8 @@ class LogInFragment : Fragment(R.layout.fragment_products) {
 
                 findNavController().navigate(LogInFragmentDirections.actionLogInFragmentToProductsFragment())
                 // update products and customers cart
-                getProductsIntoDB()
-                getCustomerByIdIntoDB(CURRENT_CUSTOMER_ID)
+                getProductsIntoRealm()
+                getCustomerByIdIntoRealm(CURRENT_CUSTOMER_ID)
 
                 refreshCart()
                 refreshOrders()
@@ -197,8 +197,8 @@ class LogInFragment : Fragment(R.layout.fragment_products) {
 
                     findNavController().navigate(LogInFragmentDirections.actionLogInFragmentToProductsFragment())
                     // update products and customers cart
-                    getProductsIntoDB()
-                    getCustomerByIdIntoDB(CURRENT_CUSTOMER_ID)
+                    getProductsIntoRealm()
+                    getCustomerByIdIntoRealm(CURRENT_CUSTOMER_ID)
 
                     refreshCart()
                     refreshOrders()

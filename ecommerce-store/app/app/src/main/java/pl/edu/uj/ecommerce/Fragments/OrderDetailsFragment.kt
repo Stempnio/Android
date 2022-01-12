@@ -24,16 +24,18 @@ class OrderDetailsFragment : Fragment(R.layout.fragment_order_details) {
         val orderId = arguments?.getString("orderId")?.toInt()
 
         if(orderId != null) {
-            val headerText = "DETAILS OF ORDER: $orderId"
-            binding.tvOrderDetailsHeader.text = headerText
-            binding.tvOrderDetails.text = orderDetailsToString(orderId)
+            setOrderDetailsText(orderId)
         } else
             Toast.makeText(context, "ERROR, ORDER WITH ID: $orderId NOT FOUND", Toast.LENGTH_SHORT).show()
+
+
 
         return binding.root
     }
 
     fun setOrderDetailsText(orderId : Int) {
+        val headerText = "DETAILS OF ORDER: $orderId"
+        binding.tvOrderDetailsHeader.text = headerText
         binding.tvOrderDetails.text = orderDetailsToString(orderId)
     }
 

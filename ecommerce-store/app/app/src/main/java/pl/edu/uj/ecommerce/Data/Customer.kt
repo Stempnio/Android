@@ -32,34 +32,31 @@ class Customer {
     var password : String = ""
 }
 
-fun getCustomerByIdIntoDB(id : String) {
+fun getCustomerByIdIntoRealm(id : String) {
     val service = RetrofitService.create()
     val call = service.getCustomerByIdCall(id)
     call.enqueue(object : Callback<Customer> {
-        override fun onResponse(
-            call: Call<Customer>,
-            response: Response<Customer>
-        ) {
-            if (response.code() == 200) {
+        override fun onResponse(call: Call<Customer>, response: Response<Customer>) {
+            if (response.isSuccessful && response.body() != null) {
                 val customerResponse = response.body()!!
 
-                val tmpCustomer = CustomerRealm().apply {
-                    this.id = customerResponse.id
-                    this.firstName = customerResponse.firstName
-                    this.lastName = customerResponse.lastName
-                    this.email = customerResponse.email
-                    this.password = customerResponse.password
-                }
-
                 Realm.getDefaultInstance().executeTransactionAsync {
-                    it.insertOrUpdate(tmpCustomer)
+                    it.insertOrUpdate(CustomerRealm().apply {
+                        this.id = customerResponse.id
+                        this.firstName = customerResponse.firstName
+                        this.lastName = customerResponse.lastName
+                        this.email = customerResponse.email
+                        this.password = customerResponse.password
+                    })
                 }
-
+                Log.e("GET CUSTOMER INTO REALM SUCCESS", response.message())
+            } else {
+                Log.e("GET CUSTOMER INTO REALM FAILED", response.message())
             }
         }
 
         override fun onFailure(call: Call<Customer>, t: Throwable) {
-            Log.d("GET CUSTOMER INTO DB FAILED", t.message.toString())
+            Log.d("GET CUSTOMER INTO REALM FAILED", t.message.toString())
         }
 
     })
@@ -116,6 +113,7 @@ fun deleteCustomer() {
     call.enqueue(object : Callback<Customer> {
         override fun onResponse(call: Call<Customer>, response: Response<Customer>) {
             if(response.isSuccessful) {
+                deleteCurrentCustomerFromRealm()
                 CURRENT_CUSTOMER_ID = DEFAULT_CUSTOMER_ID
                 Toast.makeText(getApplicationContext(), "Successfully deleted account!", Toast.LENGTH_SHORT).show()
                 Log.d("DELETE CUSTOMER SUCCESS", response.message())
@@ -150,7 +148,14 @@ fun getCurrentCustomer() : Customer {
         // if error occurs (current customer cant be found) return empty customer
         return Customer()
     }
+}
 
+fun deleteCurrentCustomerFromRealm() {
+    Realm.getDefaultInstance().beginTransaction()
+    Realm.getDefaultInstance().where(CustomerRealm::class.java)
+        .equalTo("id", CURRENT_CUSTOMER_ID)
+        .findAll().deleteAllFromRealm()
+    Realm.getDefaultInstance().commitTransaction()
 }
 
 

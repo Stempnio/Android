@@ -38,7 +38,7 @@ fun cartToString() : String {
             .where(CartItemRealm::class.java)
             .equalTo("customerId", CURRENT_CUSTOMER_ID)
             .findAll().forEach {
-                result += "Product: " + Products.productDetails(it.productId) + ", quantity: " + it.quantity + "\n\n"
+                result += "Product: " + productDetails(it.productId) + ", quantity: " + it.quantity + "\n\n"
             }
 
         return result
@@ -59,38 +59,43 @@ fun carTotalPrice() : Int {
     return result
 }
 
+fun removeCartItemFromRealm(productId: Int) {
+    Realm.getDefaultInstance().beginTransaction()
+
+    Realm.getDefaultInstance().where(CartItemRealm::class.java)
+        .equalTo("customerId", CURRENT_CUSTOMER_ID)
+        .equalTo("productId", productId)
+        .findAll().forEach {
+            it.quantity -=1
+        }
+
+    Realm.getDefaultInstance().where(CartItemRealm::class.java)
+        .equalTo("customerId", CURRENT_CUSTOMER_ID)
+        .lessThan("quantity", 1)
+        .findAll()
+        .deleteAllFromRealm()
+
+
+    Realm.getDefaultInstance().commitTransaction()
+}
+
 fun removeCartItem(productId: Int) {
         val service = RetrofitService.create()
         val call = service.deleteCartItemCall(CURRENT_CUSTOMER_ID, productId)
         call.enqueue(object : Callback<CartItem> {
             override fun onResponse(call: Call<CartItem>, response: Response<CartItem>) {
-                if(response.isSuccessful)
+                if(response.isSuccessful) {
+                    removeCartItemFromRealm(productId)
                     Log.d("ITEM DELETE SUCCESS", response.message())
+                } else {
+                    Log.d("ITEM DELETE FAIL", response.message())
+                }
             }
 
             override fun onFailure(call: Call<CartItem>, t: Throwable) {
                 Log.d("ITEM DELETE FAIL", t.message.toString())
             }
-
         })
-
-        Realm.getDefaultInstance().beginTransaction()
-
-        Realm.getDefaultInstance().where(CartItemRealm::class.java)
-            .equalTo("customerId", CURRENT_CUSTOMER_ID)
-            .equalTo("productId", productId)
-            .findAll().forEach {
-                it.quantity -=1
-            }
-
-        Realm.getDefaultInstance().where(CartItemRealm::class.java)
-            .equalTo("customerId", CURRENT_CUSTOMER_ID)
-            .lessThan("quantity", 1)
-            .findAll()
-            .deleteAllFromRealm()
-
-
-        Realm.getDefaultInstance().commitTransaction()
     }
 
 fun postCart(productId : Int) {
@@ -119,10 +124,10 @@ fun refreshCart() {
         .equalTo("customerId", CURRENT_CUSTOMER_ID)
         .findAll().deleteAllFromRealm()
     Realm.getDefaultInstance().commitTransaction()
-    getCartIntoDB()
+    getCartIntoRealm()
 }
 
-fun getCartIntoDB() {
+fun getCartIntoRealm() {
     val service = RetrofitService.create()
     val call = service.getCartByIdCall(CURRENT_CUSTOMER_ID)
     call.enqueue(object : Callback<List<CartItem>> {
@@ -130,30 +135,27 @@ fun getCartIntoDB() {
             call: Call<List<CartItem>>,
             response: Response<List<CartItem>>
         ) {
-            if (response.code() == 200) {
+            if (response.isSuccessful && response.body() != null) {
                 val cartResponse = response.body()!!
 
                 for(item in cartResponse) {
-                    val tmpItem = CartItemRealm().apply {
-                        this.customerId = item.customerId
-                        this.productId = item.productId
-                        this.quantity = item.quantity
-                    }
-
                     Realm.getDefaultInstance().executeTransactionAsync {
-                        it.copyToRealmOrUpdate(tmpItem)
+                        it.copyToRealmOrUpdate(CartItemRealm().apply {
+                            this.customerId = item.customerId
+                            this.productId = item.productId
+                            this.quantity = item.quantity
+                        })
                     }
                 }
-
                 Log.d("GET_CART_FROM_DB", "Cart get successful")
+            } else {
+                Log.d("GET_CART_FROM_DB", "Cart get fail")
             }
-
         }
 
         override fun onFailure(call: Call<List<CartItem>>, t: Throwable) {
             Log.d("GET_CART_FROM_DB", t.message.toString())
         }
-
     })
 }
 

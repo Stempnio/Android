@@ -35,43 +35,32 @@ fun mapProduct(productRealm: ProductRealm) : Product {
     }
 }
 
-object Products {
-    var products = mutableListOf<ProductRealm>()
-
-    init {
-        getProductsFromDB()
-    }
-
-    fun productDetails(id : Int) : String {
-        val product = Realm.getDefaultInstance().where(ProductRealm::class.java)
-            .equalTo("id", id)
-            .findFirst()
-
-        if(product == null)
-            return "product with $id ID not found"
-
-        return "Product: " + product.name + ", price: " + product.price
-    }
-
-    fun getProductsFromDB() {
-        products = Realm.getDefaultInstance().where<ProductRealm>().findAll()
-    }
-
-    fun getProductsFromDbIntoList() : List<Product> {
-        return products.map { mapProduct(it) }
-//        return Realm.getDefaultInstance().where<ProductRealm>().findAll().map { mapProduct(it) }
-    }
-
+fun getProductsFromRealmIntoList() : List<Product> {
+    return Realm.getDefaultInstance()
+        .where<ProductRealm>()
+        .findAll()
+        .map { mapProduct(it) }
 }
 
-fun deleteAllProductsFromDB() {
+fun productDetails(id : Int) : String {
+    val product = Realm.getDefaultInstance().where(ProductRealm::class.java)
+        .equalTo("id", id)
+        .findFirst()
+
+    if(product == null)
+        return "product with $id ID not found"
+
+    return "Product: " + product.name + ", price: " + product.price
+}
+
+fun deleteAllProductsFromRealm() {
     Realm.getDefaultInstance().beginTransaction()
     Realm.getDefaultInstance().where(ProductRealm::class.java).findAll().deleteAllFromRealm()
     Realm.getDefaultInstance().commitTransaction()
 }
 
 
-fun getProductsIntoDB() {
+fun getProductsIntoRealm() {
     val service = RetrofitService.create()
     val call = service.getProductsCall()
     call.enqueue(object : Callback<List<Product>> {
@@ -79,24 +68,23 @@ fun getProductsIntoDB() {
             call: Call<List<Product>>,
             response: Response<List<Product>>
         ) {
-            if (response.code() == 200) {
+            if (response.isSuccessful && response.body() != null) {
                 val productResponse = response.body()!!
 
                 for(prod in productResponse) {
-                    val tmpProduct = ProductRealm().apply {
-                        this.id = prod.id
-                        this.description = prod.description
-                        this.name = prod.name
-                        this.price = prod.price
-                    }
-
                     Realm.getDefaultInstance().executeTransactionAsync {
-                        it.insertOrUpdate(tmpProduct)
+                        it.insertOrUpdate(ProductRealm().apply {
+                            this.id = prod.id
+                            this.description = prod.description
+                            this.name = prod.name
+                            this.price = prod.price
+                        })
                     }
                 }
 
                 Log.d("GET_PRODUCTS_FROM_DB", "Products get successful")
-
+            } else {
+                Log.d("GET_PRODUCTS_FROM_DB", "Products get fail")
             }
         }
 
@@ -108,8 +96,8 @@ fun getProductsIntoDB() {
 }
 
 fun refreshProducts() {
-    deleteAllProductsFromDB()
-    getProductsIntoDB()
+    deleteAllProductsFromRealm()
+    getProductsIntoRealm()
 }
 
 

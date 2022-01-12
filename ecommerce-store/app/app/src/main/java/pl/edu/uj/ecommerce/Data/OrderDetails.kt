@@ -27,7 +27,7 @@ fun orderDetailsToString(orderId : Int) : String {
         .where(OrderDetailsRealm::class.java)
         .equalTo("orderId", orderId)
         .findAll().forEach {
-            result += Products.productDetails(it.productId) + ", quantity: " + it.quantity + "\n"
+            result += productDetails(it.productId) + ", quantity: " + it.quantity + "\n"
         }
 
     return result

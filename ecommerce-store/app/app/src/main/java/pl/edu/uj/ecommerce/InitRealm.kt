@@ -3,7 +3,7 @@ package pl.edu.uj.ecommerce
 import android.app.Application
 import io.realm.Realm
 import io.realm.RealmConfiguration
-import pl.edu.uj.ecommerce.Data.getProductsIntoDB
+import pl.edu.uj.ecommerce.Data.getProductsIntoRealm
 
 class InitRealm : Application() {
 
@@ -18,7 +18,7 @@ class InitRealm : Application() {
 
         Realm.setDefaultConfiguration(config)
 
-        getProductsIntoDB()
+        getProductsIntoRealm()
 
     }
 

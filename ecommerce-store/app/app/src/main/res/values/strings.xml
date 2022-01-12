@@ -53,6 +53,8 @@
     <string name="log_in_with_google">log in with google</string>
     <string name="product_not_found">product not found</string>
     <string name="not_found">not found</string>
+    <string name="customer_not_found">customer not found</string>
+    <string name="customer_not_found_id">-1</string>
 
 
 </resources>

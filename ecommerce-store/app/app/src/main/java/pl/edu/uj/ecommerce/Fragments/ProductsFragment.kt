@@ -7,7 +7,6 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import pl.edu.uj.ecommerce.Adapters.ProductListAdapter
 import pl.edu.uj.ecommerce.Data.*
-import pl.edu.uj.ecommerce.Data.Products.getProductsFromDbIntoList
 import pl.edu.uj.ecommerce.R
 import pl.edu.uj.ecommerce.databinding.FragmentProductsBinding
 
@@ -25,13 +24,13 @@ class ProductsFragment : Fragment() {
         val recyclerViewProductList = binding.RecycleViewProductList
         recyclerViewProductList.layoutManager = LinearLayoutManager(context)
 
-        val products = getProductsFromDbIntoList()
+        val products = getProductsFromRealmIntoList()
         recyclerViewProductList.adapter = ProductListAdapter(products)
 
 
 
         binding.buttonGoToCart.setOnClickListener {
-            getCartIntoDB()
+            getCartIntoRealm()
             findNavController().navigate(ProductsFragmentDirections.actionProductsFragmentToCartFragment())
         }
 
