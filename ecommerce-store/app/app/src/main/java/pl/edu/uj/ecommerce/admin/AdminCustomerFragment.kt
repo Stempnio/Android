@@ -11,9 +11,10 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers.Default
 import kotlinx.coroutines.launch
 import pl.edu.uj.ecommerce.Data.Customer
-import pl.edu.uj.ecommerce.Data.deleteAllCustomers
-import pl.edu.uj.ecommerce.Data.deleteCustomerById
+import pl.edu.uj.ecommerce.R
 import pl.edu.uj.ecommerce.RetrofitService
+import pl.edu.uj.ecommerce.admin.functions.deleteAllCustomers
+import pl.edu.uj.ecommerce.admin.functions.deleteCustomerById
 import pl.edu.uj.ecommerce.admin.view_models.AdminCustomerViewModel
 import pl.edu.uj.ecommerce.databinding.FragmentAdminCustomerBinding
 import retrofit2.Call
@@ -78,14 +79,14 @@ class AdminCustomerFragment : Fragment() {
                     }
                     Log.d("GET_CUSTOMER_BY_ID", "success")
                 } else {
-                    binding.tvAdminCustomerGetId.text = "-1"
-                    binding.tvAdminCustomerGetFirst.text = "customer not found"
+                    binding.tvAdminCustomerGetId.text = getString(R.string.customer_not_found_id)
+                    binding.tvAdminCustomerGetFirst.text = getString(R.string.customer_not_found)
                 }
             }
 
             override fun onFailure(call: Call<Customer>, t: Throwable) {
-                binding.tvAdminCustomerGetId.text = "-1"
-                binding.tvAdminCustomerGetFirst.text = "customer not found"
+                binding.tvAdminCustomerGetId.text = getString(R.string.customer_not_found_id)
+                binding.tvAdminCustomerGetFirst.text = getString(R.string.customer_not_found)
                 Log.d("GET_CUSTOMER_BY_ID", t.message.toString())
             }
 
@@ -105,7 +106,7 @@ class AdminCustomerFragment : Fragment() {
                 if(customerList != null) {
                     displayCustomers(customerList)
                 } else {
-                    binding.tvAdminCustomerList.text = "not found"
+                    binding.tvAdminCustomerList.text = getString(R.string.not_found)
                 }
             }
 

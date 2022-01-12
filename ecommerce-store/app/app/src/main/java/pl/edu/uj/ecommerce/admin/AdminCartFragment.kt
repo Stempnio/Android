@@ -11,9 +11,10 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers.Default
 import kotlinx.coroutines.launch
 import pl.edu.uj.ecommerce.Data.CartItem
-import pl.edu.uj.ecommerce.Data.deleteAllCarts
-import pl.edu.uj.ecommerce.Data.deleteCustomerCart
+import pl.edu.uj.ecommerce.R
 import pl.edu.uj.ecommerce.RetrofitService
+import pl.edu.uj.ecommerce.admin.functions.deleteAllCarts
+import pl.edu.uj.ecommerce.admin.functions.deleteCustomerCart
 import pl.edu.uj.ecommerce.admin.view_models.AdminCartViewModel
 import pl.edu.uj.ecommerce.databinding.FragmentAdminCartBinding
 import retrofit2.Call
@@ -65,7 +66,8 @@ class AdminCartFragment : Fragment() {
                 if(cartList != null) {
                     displayCart(cartList)
                 } else {
-                    binding.tvAdminCartList.text = "not found"
+                    val notFound = getString(R.string.not_found)
+                    binding.tvAdminCartList.text = notFound
                 }
 
                 Log.d("GET_ALL_CARTS", "success")

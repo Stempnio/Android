@@ -6,9 +6,13 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import pl.edu.uj.ecommerce.Data.*
+import pl.edu.uj.ecommerce.Data.Product
 import pl.edu.uj.ecommerce.R
 import pl.edu.uj.ecommerce.RetrofitService
+import pl.edu.uj.ecommerce.admin.functions.deleteAllProducts
+import pl.edu.uj.ecommerce.admin.functions.deleteProductById
+import pl.edu.uj.ecommerce.admin.functions.postProduct
+import pl.edu.uj.ecommerce.admin.functions.updateProduct
 import pl.edu.uj.ecommerce.databinding.FragmentAdminProductsBinding
 import retrofit2.Response
 
