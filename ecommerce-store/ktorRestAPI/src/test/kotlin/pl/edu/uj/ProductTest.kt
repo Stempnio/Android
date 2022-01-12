@@ -32,10 +32,34 @@ class ProductTest {
     }
 
     @Test
+    fun testPostCustomerInsteadOfProduct() {
+        withTestApplication({ module(testing = true) }) {
+            with(handleRequest(HttpMethod.Post, "/product") {
+                addHeader(HttpHeaders.ContentType, ContentType.Application.Json.toString())
+                setBody(Gson().toJson(customer))
+            }) {
+                assertEquals(HttpStatusCode.BadRequest, response.status())
+            }
+        }
+    }
+
+    @Test
     fun testPostAndGetProduct() {
         withTestApplication({ module(testing = true) }) {
             postProductTest()
             getProductTest()
+        }
+    }
+
+    @Test
+    fun testUpdateCustomerInsteadOfProduct() {
+        withTestApplication({ module(testing = true) }) {
+            with(handleRequest(HttpMethod.Put, "/product") {
+                addHeader(HttpHeaders.ContentType, ContentType.Application.Json.toString())
+                setBody(Gson().toJson(customer))
+            }) {
+                assertEquals(HttpStatusCode.BadRequest, response.status())
+            }
         }
     }
 

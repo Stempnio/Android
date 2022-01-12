@@ -51,4 +51,67 @@ class AdminTest {
             }
         }
     }
+
+    @Test
+    fun testGetAdminNotExisting() {
+        withTestApplication({ module(testing = true) }) {
+
+            handleRequest(HttpMethod.Get, "/admin/afkljsalfdj").apply {
+                assertEquals(HttpStatusCode.NotFound, response.status())
+            }
+        }
+    }
+
+    @Test
+    fun testPostAdminEmptyHeader() {
+
+        withTestApplication({ module(testing = true) }) {
+            with(handleRequest(HttpMethod.Post, "/admin"){
+                addHeader(HttpHeaders.ContentType, ContentType.Application.Json.toString())
+                setBody("")
+            }) {
+                assertEquals(HttpStatusCode.BadRequest, response.status())
+            }
+        }
+    }
+
+    @Test
+    fun testPostProductInsteadOfAdmin() {
+
+        withTestApplication({ module(testing = true) }) {
+            with(handleRequest(HttpMethod.Post, "/admin"){
+                addHeader(HttpHeaders.ContentType, ContentType.Application.Json.toString())
+                setBody(Gson().toJson(product1))
+            }) {
+                assertEquals(HttpStatusCode.BadRequest, response.status())
+            }
+        }
+    }
+
+    @Test
+    fun testPostCartItemInsteadOfAdmin() {
+
+        withTestApplication({ module(testing = true) }) {
+            with(handleRequest(HttpMethod.Post, "/admin"){
+                addHeader(HttpHeaders.ContentType, ContentType.Application.Json.toString())
+                setBody(Gson().toJson(cartItem))
+            }) {
+                assertEquals(HttpStatusCode.BadRequest, response.status())
+            }
+        }
+    }
+
+    @Test
+    fun testPostOrderDetailsInsteadOfAdmin() {
+
+        withTestApplication({ module(testing = true) }) {
+            with(handleRequest(HttpMethod.Post, "/admin"){
+                addHeader(HttpHeaders.ContentType, ContentType.Application.Json.toString())
+                setBody(Gson().toJson(orderDetails1))
+            }) {
+                assertEquals(HttpStatusCode.BadRequest, response.status())
+            }
+        }
+    }
+
 }

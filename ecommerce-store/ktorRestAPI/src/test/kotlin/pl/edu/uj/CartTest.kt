@@ -33,6 +33,41 @@ class CartTest {
     }
 
     @Test
+    fun testPostAndGetCartItem2Quantity() {
+        withTestApplication({ module(testing = true) }) {
+            postCustomerTest()
+            postProductTest()
+
+            postCartItemTest()
+            postCartItemTest()
+
+            handleRequest(HttpMethod.Get, "/cart/${customer.id}").apply {
+                assertEquals(Gson().toJson(cart2quantity), response.content)
+                assertEquals(HttpStatusCode.OK, response.status())
+            }
+        }
+    }
+
+    @Test
+    fun testPostCartItemMalformedProductId() {
+        withTestApplication({ module(testing = true) }) {
+            with(handleRequest(HttpMethod.Post, "/cart/${customer.id}/adsf")) {
+                assertEquals(HttpStatusCode.BadRequest, response.status())
+            }
+        }
+    }
+
+    @Test
+    fun testGetAllCartsEmpty() {
+        withTestApplication({ module(testing = true) }) {
+            with(handleRequest(HttpMethod.Post, "/cart")) {
+                assertEquals(HttpStatusCode.NotFound, response.status())
+            }
+        }
+    }
+
+
+    @Test
     fun testDeleteCartItem() {
         withTestApplication({ module(testing = true) }) {
 

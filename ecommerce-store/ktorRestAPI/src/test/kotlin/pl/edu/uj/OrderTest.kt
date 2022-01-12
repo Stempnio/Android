@@ -11,7 +11,6 @@ import kotlin.test.assertEquals
 fun TestApplicationEngine.postOrderTest() {
     with(handleRequest(HttpMethod.Post, "/order/${customer.id}")) {
         assertEquals(HttpStatusCode.OK, response.status())
-
     }
 }
 
@@ -41,6 +40,52 @@ class OrderTest {
 
             postOrderTest()
             getOrderTest()
+        }
+    }
+
+    @Test
+    fun testGetAllOrders() {
+        withTestApplication({ module(testing = true) }) {
+            postCustomerTest()
+            postProductTest()
+            postCartItemTest()
+            postOrderTest()
+
+            handleRequest(HttpMethod.Get, "/order").apply {
+                assertEquals(HttpStatusCode.OK, response.status())
+
+                val gson = Gson()
+                val itemType = object : TypeToken<List<Order>>() {}.type
+                val orderList = gson.fromJson<List<Order>>(response.content, itemType)
+
+                if(orderList != null && orderList.isNotEmpty()) {
+                    assertEquals(order.id, orderList[0].id)
+                    assertEquals(order.customerId, orderList[0].customerId)
+                }
+            }
+        }
+    }
+
+    @Test
+    fun testGetOrdersMalformedId() {
+        withTestApplication({ module(testing = true) }) {
+            postCustomerTest()
+            postProductTest()
+            postCartItemTest()
+            postOrderTest()
+
+            handleRequest(HttpMethod.Get, "/order/asdf").apply {
+                assertEquals(HttpStatusCode.BadRequest, response.status())
+            }
+        }
+    }
+
+    @Test
+    fun testPostOrderNoCustomerId() {
+        withTestApplication({ module(testing = true) }) {
+            handleRequest(HttpMethod.Get, "/order/ ").apply {
+                assertEquals(HttpStatusCode.BadRequest, response.status())
+            }
         }
     }
 

@@ -24,6 +24,16 @@ class OrderDetailsTest {
     }
 
     @Test
+    fun testGetOrderDetailsMalformedId() {
+        withTestApplication({ module(testing = true) }) {
+
+            handleRequest(HttpMethod.Get, "/orderDetails/asdfasdf").apply {
+                assertEquals(HttpStatusCode.BadRequest, response.status())
+            }
+        }
+    }
+
+    @Test
     fun testGetCustomerOrderDetails() {
         withTestApplication({ module(testing = true) }) {
             postCustomerTest()

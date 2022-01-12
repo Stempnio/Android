@@ -40,12 +40,12 @@ class CustomerTest {
     }
 
     @Test
-    fun updateCustomer() {
+    fun testUpdateCustomer() {
         withTestApplication({ module(testing = true) }) {
 
             postCustomerTest()
 
-            with(handleRequest(HttpMethod.Put, "/customer"){
+            with(handleRequest(HttpMethod.Put, "/customer") {
                 addHeader(HttpHeaders.ContentType, ContentType.Application.Json.toString())
                 setBody(Gson().toJson(customerUpdated))
             }) {
@@ -57,6 +57,36 @@ class CustomerTest {
                 assertEquals(HttpStatusCode.OK, response.status())
             }
 
+        }
+    }
+
+    @Test
+    fun testUpdateProductProductInsteadOfCustomer() {
+        withTestApplication({ module(testing = true) }) {
+
+            postCustomerTest()
+
+            with(handleRequest(HttpMethod.Put, "/customer") {
+                addHeader(HttpHeaders.ContentType, ContentType.Application.Json.toString())
+                setBody(Gson().toJson(product1))
+            }) {
+                assertEquals(HttpStatusCode.BadRequest, response.status())
+            }
+        }
+    }
+
+    @Test
+    fun testUpdateCustomerEmptyHeader() {
+        withTestApplication({ module(testing = true) }) {
+
+            postCustomerTest()
+
+            with(handleRequest(HttpMethod.Put, "/customer") {
+                addHeader(HttpHeaders.ContentType, ContentType.Application.Json.toString())
+                setBody("")
+            }) {
+                assertEquals(HttpStatusCode.BadRequest, response.status())
+            }
         }
     }
 
@@ -81,6 +111,15 @@ class CustomerTest {
     }
 
     @Test
+    fun testDeleteCustomerEmptyId() {
+        withTestApplication({ module(testing = true) }) {
+            handleRequest(HttpMethod.Delete, "/customer/").apply {
+                assertEquals(HttpStatusCode.NotFound, response.status())
+            }
+        }
+    }
+
+    @Test
     fun testDeleteAllCustomers() {
         withTestApplication({ module(testing = true) }) {
 
@@ -92,6 +131,71 @@ class CustomerTest {
 
             handleRequest(HttpMethod.Get, "/customer").apply {
                 assertEquals(Gson().toJson(emptyCustomerList), response.content)
+            }
+        }
+    }
+
+    @Test
+    fun testPostCustomerEmptyHeader() {
+
+        withTestApplication({ module(testing = true) }) {
+            with(handleRequest(HttpMethod.Post, "/customer") {
+                addHeader(HttpHeaders.ContentType, ContentType.Application.Json.toString())
+                setBody("")
+            }) {
+                assertEquals(HttpStatusCode.BadRequest, response.status())
+            }
+        }
+    }
+
+    @Test
+    fun testPostProductInsteadOfCustomer() {
+
+        withTestApplication({ module(testing = true) }) {
+            with(handleRequest(HttpMethod.Post, "/customer") {
+                addHeader(HttpHeaders.ContentType, ContentType.Application.Json.toString())
+                setBody(Gson().toJson(product1))
+            }) {
+                assertEquals(HttpStatusCode.BadRequest, response.status())
+            }
+        }
+    }
+
+    @Test
+    fun testPostCartItemInsteadOfCustomer() {
+
+        withTestApplication({ module(testing = true) }) {
+            with(handleRequest(HttpMethod.Post, "/customer") {
+                addHeader(HttpHeaders.ContentType, ContentType.Application.Json.toString())
+                setBody(Gson().toJson(cartItem))
+            }) {
+                assertEquals(HttpStatusCode.BadRequest, response.status())
+            }
+        }
+    }
+
+    @Test
+    fun testPostAdminInsteadOfCustomer() {
+
+        withTestApplication({ module(testing = true) }) {
+            with(handleRequest(HttpMethod.Post, "/customer") {
+                addHeader(HttpHeaders.ContentType, ContentType.Application.Json.toString())
+                setBody(Gson().toJson(admin))
+            }) {
+                assertEquals(HttpStatusCode.BadRequest, response.status())
+            }
+        }
+    }
+
+    @Test
+    fun testPostOrderDetailsInsteadOfCustomer() {
+
+        withTestApplication({ module(testing = true) }) {
+            with(handleRequest(HttpMethod.Post, "/customer") {
+                addHeader(HttpHeaders.ContentType, ContentType.Application.Json.toString())
+                setBody(Gson().toJson(orderDetails1))
+            }) {
+                assertEquals(HttpStatusCode.BadRequest, response.status())
             }
         }
     }
