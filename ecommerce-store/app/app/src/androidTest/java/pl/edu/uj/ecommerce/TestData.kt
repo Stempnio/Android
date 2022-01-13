@@ -36,6 +36,16 @@ fun addTestCustomer() {
     getCustomerByIdIntoRealm(CURRENT_CUSTOMER_ID)
 }
 
+fun getAllCustomers() : List<Customer> {
+    val list = RetrofitService
+        .create()
+        .getAllCustomersCall()
+        .execute()
+        .body()
+
+    return list ?: emptyList()
+}
+
 fun addTestProduct() {
 
     deleteAllProductsFromRealm()
@@ -103,6 +113,8 @@ fun addTestAdmin() {
         .create()
         .postAdminCall(testAdmin)
         .execute()
+
+    CURRENT_CUSTOMER_ID = testAdmin.id
 
 }
 
