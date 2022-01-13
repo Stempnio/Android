@@ -1,16 +1,23 @@
 package pl.edu.uj.ecommerce
 
 import pl.edu.uj.ecommerce.Data.*
+import pl.edu.uj.ecommerce.admin.Admin
 
 val testCustomer = Customer().apply {
     this.id="testCustomer"
     this.password = "1234"
 }
 
-val testProduct = Product().apply {
+var testProduct = Product().apply {
     this.id = 1
     this.price = 100
     this.name = "test product 1"
+}
+
+val testAdmin = Admin().apply {
+    this.id="testadmin"
+    this.email="admintest@a.com"
+    this.password="admin"
 }
 
 
@@ -26,12 +33,12 @@ fun addTestCustomer() {
         .execute()
 
     CURRENT_CUSTOMER_ID = testCustomer.id
-    getCustomerByIdIntoDB(CURRENT_CUSTOMER_ID)
+    getCustomerByIdIntoRealm(CURRENT_CUSTOMER_ID)
 }
 
 fun addTestProduct() {
 
-    deleteAllProductsFromDB()
+    deleteAllProductsFromRealm()
 
     RetrofitService
         .create()
@@ -43,7 +50,15 @@ fun addTestProduct() {
         .postProductCall(testProduct)
         .execute()
 
-    getProductsIntoDB()
+    val prod = RetrofitService
+        .create()
+        .getProductsCall()
+        .execute()
+        .body()
+
+    testProduct.id = prod!![0].id
+
+    getProductsIntoRealm()
 
 }
 
@@ -78,21 +93,15 @@ fun addTestOrder() {
     refreshOrders()
 }
 
-fun addTestOrderDetailsToDB() {
-
+fun addTestAdmin() {
     RetrofitService
         .create()
-        .deleteAllOrders()
+        .deleteAdminCall(testAdmin.id)
         .execute()
 
     RetrofitService
         .create()
-        .postCartItemCall(testCustomer.id, testProduct.id)
-        .execute()
-
-    RetrofitService
-        .create()
-        .postCustomerOrderCall(CURRENT_CUSTOMER_ID)
+        .postAdminCall(testAdmin)
         .execute()
 
 }
