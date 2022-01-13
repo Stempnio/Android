@@ -5,11 +5,8 @@ import androidx.fragment.app.testing.launchFragmentInContainer
 import androidx.navigation.Navigation
 import androidx.navigation.testing.TestNavHostController
 import androidx.test.core.app.ApplicationProvider
-import androidx.test.espresso.Espresso
 import androidx.test.espresso.Espresso.onView
-import androidx.test.espresso.action.ViewActions
 import androidx.test.espresso.assertion.ViewAssertions.matches
-import androidx.test.espresso.matcher.ViewMatchers
 import androidx.test.espresso.matcher.ViewMatchers.withId
 import androidx.test.espresso.matcher.ViewMatchers.withText
 import androidx.test.ext.junit.runners.AndroidJUnit4
@@ -35,7 +32,7 @@ class OrderDetailsFragmentTest {
 
         addTestCustomer()
         addTestProduct()
-        addTestOrderDetailsToDB()
+        addTestOrder()
 
         val orderDetailsList = RetrofitService
             .create()
@@ -68,10 +65,14 @@ class OrderDetailsFragmentTest {
         onView(withId(R.id.tvOrderDetails)).check(matches(withText(expectedString)))
     }
 
-//    @Test
-//    fun testGoBack() {
-//        Espresso.onView(ViewMatchers.withId(R.id.btnOrderDetailsGoBack)).perform(ViewActions.click())
-//        Truth.assertThat(navController.currentDestination?.id).isEqualTo(R.id.ordersFragment)
-//    }
+    @Test
+    fun testCorrectOrderDetailsHeader() {
+        Truth.assertThat(orderDetails).isNotNull()
+
+        val expectedString = "DETAILS OF ORDER: ${orderDetails!!.orderId}"
+
+        onView(withId(R.id.tvOrderDetailsHeader)).check(matches(withText(expectedString)))
+    }
+
 
 }

@@ -15,10 +15,7 @@ import com.google.common.truth.Truth.assertThat
 import org.junit.Before
 import org.junit.Test
 import org.junit.runner.RunWith
-import pl.edu.uj.ecommerce.R
-import pl.edu.uj.ecommerce.RetrofitService
-import pl.edu.uj.ecommerce.addTestCustomer
-import pl.edu.uj.ecommerce.testCustomer
+import pl.edu.uj.ecommerce.*
 
 @RunWith(AndroidJUnit4::class)
 class LogInFragmentTest {
@@ -93,8 +90,10 @@ class LogInFragmentTest {
 
     @Test
     fun adminLogIn() {
-        onView(withId(R.id.editTextUsername)).perform(typeText("admin1"))
-        onView(withId(R.id.editTextPassword)).perform(typeText("admin"))
+        addTestAdmin()
+
+        onView(withId(R.id.editTextUsername)).perform(typeText(testAdmin.id))
+        onView(withId(R.id.editTextPassword)).perform(typeText(testAdmin.password))
 
         closeSoftKeyboard()
 
