@@ -96,6 +96,12 @@ interface RetrofitService {
     @GET("admin/{id}")
     fun getAdminByIdCall(@Path("id") id : String) : Call<Admin>
 
+    @POST("admin")
+    fun postAdminCall(@Body admin: Admin) : Call<Admin>
+
+    @DELETE("admin/{id}")
+    fun deleteAdminCall(@Path("id") id : String) : Call<Admin>
+
 
     companion object {
 
