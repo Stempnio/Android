@@ -41,7 +41,7 @@ class ProductsFragment : Fragment() {
 
         binding.buttonOrders.setOnClickListener {
             getOrdersIntoDB()
-            getOrderDetailsIntoDB()
+            getOrderDetailsIntoRealm()
             findNavController().navigate(ProductsFragmentDirections.actionProductsFragmentToOrdersFragment())
         }
 

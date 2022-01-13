@@ -33,7 +33,7 @@ fun orderDetailsToString(orderId : Int) : String {
     return result
 }
 
-fun deleteOrderDetailsFromDB() {
+fun deleteOrderDetailsFromRealm() {
     Realm.getDefaultInstance().beginTransaction()
 
     Realm.getDefaultInstance().where(OrderDetailsRealm::class.java)
@@ -42,7 +42,7 @@ fun deleteOrderDetailsFromDB() {
     Realm.getDefaultInstance().commitTransaction()
 }
 
-fun getOrderDetailsIntoDB() {
+fun getOrderDetailsIntoRealm() {
     val service = RetrofitService.create()
     val call = service.getCustomerOrderDetailsCall(CURRENT_CUSTOMER_ID)
     call.enqueue(object : Callback<List<OrderDetails>> {
@@ -54,7 +54,7 @@ fun getOrderDetailsIntoDB() {
 
                 // because order details doesnt have primary key (realm doesnt support multiple keys)
                 // order details have to be deleted in order to avoid duplicates
-                deleteOrderDetailsFromDB()
+                deleteOrderDetailsFromRealm()
 
                 val orderResponse = response.body()!!
 

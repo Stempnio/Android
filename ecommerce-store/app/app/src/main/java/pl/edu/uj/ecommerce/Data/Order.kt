@@ -86,5 +86,5 @@ fun refreshOrders() {
 
     getOrdersIntoDB()
 
-    getOrderDetailsIntoDB()
+    getOrderDetailsIntoRealm()
 }
