@@ -14,6 +14,8 @@ import org.junit.Before
 import org.junit.Test
 import org.junit.runner.RunWith
 import pl.edu.uj.ecommerce.*
+import pl.edu.uj.ecommerce.Data.CURRENT_CUSTOMER_ID
+import pl.edu.uj.ecommerce.Data.DEFAULT_CUSTOMER_ID
 import pl.edu.uj.ecommerce.admin.AdminHomeFragment
 
 @RunWith(AndroidJUnit4::class)
@@ -38,6 +40,11 @@ class AdminHomeTest {
             Navigation.setViewNavController(fragment.requireView(), navController)
             navController.setCurrentDestination(R.id.adminHomeFragment)
         }
+    }
+
+    @Test
+    fun testCorrectAdminId() {
+        Truth.assertThat(CURRENT_CUSTOMER_ID).isEqualTo(testAdmin.id)
     }
 
     @Test
@@ -72,6 +79,7 @@ class AdminHomeTest {
     fun testAdminHomeLogOut() {
         Espresso.onView(ViewMatchers.withId(R.id.btnAdminHomeLogOut)).perform(ViewActions.click())
 
+        Truth.assertThat(CURRENT_CUSTOMER_ID).isEqualTo(DEFAULT_CUSTOMER_ID)
         Truth.assertThat(navController.currentDestination?.id).isEqualTo(R.id.logInFragment)
     }
 }
