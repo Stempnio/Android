@@ -103,6 +103,46 @@ fun addTestOrder() {
     refreshOrders()
 }
 
+fun getTestOrder() : Order {
+    val list = RetrofitService
+        .create()
+        .getCustomerOrdersCall(testCustomer.id)
+        .execute()
+        .body()
+
+    return if(list != null && list.size == 1) {
+        list[0]
+    } else {
+        Order()
+    }
+}
+
+fun getTestOrderId() : Int {
+    val list = RetrofitService
+        .create()
+        .getCustomerOrdersCall(testCustomer.id)
+        .execute()
+        .body()
+
+    return if(list != null && list.size == 1) {
+        list[0].id
+    } else {
+        -1
+    }
+}
+
+fun getTestOrderToString(list : List<OrderDetails>) : String {
+
+    var result = ""
+    list.forEach {
+        result += "order ID: " + it.orderId +
+                " | product ID: " + it.productId +
+                " | quantity: " + it.quantity + "\n"
+    }
+
+    return result
+}
+
 fun addTestAdmin() {
     RetrofitService
         .create()
