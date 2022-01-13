@@ -82,8 +82,8 @@ fun removeCartItemFromRealm(productId: Int) {
 fun removeCartItem(productId: Int) {
         val service = RetrofitService.create()
         val call = service.deleteCartItemCall(CURRENT_CUSTOMER_ID, productId)
-        call.enqueue(object : Callback<CartItem> {
-            override fun onResponse(call: Call<CartItem>, response: Response<CartItem>) {
+        call.enqueue(object : Callback<Unit> {
+            override fun onResponse(call: Call<Unit>, response: Response<Unit>) {
                 if(response.isSuccessful) {
                     removeCartItemFromRealm(productId)
                     Log.d("ITEM DELETE SUCCESS", response.message())
@@ -92,7 +92,7 @@ fun removeCartItem(productId: Int) {
                 }
             }
 
-            override fun onFailure(call: Call<CartItem>, t: Throwable) {
+            override fun onFailure(call: Call<Unit>, t: Throwable) {
                 Log.d("ITEM DELETE FAIL", t.message.toString())
             }
         })
@@ -101,12 +101,12 @@ fun removeCartItem(productId: Int) {
 fun postCart(productId : Int) {
     val service = RetrofitService.create()
     val call = service.postCartItemCall(CURRENT_CUSTOMER_ID, productId)
-    call.enqueue(object : Callback<CartItem> {
-        override fun onResponse(call: Call<CartItem>, response: Response<CartItem>) {
+    call.enqueue(object : Callback<Unit> {
+        override fun onResponse(call: Call<Unit>, response: Response<Unit>) {
             Log.d("CART ITEM POSTED SUCCESSFULLY", response.message().toString())
         }
 
-        override fun onFailure(call: Call<CartItem>, t: Throwable) {
+        override fun onFailure(call: Call<Unit>, t: Throwable) {
             Log.d("CART ITEM POST FAILED", t.message.toString())
         }
 

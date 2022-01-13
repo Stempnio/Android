@@ -65,8 +65,8 @@ fun getCustomerByIdIntoRealm(id : String) {
 fun postCustomer(customer: Customer) {
     val service = RetrofitService.create()
     val call = service.postCustomerCall(customer)
-    call.enqueue(object : Callback<Customer> {
-        override fun onResponse(call: Call<Customer>, response: Response<Customer>) {
+    call.enqueue(object : Callback<Unit> {
+        override fun onResponse(call: Call<Unit>, response: Response<Unit>) {
             if(response.isSuccessful) {
                 Toast.makeText(getApplicationContext(), "Successfully registered!", Toast.LENGTH_SHORT).show()
                 Log.d("POST CUSTOMER SUCCESS", response.message())
@@ -77,7 +77,7 @@ fun postCustomer(customer: Customer) {
 
         }
 
-        override fun onFailure(call: Call<Customer>, t: Throwable) {
+        override fun onFailure(call: Call<Unit>, t: Throwable) {
             Toast.makeText(getApplicationContext(), "Error occurred while registration!", Toast.LENGTH_SHORT).show()
             Log.d("POST CUSTOMER FAIL", t.message.toString())
         }
@@ -88,8 +88,8 @@ fun postCustomer(customer: Customer) {
 fun updateCustomer(customer : Customer) {
     val service = RetrofitService.create()
     val call = service.putCustomerCall(customer)
-    call.enqueue(object : Callback<Customer> {
-        override fun onResponse(call: Call<Customer>, response: Response<Customer>) {
+    call.enqueue(object : Callback<Unit> {
+        override fun onResponse(call: Call<Unit>, response: Response<Unit>) {
             if(response.isSuccessful) {
                 Toast.makeText(getApplicationContext(), "Successfully changed password!", Toast.LENGTH_SHORT).show()
                 Log.d("PUT CUSTOMER SUCCESS", response.message())
@@ -99,7 +99,7 @@ fun updateCustomer(customer : Customer) {
             }
         }
 
-        override fun onFailure(call: Call<Customer>, t: Throwable) {
+        override fun onFailure(call: Call<Unit>, t: Throwable) {
             Toast.makeText(getApplicationContext(), "Error occurred while updating password!", Toast.LENGTH_SHORT).show()
             Log.d("PUT CUSTOMER FAIL", t.message.toString())
         }
@@ -110,8 +110,8 @@ fun updateCustomer(customer : Customer) {
 fun deleteCustomer() {
     val service = RetrofitService.create()
     val call = service.deleteCustomerCall(CURRENT_CUSTOMER_ID)
-    call.enqueue(object : Callback<Customer> {
-        override fun onResponse(call: Call<Customer>, response: Response<Customer>) {
+    call.enqueue(object : Callback<Unit> {
+        override fun onResponse(call: Call<Unit>, response: Response<Unit>) {
             if(response.isSuccessful) {
                 deleteCurrentCustomerFromRealm()
                 CURRENT_CUSTOMER_ID = DEFAULT_CUSTOMER_ID
@@ -123,7 +123,7 @@ fun deleteCustomer() {
             }
         }
 
-        override fun onFailure(call: Call<Customer>, t: Throwable) {
+        override fun onFailure(call: Call<Unit>, t: Throwable) {
             Toast.makeText(getApplicationContext(), "Error occurred while deleting account!", Toast.LENGTH_SHORT).show()
             Log.d("DELETE CUSTOMER FAIL", t.message.toString())
         }

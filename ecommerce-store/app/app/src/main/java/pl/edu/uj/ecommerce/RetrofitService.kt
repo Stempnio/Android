@@ -17,16 +17,16 @@ interface RetrofitService {
     fun getProductByIdCall(@Path("id") id : Int) : Call<Product>
 
     @POST("product")
-    fun postProductCall(@Body product: Product) : Call<Product>
+    fun postProductCall(@Body product: Product) : Call<Unit>
 
     @PUT("product")
-    fun updateProductCall(@Body product: Product) : Call<Product>
+    fun updateProductCall(@Body product: Product) : Call<Unit>
 
     @DELETE("product/{id}")
-    fun deleteProductByIdCall(@Path("id") productId: Int) : Call<Product>
+    fun deleteProductByIdCall(@Path("id") productId: Int) : Call<Unit>
 
     @DELETE("product")
-    fun deleteAllProductsCall() : Call<Product>
+    fun deleteAllProductsCall() : Call<Unit>
 
 //    Customer
     @GET("customer")
@@ -36,16 +36,16 @@ interface RetrofitService {
     fun getCustomerByIdCall(@Path("id") id : String) : Call<Customer>
 
     @POST("customer")
-    fun postCustomerCall(@Body customer : Customer) : Call<Customer>
+    fun postCustomerCall(@Body customer : Customer) : Call<Unit>
 
     @PUT("customer")
-    fun putCustomerCall(@Body customer : Customer) : Call<Customer>
+    fun putCustomerCall(@Body customer : Customer) : Call<Unit>
 
     @DELETE("customer/{customerId}")
-    fun deleteCustomerCall(@Path("customerId") customerId: String) : Call<Customer>
+    fun deleteCustomerCall(@Path("customerId") customerId: String) : Call<Unit>
 
     @DELETE("customer")
-    fun deleteAllCustomersCall() : Call<List<Customer>>
+    fun deleteAllCustomersCall() : Call<Unit>
 
 //    Cart
     @GET("cart")
@@ -55,16 +55,16 @@ interface RetrofitService {
     fun getCartByIdCall(@Path("customerId") customerId : String) : Call<List<CartItem>>
 
     @POST("cart/{customerId}/{productId}")
-    fun postCartItemCall(@Path("customerId") customerId: String, @Path("productId") productId : Int) : Call<CartItem>
+    fun postCartItemCall(@Path("customerId") customerId: String, @Path("productId") productId : Int) : Call<Unit>
 
     @DELETE("cart/{customerId}/{productId}")
-    fun deleteCartItemCall(@Path("customerId") customerId: String, @Path("productId") productId: Int) : Call<CartItem>
+    fun deleteCartItemCall(@Path("customerId") customerId: String, @Path("productId") productId: Int) : Call<Unit>
 
     @DELETE("cart/{customerId}")
-    fun deleteCustomerCartCall(@Path("customerId") customerId: String) : Call<List<CartItem>>
+    fun deleteCustomerCartCall(@Path("customerId") customerId: String) : Call<Unit>
 
     @DELETE("cart")
-    fun deleteAllCarts() : Call<List<CartItem>>
+    fun deleteAllCarts() : Call<Unit>
 
 //    Orders
     @GET("order")
@@ -74,18 +74,15 @@ interface RetrofitService {
     fun getCustomerOrdersCall(@Path("customerId") customerId: String) : Call<List<Order>>
 
     @POST("order/{customerId}")
-    fun postCustomerOrderCall(@Path("customerId") customerId: String) : Call<Order>
+    fun postCustomerOrderCall(@Path("customerId") customerId: String) : Call<Unit>
 
     @DELETE("order/{id}")
-    fun deleteOrderByIdCall(@Path("id") orderId: Int) : Call<Order>
+    fun deleteOrderByIdCall(@Path("id") orderId: Int) : Call<Unit>
 
     @DELETE("order")
     fun deleteAllOrders() : Call<Unit>
 
 //    Order details
-    @GET("orderDetails")
-    fun getAllOrderDetailsCall() : Call<List<OrderDetails>>
-
     @GET("orderDetails/{orderId}")
     fun getOrderDetailsByIdCall(@Path("orderId") orderId : Int) : Call<List<OrderDetails>>
 
@@ -97,10 +94,10 @@ interface RetrofitService {
     fun getAdminByIdCall(@Path("id") id : String) : Call<Admin>
 
     @POST("admin")
-    fun postAdminCall(@Body admin: Admin) : Call<Admin>
+    fun postAdminCall(@Body admin: Admin) : Call<Unit>
 
     @DELETE("admin/{id}")
-    fun deleteAdminCall(@Path("id") id : String) : Call<Admin>
+    fun deleteAdminCall(@Path("id") id : String) : Call<Unit>
 
 
     companion object {

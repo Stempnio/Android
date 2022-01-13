@@ -27,13 +27,13 @@ class Order {
 fun postOrder() {
     val service = RetrofitService.create()
     val call = service.postCustomerOrderCall(CURRENT_CUSTOMER_ID)
-    call.enqueue(object : Callback<Order> {
-        override fun onResponse(call: Call<Order>, response: Response<Order>) {
+    call.enqueue(object : Callback<Unit> {
+        override fun onResponse(call: Call<Unit>, response: Response<Unit>) {
 
             Log.d("POST ORDER SUCCESSFUL", response.message())
         }
 
-        override fun onFailure(call: Call<Order>, t: Throwable) {
+        override fun onFailure(call: Call<Unit>, t: Throwable) {
             Log.d("POST ORDER FAIL", t.message.toString())
         }
 

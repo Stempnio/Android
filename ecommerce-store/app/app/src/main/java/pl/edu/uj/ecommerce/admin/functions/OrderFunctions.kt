@@ -1,7 +1,6 @@
 package pl.edu.uj.ecommerce.admin.functions
 
 import android.util.Log
-import pl.edu.uj.ecommerce.Data.Order
 import pl.edu.uj.ecommerce.RetrofitService
 import retrofit2.Call
 import retrofit2.Callback
@@ -10,12 +9,12 @@ import retrofit2.Response
 fun deleteOrderById(id : Int) {
     val service = RetrofitService.create()
     val call = service.deleteOrderByIdCall(id)
-    call.enqueue(object : Callback<Order> {
-        override fun onResponse(call: Call<Order>, response: Response<Order>) {
+    call.enqueue(object : Callback<Unit> {
+        override fun onResponse(call: Call<Unit>, response: Response<Unit>) {
             Log.d("DELETE_ORDER_BY_ID", response.message().toString())
         }
 
-        override fun onFailure(call: Call<Order>, t: Throwable) {
+        override fun onFailure(call: Call<Unit>, t: Throwable) {
             Log.d("DELETE_ORDER_BY_ID", t.message.toString())
         }
 
