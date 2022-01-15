@@ -14,7 +14,7 @@
 
         <androidx.appcompat.widget.LinearLayoutCompat
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:orientation="vertical"
             android:gravity="center">
 
@@ -23,7 +23,7 @@
                 android:layout_width="200dp"
                 android:layout_height="80dp"
                 android:layout_marginTop="20dp"
-                android:text="Refresh order list" />
+                android:text="@string/refresh_order_list" />
 
 
             <ScrollView
@@ -34,7 +34,7 @@
 
                 <androidx.appcompat.widget.LinearLayoutCompat
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
+                    android:layout_height="wrap_content"
                     android:orientation="vertical" >
 
                     <TextView
@@ -53,6 +53,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
+                android:theme="@style/Theme.MaterialComponents.DayNight"
                 app:cardCornerRadius="30dp">
 
                 <androidx.appcompat.widget.LinearLayoutCompat
@@ -62,9 +63,10 @@
                     android:layout_margin="20dp"
                     android:gravity="center">
 
-                    <androidx.appcompat.widget.AppCompatEditText
+                    <EditText
                         android:id="@+id/etAdminOrderDetailsGetById"
-                        android:hint="Enter order ID"
+                        android:hint="@string/enter_order_id"
+                        android:inputType="numberSigned"
                         android:layout_width="200dp"
                         android:layout_height="wrap_content" />
 
@@ -72,7 +74,7 @@
                         android:id="@+id/btnAdminOrderDetailsGetById"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="get order details" />
+                        android:text="@string/get_order_details" />
 
                     <TextView
                         android:id="@+id/tvAdminOrderDetailsGetById"
@@ -90,6 +92,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
+                android:theme="@style/Theme.MaterialComponents.DayNight"
                 app:cardCornerRadius="30dp">
 
                 <androidx.appcompat.widget.LinearLayoutCompat
@@ -99,9 +102,10 @@
                     android:layout_margin="20dp"
                     android:gravity="center">
 
-                    <androidx.appcompat.widget.AppCompatEditText
+                    <EditText
                         android:id="@+id/etAdminOrderDeleteById"
-                        android:hint="Enter order ID"
+                        android:hint="@string/enter_order_id"
+                        android:inputType="numberSigned"
                         android:layout_width="200dp"
                         android:layout_height="wrap_content" />
 
@@ -109,7 +113,7 @@
                         android:id="@+id/btnAdminOrderDeleteById"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="delete order" />
+                        android:text="@string/delete_order" />
 
                 </androidx.appcompat.widget.LinearLayoutCompat>
 
@@ -123,7 +127,7 @@
                 android:layout_marginBottom="20dp"
                 android:layout_width="200dp"
                 android:layout_height="80dp"
-                android:text="delete all orders"
+                android:text="@string/delete_all_orders"
                 android:background="#FF0000"/>
 
         </androidx.appcompat.widget.LinearLayoutCompat>

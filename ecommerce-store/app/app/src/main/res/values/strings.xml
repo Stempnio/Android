@@ -55,6 +55,35 @@
     <string name="not_found">not found</string>
     <string name="customer_not_found">customer not found</string>
     <string name="customer_not_found_id">-1</string>
+    <string name="refresh_cart_list">Refresh cart list</string>
+    <string name="enter_customer_id_whose_cart_to_be_deleted">Enter customer id whose cart to be deleted</string>
+    <string name="delete_customer_cart">Delete customer cart</string>
+    <string name="delete_all_carts">delete all carts</string>
+    <string name="refresh_customer_list">Refresh customer list</string>
+    <string name="get_customer">get customer</string>
+    <string name="id">id</string>
+    <string name="first_name">first name</string>
+    <string name="last_name">last name</string>
+    <string name="enter_customer_id">Enter customer ID</string>
+    <string name="delete_customer">delete customer</string>
+    <string name="delete_all_customers">delete all customers</string>
+    <string name="refresh_order_list">Refresh order list</string>
+    <string name="get_order_details">get order details</string>
+    <string name="enter_order_id">Enter order ID</string>
+    <string name="delete_order">delete order</string>
+    <string name="delete_all_orders">delete all orders</string>
+    <string name="enter_product_price">Enter product price</string>
+    <string name="enter_product_description">Enter product description</string>
+    <string name="add_product">Add product</string>
+    <string name="enter_product_id">Enter product ID</string>
+    <string name="enter_product_name">Enter product name</string>
+    <string name="update_product">update product</string>
+    <string name="get_product">get product</string>
+    <string name="name">name</string>
+    <string name="price">price</string>
+    <string name="description">description</string>
+    <string name="delete_product">delete product</string>
+    <string name="delete_all_products">delete all products</string>
 
 
 </resources>

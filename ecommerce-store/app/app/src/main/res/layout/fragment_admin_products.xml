@@ -14,7 +14,7 @@
 
         <androidx.appcompat.widget.LinearLayoutCompat
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:orientation="vertical"
             android:gravity="center">
 
@@ -22,6 +22,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
+                android:theme="@style/Theme.MaterialComponents.DayNight"
                 app:cardCornerRadius="30dp">
 
                 <androidx.appcompat.widget.LinearLayoutCompat
@@ -34,20 +35,20 @@
 
                     <androidx.appcompat.widget.AppCompatEditText
                         android:id="@+id/etAdminProductsAddName"
-                        android:hint="Enter product name"
+                        android:hint="@string/enter_product_name"
                         android:layout_width="200dp"
                         android:layout_height="wrap_content" />
 
                     <androidx.appcompat.widget.AppCompatEditText
                         android:id="@+id/etAdminProductsAddPrice"
-                        android:hint="Enter product price"
+                        android:hint="@string/enter_product_price"
                         android:inputType="numberSigned"
                         android:layout_width="200dp"
                         android:layout_height="wrap_content" />
 
                     <androidx.appcompat.widget.AppCompatEditText
                         android:id="@+id/etAdminProductsAddDescription"
-                        android:hint="Enter product description"
+                        android:hint="@string/enter_product_description"
                         android:layout_width="200dp"
                         android:layout_height="wrap_content" />
 
@@ -55,7 +56,7 @@
                         android:id="@+id/btnAdminProductsAdd"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Add product" />
+                        android:text="@string/add_product" />
 
                 </androidx.appcompat.widget.LinearLayoutCompat>
 
@@ -67,6 +68,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
+                android:theme="@style/Theme.MaterialComponents.DayNight"
                 app:cardCornerRadius="30dp">
 
                 <androidx.appcompat.widget.LinearLayoutCompat
@@ -78,27 +80,27 @@
 
                     <androidx.appcompat.widget.AppCompatEditText
                         android:id="@+id/etAdminProductsUpdateId"
-                        android:hint="Enter product ID"
+                        android:hint="@string/enter_product_id"
                         android:inputType="numberSigned"
                         android:layout_width="200dp"
                         android:layout_height="wrap_content" />
 
                     <androidx.appcompat.widget.AppCompatEditText
                         android:id="@+id/etAdminProductsUpdateName"
-                        android:hint="Enter product name"
+                        android:hint="@string/enter_product_name"
                         android:layout_width="200dp"
                         android:layout_height="wrap_content" />
 
                     <androidx.appcompat.widget.AppCompatEditText
                         android:id="@+id/etAdminProductsUpdatePrice"
-                        android:hint="Enter product price"
+                        android:hint="@string/enter_product_price"
                         android:inputType="numberSigned"
                         android:layout_width="200dp"
                         android:layout_height="wrap_content" />
 
                     <androidx.appcompat.widget.AppCompatEditText
                         android:id="@+id/etAdminProductsUpdateDescription"
-                        android:hint="Enter product description"
+                        android:hint="@string/enter_product_description"
                         android:layout_width="200dp"
                         android:layout_height="wrap_content" />
 
@@ -106,7 +108,7 @@
                         android:id="@+id/btnAdminProductsUpdate"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="update product" />
+                        android:text="@string/update_product" />
 
                 </androidx.appcompat.widget.LinearLayoutCompat>
 
@@ -117,6 +119,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
+                android:theme="@style/Theme.MaterialComponents.DayNight"
                 app:cardCornerRadius="30dp">
 
                 <androidx.appcompat.widget.LinearLayoutCompat
@@ -128,7 +131,7 @@
 
                     <androidx.appcompat.widget.AppCompatEditText
                         android:id="@+id/etAdminProductsGetById"
-                        android:hint="Enter product ID"
+                        android:hint="@string/enter_product_id"
                         android:inputType="numberSigned"
                         android:layout_width="200dp"
                         android:layout_height="wrap_content" />
@@ -137,31 +140,31 @@
                         android:id="@+id/btnAdminProductsGetById"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="get product" />
+                        android:text="@string/get_product" />
 
                     <TextView
                         android:id="@+id/tvAdminProductsGetId"
                         android:layout_width="200dp"
                         android:layout_height="wrap_content"
-                        android:text="null id"/>
+                        android:text="@string/id"/>
 
                     <TextView
                         android:id="@+id/tvAdminProductsGetName"
                         android:layout_width="200dp"
                         android:layout_height="wrap_content"
-                        android:text="null name"/>
+                        android:text="@string/name"/>
 
                     <TextView
                         android:id="@+id/tvAdminProductsGetPrice"
                         android:layout_width="200dp"
                         android:layout_height="wrap_content"
-                        android:text="null price"/>
+                        android:text="@string/price"/>
 
                     <TextView
                         android:id="@+id/tvAdminProductsGetDescription"
                         android:layout_width="200dp"
                         android:layout_height="wrap_content"
-                        android:text="null description"/>
+                        android:text="@string/description"/>
 
 
                 </androidx.appcompat.widget.LinearLayoutCompat>
@@ -173,6 +176,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
+                android:theme="@style/Theme.MaterialComponents.DayNight"
                 app:cardCornerRadius="30dp">
 
                 <androidx.appcompat.widget.LinearLayoutCompat
@@ -184,7 +188,7 @@
 
                     <androidx.appcompat.widget.AppCompatEditText
                         android:id="@+id/etAdminProductsDeleteById"
-                        android:hint="Enter product ID"
+                        android:hint="@string/enter_product_id"
                         android:inputType="numberSigned"
                         android:layout_width="200dp"
                         android:layout_height="wrap_content" />
@@ -193,7 +197,7 @@
                         android:id="@+id/btnAdminProductsDeleteById"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="delete product" />
+                        android:text="@string/delete_product" />
 
                 </androidx.appcompat.widget.LinearLayoutCompat>
 
@@ -207,7 +211,7 @@
                 android:layout_marginBottom="20dp"
                 android:layout_width="200dp"
                 android:layout_height="80dp"
-                android:text="delete all products"
+                android:text="@string/delete_all_products"
                 android:background="#FF0000"/>
 
         </androidx.appcompat.widget.LinearLayoutCompat>
