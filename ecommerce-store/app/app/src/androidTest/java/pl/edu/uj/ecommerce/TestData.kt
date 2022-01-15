@@ -72,6 +72,14 @@ fun addTestProduct() {
 
 }
 
+fun getProducts() : List<Product>? {
+    return RetrofitService
+        .create()
+        .getProductsCall()
+        .execute()
+        .body()
+}
+
 fun addTestCartItem() {
     RetrofitService
         .create()
