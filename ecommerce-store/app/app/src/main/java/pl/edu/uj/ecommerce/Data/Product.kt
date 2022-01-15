@@ -59,6 +59,16 @@ fun deleteAllProductsFromRealm() {
     Realm.getDefaultInstance().commitTransaction()
 }
 
+fun addOrUpdateProductRealm(product: Product) {
+    Realm.getDefaultInstance().executeTransactionAsync {
+        it.insertOrUpdate(ProductRealm().apply {
+            this.id = product.id
+            this.description = product.description
+            this.name = product.name
+            this.price = product.price
+        })
+    }
+}
 
 fun getProductsIntoRealm() {
     val service = RetrofitService.create()
@@ -72,14 +82,7 @@ fun getProductsIntoRealm() {
                 val productResponse = response.body()!!
 
                 for(prod in productResponse) {
-                    Realm.getDefaultInstance().executeTransactionAsync {
-                        it.insertOrUpdate(ProductRealm().apply {
-                            this.id = prod.id
-                            this.description = prod.description
-                            this.name = prod.name
-                            this.price = prod.price
-                        })
-                    }
+                    addOrUpdateProductRealm(prod)
                 }
 
                 Log.d("GET_PRODUCTS_FROM_DB", "Products get successful")
