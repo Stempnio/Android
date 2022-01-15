@@ -38,7 +38,7 @@ fun cartToString() : String {
             .where(CartItemRealm::class.java)
             .equalTo("customerId", CURRENT_CUSTOMER_ID)
             .findAll().forEach {
-                result += "Product: " + productDetails(it.productId) + ", quantity: " + it.quantity + "\n\n"
+                result += productDetails(it.productId) + ", quantity: " + it.quantity + "\n\n"
             }
 
         return result
