@@ -52,8 +52,10 @@ class BuyFragmentTest {
 
     @Test
     fun testCorrectCartDetails() {
+        val expectedString = "Product: ${testProduct.name}, price: ${testProduct.price}, quantity: 1\n\n"
+
         Espresso.onView(ViewMatchers.withId(R.id.tvBuyFragmentCartDetails)).check(matches(withText(
-            testProduct.price.toString())))
+            expectedString)))
     }
 
     @Test
