@@ -43,30 +43,34 @@ class AdminProductsFragment : Fragment() {
     private fun addProductConf() {
         binding.btnAdminProductsAdd.setOnClickListener {
             val name = binding.etAdminProductsAddName.text.toString()
-            val price = binding.etAdminProductsAddPrice.text.toString().toInt()
+            val price = binding.etAdminProductsAddPrice.text.toString()
             val description = binding.etAdminProductsAddDescription.text.toString()
 
-            postProduct(Product().apply {
-                this.name = name
-                this.price = price
-                this.description = description
-            })
+            if(name != "" && price != "") {
+                postProduct(Product().apply {
+                    this.name = name
+                    this.price = price.toInt()
+                    this.description = description
+                })
+            }
         }
     }
 
     private fun updateProductConf() {
         binding.btnAdminProductsUpdate.setOnClickListener {
-            val id = binding.etAdminProductsUpdateId.text.toString().toInt()
+            val id = binding.etAdminProductsUpdateId.text.toString()
             val name = binding.etAdminProductsUpdateName.text.toString()
-            val price = binding.etAdminProductsUpdatePrice.text.toString().toInt()
+            val price = binding.etAdminProductsUpdatePrice.text.toString()
             val description = binding.etAdminProductsUpdateDescription.text.toString()
 
-            updateProduct(Product().apply {
-                this.id = id
-                this.name = name
-                this.price = price
-                this.description = description
-            })
+            if(id != "" && name != "" && price != "") {
+                updateProduct(Product().apply {
+                    this.id = id.toInt()
+                    this.name = name
+                    this.price = price.toInt()
+                    this.description = description
+                })
+            }
         }
     }
 
@@ -88,31 +92,39 @@ class AdminProductsFragment : Fragment() {
     private fun getProductByIdConf() {
         binding.btnAdminProductsGetById.setOnClickListener {
 
-            val id = binding.etAdminProductsGetById.text.toString().toInt()
+            val idString = binding.etAdminProductsGetById.text.toString()
 
-            val service = RetrofitService.create()
-            val call = service.getProductByIdCall(id)
-            call.enqueue(object : retrofit2.Callback<Product> {
-                override fun onResponse(call: retrofit2.Call<Product>, response: Response<Product>) {
-                    val prod = response.body()
-                    if(prod != null) {
-                        binding.tvAdminProductsGetId.text = prod.id.toString()
-                        binding.tvAdminProductsGetName.text = prod.name
-                        binding.tvAdminProductsGetPrice.text = prod.price.toString()
-                        binding.tvAdminProductsGetDescription.text = prod.description
-                    } else {
-                        binding.tvAdminProductsGetId.text = "-1"
-                        binding.tvAdminProductsGetName.text = getString(R.string.product_not_found)
-                        binding.tvAdminProductsGetPrice.text = ""
-                        binding.tvAdminProductsGetDescription.text = ""
+            if(idString != "") {
+                val id = idString.toInt()
+
+                val service = RetrofitService.create()
+                val call = service.getProductByIdCall(id)
+                call.enqueue(object : retrofit2.Callback<Product> {
+                    override fun onResponse(
+                        call: retrofit2.Call<Product>,
+                        response: Response<Product>
+                    ) {
+                        val prod = response.body()
+                        if (prod != null) {
+                            binding.tvAdminProductsGetId.text = prod.id.toString()
+                            binding.tvAdminProductsGetName.text = prod.name
+                            binding.tvAdminProductsGetPrice.text = prod.price.toString()
+                            binding.tvAdminProductsGetDescription.text = prod.description
+                        } else {
+                            binding.tvAdminProductsGetId.text = "-1"
+                            binding.tvAdminProductsGetName.text =
+                                getString(R.string.product_not_found)
+                            binding.tvAdminProductsGetPrice.text = ""
+                            binding.tvAdminProductsGetDescription.text = ""
+                        }
                     }
-                }
 
-                override fun onFailure(call: retrofit2.Call<Product>, t: Throwable) {
-                    Log.d("GET_PRODUCT_BY_ID", t.message.toString())
-                }
+                    override fun onFailure(call: retrofit2.Call<Product>, t: Throwable) {
+                        Log.d("GET_PRODUCT_BY_ID", t.message.toString())
+                    }
 
-            })
+                })
+            }
         }
 
     }

@@ -44,13 +44,14 @@ class AdminCustomerFragment : Fragment() {
 
         binding.btnAdminCustomerDeleteById.setOnClickListener {
             val id = binding.etAdminCustomerDeleteById.text.toString()
-            deleteCustomerById(id)
+            if(id != "")
+                deleteCustomerById(id)
         }
 
         binding.btnAdminCustomerGetById.setOnClickListener {
             val id = binding.etAdminCustomerGetById.text.toString()
-
-            getCustomerById(id)
+            if(id != "")
+                getCustomerById(id)
         }
 
         viewModel.customerListString.observe(viewLifecycleOwner, {string ->

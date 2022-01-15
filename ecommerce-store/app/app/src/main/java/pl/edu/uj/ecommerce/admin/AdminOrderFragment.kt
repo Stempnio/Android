@@ -48,8 +48,9 @@ class AdminOrderFragment : Fragment() {
         })
 
         binding.btnAdminOrderDetailsGetById.setOnClickListener {
-            val id = binding.etAdminOrderDetailsGetById.text.toString().toInt()
-            getOrderDetailsById(id)
+            val idString = binding.etAdminOrderDetailsGetById.text.toString()
+            if(idString != "")
+                getOrderDetailsById(idString.toInt())
         }
 
         binding.btnAdminOrderDeleteAll.setOnClickListener {
@@ -57,8 +58,9 @@ class AdminOrderFragment : Fragment() {
         }
 
         binding.btnAdminOrderDeleteById.setOnClickListener {
-            val id = binding.etAdminOrderDeleteById.text.toString().toInt()
-            deleteOrderById(id)
+            val idString = binding.etAdminOrderDeleteById.text.toString()
+            if(idString != "")
+                deleteOrderById(idString.toInt())
         }
 
         return binding.root

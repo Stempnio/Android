@@ -39,7 +39,8 @@ class AdminCartFragment : Fragment() {
 
         binding.btnAdminCartDeleteCustomerCart.setOnClickListener {
             val id = binding.etAdminCartDeleteCustomerCart.text.toString()
-            deleteCustomerCart(id)
+            if(id != "")
+                deleteCustomerCart(id)
         }
 
         binding.btnAdminCartRefresh.setOnClickListener {
