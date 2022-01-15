@@ -151,6 +151,14 @@ fun getTestOrderToString(list : List<OrderDetails>) : String {
     return result
 }
 
+fun getTestOrderDetails(id : Int) : List<OrderDetails>? {
+     return RetrofitService
+        .create()
+        .getOrderDetailsByIdCall(id)
+        .execute()
+        .body()
+}
+
 fun addTestAdmin() {
     RetrofitService
         .create()
@@ -164,6 +172,13 @@ fun addTestAdmin() {
 
     CURRENT_CUSTOMER_ID = testAdmin.id
 
+}
+
+fun wait(milis : Int) {
+    val startTime = System.currentTimeMillis()
+    val endTime = startTime + milis
+
+    while(System.currentTimeMillis() < endTime) {}
 }
 
 

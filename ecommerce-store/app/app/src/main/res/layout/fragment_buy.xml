@@ -7,7 +7,6 @@
     tools:context=".Fragments.BuyFragment">
 
 
-
     <ScrollView
         android:id="@+id/scrollViewBuyFragment"
         android:layout_width="346dp"
@@ -17,11 +16,11 @@
         android:layout_marginEnd="20dp"
         android:layout_marginBottom="30dp"
         android:foregroundGravity="center"
-        app:layout_constraintVertical_bias="0.1"
         app:layout_constraintBottom_toTopOf="@+id/tvBuyFragmentTotalPriceHeader"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.1"
         app:layout_constraintVertical_chainStyle="packed">
 
         <LinearLayout
@@ -38,7 +37,6 @@
                 tools:text="Cart details" />
         </LinearLayout>
     </ScrollView>
-
 
 
     <TextView
@@ -80,8 +78,9 @@
         android:id="@+id/cardInputWidget"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginVertical="20dp"
         android:layout_marginHorizontal="10dp"
+        android:layout_marginVertical="20dp"
+        android:theme="@style/Theme.AppCompat.DayNight"
         app:layout_constraintBottom_toTopOf="@id/buttonBuyFragmentPlaceOrder"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/tvBuyFragmentTotalPrice" />
@@ -92,17 +91,17 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
         android:layout_marginBottom="104dp"
-        android:text="@string/place_order"
-        android:textSize="25sp"
-        android:padding="5dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/cardInputWidget"
         android:background="@drawable/button_shape"
+        android:padding="5dp"
         android:shadowColor="@color/buttonShadowColor"
         android:shadowDx="0"
         android:shadowDy="0"
         android:shadowRadius="10"
-        android:textColor="@color/buttonTextColor"/>
+        android:text="@string/place_order"
+        android:textColor="@color/buttonTextColor"
+        android:textSize="25sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/cardInputWidget" />
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -28,6 +28,8 @@ class BuyFragment : Fragment(R.layout.fragment_buy) {
     ): View {
         _binding = FragmentBuyBinding.inflate(layoutInflater, container, false)
 
+//        setTestCard()
+
         binding.tvBuyFragmentCartDetails.text = cartToString()
 
         binding.tvBuyFragmentTotalPrice.text = carTotalPrice().toString()
@@ -61,5 +63,11 @@ class BuyFragment : Fragment(R.layout.fragment_buy) {
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
+    }
+
+    fun setTestCard() {
+        binding.cardInputWidget.setCardNumber("4242424242424242")
+        binding.cardInputWidget.setCvcCode("123")
+        binding.cardInputWidget.setExpiryDate(1,24)
     }
 }
