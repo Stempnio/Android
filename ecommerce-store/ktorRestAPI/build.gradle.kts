@@ -47,5 +47,7 @@ dependencies {
     testImplementation("io.ktor:ktor-server-test-host:$ktor_version")
     testImplementation("org.jetbrains.kotlin:kotlin-test:$kotlin_version")
 
+    implementation("com.stripe:stripe-java:20.95.0")
+
 
 }

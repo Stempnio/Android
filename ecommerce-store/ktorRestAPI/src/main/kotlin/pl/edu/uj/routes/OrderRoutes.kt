@@ -1,9 +1,14 @@
 package pl.edu.uj.routes
 
+import com.google.gson.Gson
+import com.stripe.Stripe
+import com.stripe.model.PaymentIntent
+import com.stripe.param.PaymentIntentCreateParams
 import io.ktor.application.*
 import io.ktor.http.*
 import io.ktor.response.*
 import io.ktor.routing.*
+import pl.edu.uj.Stripe_keys
 import pl.edu.uj.models.*
 
 fun Route.orderRouting() {
@@ -32,6 +37,32 @@ fun Route.orderRouting() {
                         call.respond(HttpStatusCode.NotFound)
                 }
             } catch (e : Exception) {
+                call.respond(HttpStatusCode.BadRequest, e.message.toString())
+            }
+        }
+
+        get("/create-payment-intent/{customer_id}") {
+            try {
+                val id = call.parameters["customer_id"]
+                if (id != null) {
+                    val cart = getCustomerCart(id)
+                    var price: Long = 0
+                    cart.forEach {
+                        price += (getProduct(it.productId)?.price ?: 0) * it.quantity
+                    }
+
+                    //secret test key
+                    Stripe.apiKey = Stripe_keys.api_key
+
+                    val params = PaymentIntentCreateParams.builder()
+                        .setAmount(price*100) // in pennies
+                        .setCurrency("pln")
+                        .build()
+
+                    val intent = PaymentIntent.create(params)
+                    call.respond(Gson().toJson(intent.clientSecret))
+                }
+            } catch(e : Exception) {
                 call.respond(HttpStatusCode.BadRequest, e.message.toString())
             }
         }
