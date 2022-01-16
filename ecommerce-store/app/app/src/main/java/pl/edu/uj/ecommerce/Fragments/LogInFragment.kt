@@ -154,6 +154,9 @@ class LogInFragment : Fragment(R.layout.fragment_products) {
                 if (response.code() != 200) {
                     Log.d("google", "creating account")
                     postCustomer(customer)
+                    putCustomerIntoRealm(customer)
+                } else {
+                    getCustomerByIdIntoRealm(customer.id)
                 }
 
                 Log.d("google", "account exists")
@@ -162,7 +165,6 @@ class LogInFragment : Fragment(R.layout.fragment_products) {
                 findNavController().navigate(LogInFragmentDirections.actionLogInFragmentToProductsFragment())
                 // update products and customers cart
                 getProductsIntoRealm()
-                getCustomerByIdIntoRealm(CURRENT_CUSTOMER_ID)
 
                 refreshCart()
                 refreshOrders()

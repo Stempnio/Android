@@ -32,6 +32,18 @@ class Customer {
     var password : String = ""
 }
 
+fun putCustomerIntoRealm(customer: Customer) {
+    Realm.getDefaultInstance().executeTransactionAsync {
+        it.insertOrUpdate(CustomerRealm().apply {
+            this.id = customer.id
+            this.firstName = customer.firstName
+            this.lastName = customer.lastName
+            this.email = customer.email
+            this.password = customer.password
+        })
+    }
+}
+
 fun getCustomerByIdIntoRealm(id : String) {
     val service = RetrofitService.create()
     val call = service.getCustomerByIdCall(id)
@@ -40,16 +52,8 @@ fun getCustomerByIdIntoRealm(id : String) {
             if (response.isSuccessful && response.body() != null) {
                 val customerResponse = response.body()!!
 
-                Realm.getDefaultInstance().executeTransactionAsync {
-                    it.insertOrUpdate(CustomerRealm().apply {
-                        this.id = customerResponse.id
-                        this.firstName = customerResponse.firstName
-                        this.lastName = customerResponse.lastName
-                        this.email = customerResponse.email
-                        this.password = customerResponse.password
-                    })
-                }
-                Log.e("GET CUSTOMER INTO REALM SUCCESS", response.message())
+                putCustomerIntoRealm(customerResponse)
+                Log.d("GET CUSTOMER INTO REALM SUCCESS", response.message())
             } else {
                 Log.e("GET CUSTOMER INTO REALM FAILED", response.message())
             }
@@ -71,14 +75,14 @@ fun postCustomer(customer: Customer) {
                 Toast.makeText(getApplicationContext(), "Successfully registered!", Toast.LENGTH_SHORT).show()
                 Log.d("POST CUSTOMER SUCCESS", response.message())
             } else {
-                Toast.makeText(getApplicationContext(), "Error occurred while registration!", Toast.LENGTH_SHORT).show()
+                Toast.makeText(getApplicationContext(), "Error occurred while registration! Given username may be already taken", Toast.LENGTH_SHORT).show()
                 Log.d("POST CUSTOMER FAIL", response.message())
             }
 
         }
 
         override fun onFailure(call: Call<Unit>, t: Throwable) {
-            Toast.makeText(getApplicationContext(), "Error occurred while registration!", Toast.LENGTH_SHORT).show()
+            Toast.makeText(getApplicationContext(), "Error occurred while registration! ${t.message.toString()}", Toast.LENGTH_SHORT).show()
             Log.d("POST CUSTOMER FAIL", t.message.toString())
         }
 
