@@ -97,7 +97,7 @@ class BuyFragment : Fragment(R.layout.fragment_buy) {
         }
     }
 
-    private fun getClientSecret() {
+    fun getClientSecret() {
         RetrofitService
             .create()
             .createPaymentIntentCall(CURRENT_CUSTOMER_ID)
