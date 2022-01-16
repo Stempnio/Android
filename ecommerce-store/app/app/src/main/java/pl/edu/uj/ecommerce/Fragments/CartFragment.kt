@@ -21,6 +21,18 @@ class CartFragment : Fragment(R.layout.fragment_cart) {
     private var _binding: FragmentCartBinding? = null
     private val binding get() = _binding!!
 
+    private fun setRecyclerViewAdapter() {
+        binding.RecyclerViewCartList.adapter = RecyclerViewCartAdapter(Realm.getDefaultInstance()
+            .where(CartItemRealm::class.java)
+            .equalTo("customerId", CURRENT_CUSTOMER_ID)
+            .findAll())
+    }
+
+    override fun onResume() {
+        super.onResume()
+        setRecyclerViewAdapter()
+    }
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -29,14 +41,6 @@ class CartFragment : Fragment(R.layout.fragment_cart) {
 
         val recyclerViewCartList = binding.RecyclerViewCartList
         recyclerViewCartList.layoutManager = LinearLayoutManager(context)
-
-        val adapter = RecyclerViewCartAdapter(Realm.getDefaultInstance()
-            .where(CartItemRealm::class.java)
-            .equalTo("customerId", CURRENT_CUSTOMER_ID)
-            .findAll())
-
-        recyclerViewCartList.adapter = adapter
-
 
         binding.buttonBuy.setOnClickListener {
             if(!isCartEmpty())

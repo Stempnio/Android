@@ -29,7 +29,7 @@ fun postOrder() {
     val call = service.postCustomerOrderCall(CURRENT_CUSTOMER_ID)
     call.enqueue(object : Callback<Unit> {
         override fun onResponse(call: Call<Unit>, response: Response<Unit>) {
-
+            refreshCart()
             Log.d("POST ORDER SUCCESSFUL", response.message())
         }
 
@@ -38,8 +38,6 @@ fun postOrder() {
         }
 
     })
-
-    refreshCart()
 }
 
 fun getOrdersIntoDB() {
