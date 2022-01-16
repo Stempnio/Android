@@ -41,6 +41,7 @@ class BuyFragmentTest {
             navController.setCurrentDestination(R.id.buyFragment)
 
             fragment.setTestCard()
+            fragment.getClientSecret()
         }
     }
 
@@ -65,10 +66,12 @@ class BuyFragmentTest {
             .deleteAllOrders()
             .execute()
 
+        wait(3000)
+
         Espresso.onView(ViewMatchers.withId(R.id.buttonBuyFragmentPlaceOrder))
             .perform(click())
 
-        wait(2000)
+        wait(3000)
 
         val order = getTestOrder()
 

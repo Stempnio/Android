@@ -83,6 +83,11 @@ fun getProducts() : List<Product>? {
 fun addTestCartItem() {
     RetrofitService
         .create()
+        .deleteAllCarts()
+        .execute()
+
+    RetrofitService
+        .create()
         .postCartItemCall(testCustomer.id, testProduct.id)
         .execute()
 
